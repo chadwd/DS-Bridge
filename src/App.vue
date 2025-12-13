@@ -20,7 +20,11 @@
 
       <!-- Filled Buttons -->
       <v-row class="mb-6">
-        <v-col cols="12" sm="6" md="3">
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+        >
           <h3 class="text-body2 font-weight-bold mb-2">Filled (Default)</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button>Primary</ds-button>
@@ -29,25 +33,57 @@
           </div>
         </v-col>
 
-        <v-col cols="12" sm="6" md="3">
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+        >
           <h3 class="text-body2 font-weight-bold mb-2">Outlined</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button variant="outlined">Primary</ds-button>
-            <ds-button variant="outlined" color="secondary">Secondary</ds-button>
-            <ds-button variant="outlined" color="error">Error</ds-button>
+            <ds-button
+              variant="outlined"
+              color="secondary"
+            >
+              Secondary
+            </ds-button>
+            <ds-button
+              variant="outlined"
+              color="error"
+            >
+              Error
+            </ds-button>
           </div>
         </v-col>
 
-        <v-col cols="12" sm="6" md="3">
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+        >
           <h3 class="text-body2 font-weight-bold mb-2">Text</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button variant="text">Primary</ds-button>
-            <ds-button variant="text" color="secondary">Secondary</ds-button>
-            <ds-button variant="text" color="error">Error</ds-button>
+            <ds-button
+              variant="text"
+              color="secondary"
+            >
+              Secondary
+            </ds-button>
+            <ds-button
+              variant="text"
+              color="error"
+            >
+              Error
+            </ds-button>
           </div>
         </v-col>
 
-        <v-col cols="12" sm="6" md="3">
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+        >
           <h3 class="text-body2 font-weight-bold mb-2">Sizes</h3>
           <div class="d-flex flex-column gap-2">
             <ds-button size="sm">Small</ds-button>
@@ -63,8 +99,18 @@
           <h3 class="text-body2 font-weight-bold mb-2">Disabled State</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button disabled>Disabled Primary</ds-button>
-            <ds-button variant="outlined" disabled>Disabled Outlined</ds-button>
-            <ds-button variant="text" disabled>Disabled Text</ds-button>
+            <ds-button
+              variant="outlined"
+              disabled
+            >
+              Disabled Outlined
+            </ds-button>
+            <ds-button
+              variant="text"
+              disabled
+            >
+              Disabled Text
+            </ds-button>
           </div>
         </v-col>
       </v-row>
@@ -72,7 +118,10 @@
       <!-- Design System Info -->
       <v-row class="mt-12">
         <v-col cols="12">
-          <v-card class="pa-6" variant="outlined">
+          <v-card
+            class="pa-6"
+            variant="outlined"
+          >
             <h3 class="text-h6 font-weight-bold mb-3">Getting Started</h3>
             <ul class="text-body2">
               <li class="mb-2">

@@ -1,0 +1,7 @@
+dist/
+node_modules/
+.nuxt/
+coverage/
+.env
+.env.*
+*.log
