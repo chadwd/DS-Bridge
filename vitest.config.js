@@ -6,6 +6,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    transformMode: {
+      web: [/\.[jt]sx?$/],
+    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -15,5 +18,13 @@ export default defineConfig({
         'docs/',
       ],
     },
+  },
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
+  ssr: {
+    noExternal: ['vuetify'],
   },
 });
