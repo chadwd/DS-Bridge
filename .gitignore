@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# Production
+/dist
+/docs/.vitepress/dist
+
+# Development
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage
+.nyc_output
+
+# Build
+.turbo
