@@ -15,19 +15,51 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     lib: {
-      entry: 'src/main.ts',
+      entry: {
+        'design-system-vuetify': 'src/main.ts',
+        'button': 'src/button.ts',
+        'tokens/index': 'src/tokens.ts',
+      },
       name: 'DesignSystemVuetify',
-      fileName: (format) => `design-system-vuetify.${format === 'es' ? 'js' : 'cjs'}`,
+      fileName: (format, entryName) => {
+        const extension = format === 'es' ? 'js' : 'cjs';
+        return `${entryName}.${extension}`;
+      },
     },
     rollupOptions: {
       external: ['vue', 'vuetify'],
-      output: {
-        globals: {
-          vue: 'Vue',
-          vuetify: 'Vuetify',
+      output: [
+        {
+          format: 'es',
+          dir: 'dist',
+          entryFileNames: '[name].js',
+          chunkFileNames: '[name].[hash].js',
+          assetFileNames: '[name].[ext]',
+          globals: {
+            vue: 'Vue',
+            vuetify: 'Vuetify',
+          },
         },
-      },
+        {
+          format: 'cjs',
+          dir: 'dist',
+          entryFileNames: '[name].cjs',
+          chunkFileNames: '[name].[hash].cjs',
+          assetFileNames: '[name].[ext]',
+          globals: {
+            vue: 'Vue',
+            vuetify: 'Vuetify',
+          },
+        },
+      ],
     },
   },
 });

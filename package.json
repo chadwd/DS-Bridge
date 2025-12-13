@@ -5,11 +5,12 @@
   "author": "Chad Dunbar",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/design-system-vuetify.cjs",
+  "module": "dist/design-system-vuetify.js",
+  "types": "dist/design-system-vuetify.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/DS-Bridge.git"
+    "url": "https://github.com/chadwd/DS-Bridge.git"
   },
   "keywords": [
     "vue",
@@ -21,17 +22,26 @@
     "whitespace",
     "design-tokens"
   ],
-  "homepage": "https://github.com/yourusername/DS-Bridge#readme",
+  "homepage": "https://github.com/chadwd/DS-Bridge#readme",
   "bugs": {
-    "url": "https://github.com/yourusername/DS-Bridge/issues"
+    "url": "https://github.com/chadwd/DS-Bridge/issues"
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/design-system-vuetify.js",
+      "require": "./dist/design-system-vuetify.cjs",
+      "types": "./dist/design-system-vuetify.d.ts"
     },
-    "./components": "./dist/components/index.js",
-    "./tokens": "./dist/tokens/index.js"
+    "./button": {
+      "import": "./dist/components/Button.js",
+      "require": "./dist/components/Button.cjs",
+      "types": "./dist/components/Button.d.ts"
+    },
+    "./tokens": {
+      "import": "./dist/tokens/index.js",
+      "require": "./dist/tokens/index.cjs",
+      "types": "./dist/tokens/index.d.ts"
+    }
   },
   "scripts": {
     "dev": "vite",
@@ -51,14 +61,20 @@
     "vuetify": "^3.4.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.49.0",
+    "@typescript-eslint/parser": "^8.49.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/coverage-v8": "^1.0.4",
     "@vitest/ui": "^1.0.4",
     "@vue/test-utils": "^2.4.3",
+    "axe-core": "^4.11.0",
     "eslint": "^8.55.0",
     "eslint-plugin-vue": "^9.19.2",
+    "jest-axe": "^10.0.0",
     "jsdom": "^23.0.1",
     "material-design-icons-iconfont": "^6.7.0",
+    "terser": "^5.44.1",
     "typescript": "^5.9.3",
     "vite": "^5.0.10",
     "vitepress": "^1.0.0-rc.45",
