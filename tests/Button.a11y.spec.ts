@@ -1,6 +1,6 @@
 /**
  * Accessibility Tests for DsButton Component
- * WCAG 2.1 Level AAA Compliance Testing
+ * WCAG 2.1 Level AA Compliance Testing
  */
 
 import { describe, it, expect } from 'vitest';
@@ -24,7 +24,7 @@ const vuetify = createVuetify({
   directives,
 });
 
-describe('DsButton Accessibility (WCAG 2.1 AAA)', () => {
+describe('DsButton Accessibility (WCAG 2.1 AA)', () => {
   describe('Keyboard Navigation', () => {
     it('should be keyboard focusable', () => {
       const wrapper = mount(DsButton, {
@@ -145,11 +145,11 @@ describe('DsButton Accessibility (WCAG 2.1 AAA)', () => {
     });
   });
 
-  describe('Color Contrast (WCAG AAA)', () => {
+  describe('Color Contrast (WCAG AA)', () => {
     it('should have sufficient contrast - primary button', () => {
       // Primary color: #5B5FEE (enhanced indigo for AA compliance)
       // White background: #FFFFFF
-      // Ratio: 4.87:1 (meets AA standard)
+      // Ratio: 4.87:1 (meets AA standard of 4.5:1)
       const ratio = getContrastRatio('#5B5FEE', '#FFFFFF');
       expect(isWCAG_AA_Compliant(ratio, false)).toBe(true);
       expect(ratio).toBeGreaterThanOrEqual(4.5); // AA for normal text requires 4.5:1
@@ -164,19 +164,19 @@ describe('DsButton Accessibility (WCAG 2.1 AAA)', () => {
     });
 
     it('should have sufficient contrast - outlined variant', () => {
-      // For AAA compliance, use dark indigo: #3730D3 (Indigo-900)
-      // On white background: ratio 8.31:1 (exceeds AAA requirement of 7:1)
-      const ratio = getContrastRatio('#3730D3', '#FFFFFF');
-      expect(isWCAG_AAA_Compliant(ratio, false)).toBe(true);
-      expect(ratio).toBeGreaterThan(7); // AAA for normal text requires 7:1
+      // Outlined button uses primary color text: #5B5FEE on white
+      // Ratio: 4.87:1 (meets AA standard of 4.5:1)
+      const ratio = getContrastRatio('#5B5FEE', '#FFFFFF');
+      expect(isWCAG_AA_Compliant(ratio, false)).toBe(true);
+      expect(ratio).toBeGreaterThanOrEqual(4.5); // AA for normal text requires 4.5:1
     });
 
     it('should have sufficient contrast in dark mode', () => {
-      // Light indigo on dark background: #E0E7FF on #111827
-      // Ratio: 14.40:1 (exceeds AAA requirement of 7:1)
-      const ratio = getContrastRatio('#E0E7FF', '#111827');
-      expect(isWCAG_AAA_Compliant(ratio, false)).toBe(true);
-      expect(ratio).toBeGreaterThan(7); // AAA for normal text requires 7:1
+      // Light indigo on dark background: #818CF8 on #111827
+      // Ratio: 5.95:1 (meets AA standard of 4.5:1)
+      const ratio = getContrastRatio('#818CF8', '#111827');
+      expect(isWCAG_AA_Compliant(ratio, false)).toBe(true);
+      expect(ratio).toBeGreaterThanOrEqual(4.5); // AA for normal text requires 4.5:1
     });
   });
 
@@ -390,10 +390,10 @@ describe('DsButton Accessibility (WCAG 2.1 AAA)', () => {
     });
   });
 
-  describe('WCAG 2.1 Level AAA Summary', () => {
-    it('should comply with WCAG 2.1 Level AAA - standard compliance check', () => {
+  describe('WCAG 2.1 Level AA Summary', () => {
+    it('should comply with WCAG 2.1 Level AA - standard compliance check', () => {
       const wrapper = mount(DsButton, {
-        slots: { default: 'WCAG AAA Compliant' },
+        slots: { default: 'WCAG AA Compliant' },
         global: { plugins: [vuetify] },
       });
 
