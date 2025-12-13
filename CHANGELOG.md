@@ -7,8 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Initial MVP release with foundation components and design system infrastructure
+### Session #2: Enterprise Foundation Enhancement (In Progress)
+
+#### Added
+- **TypeScript Support**
+  - Full TypeScript migration of all source files
+  - Type definitions for components and tokens
+  - Generated `.d.ts` files in build output
+  - Enhanced IDE support and type safety
+
+- **Accessibility (WCAG 2.1 AAA)**
+  - axe-core integration for automated testing
+  - Accessibility test suite (20+ test cases)
+  - Color contrast validation
+  - Keyboard navigation tests
+  - ARIA documentation for all components
+
+- **Build Optimization**
+  - Per-component exports (tree-shaking support)
+  - CSS module separation
+  - Bundle size analysis and budget enforcement
+  - Performance reports in build output
+
+- **Component Development Tools**
+  - Storybook integration for isolated component development
+  - Visual regression testing (Percy/Chromatic)
+  - Interactive component playground
+  - Design collaboration features
+
+- **New Components**
+  - Card component (variants: outlined, elevated, flat)
+  - Input component (text, email, password, etc.)
+  - Select component (single and multi-select)
+  - Full tests and documentation for all
+
+#### Planned Features
+- [ ] TypeScript full integration (Issue #1)
+- [ ] Accessibility testing framework (Issue #2)
+- [ ] Per-component exports (Issue #3)
+- [ ] Visual regression testing (Issue #4)
+- [ ] Storybook setup (Issue #5)
+- [ ] Card, Input, Select components (Issue #6)
+- [ ] Performance budgets (Issue #7)
+- [ ] Enterprise documentation (Issue #8)
+
+#### Acceptance Criteria
+- All TypeScript compilation succeeds
+- 30+ new test cases (accessibility + component tests)
+- 3 new enterprise-grade components
+- Zero accessibility violations (axe)
+- Per-component imports functional
+- Storybook running with all components
+- Visual regression baselines created
+- Bundle size < 250kb gzipped
 
 ## [0.0.1] - 2025-12-13
 
