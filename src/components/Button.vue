@@ -11,7 +11,7 @@
   </v-btn>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * DsButton - Design System Button Component
  *
@@ -35,13 +35,23 @@
  *     <v-icon icon="mdi-close" />
  *   </ds-button>
  */
-export default {
+import { defineComponent } from 'vue';
+
+type ButtonVariant = 'filled' | 'outlined' | 'text';
+type ButtonSize = 'sm' | 'md' | 'lg';
+type VuetifySize = 'small' | 'default' | 'large';
+
+interface SizeMap {
+  [key in ButtonSize]: VuetifySize;
+}
+
+export default defineComponent({
   name: 'DsButton',
   props: {
     variant: {
-      type: String,
-      default: 'filled',
-      validator: (value) => ['filled', 'outlined', 'text'].includes(value),
+      type: String as () => ButtonVariant,
+      default: 'filled' as ButtonVariant,
+      validator: (value: ButtonVariant) => ['filled', 'outlined', 'text'].includes(value),
     },
     color: {
       type: String,
@@ -52,16 +62,18 @@ export default {
       default: false,
     },
     size: {
-      type: String,
-      default: 'md',
-      validator: (value) => ['sm', 'md', 'lg'].includes(value),
+      type: String as () => ButtonSize,
+      default: 'md' as ButtonSize,
+      validator: (value: ButtonSize) => ['sm', 'md', 'lg'].includes(value),
     },
   },
-  emits: ['click'],
+  emits: {
+    click: (event: MouseEvent) => event instanceof MouseEvent,
+  },
   computed: {
-    mappedSize() {
+    mappedSize(): VuetifySize {
       // Map our size prop to Vuetify's size prop
-      const sizeMap = {
+      const sizeMap: SizeMap = {
         sm: 'small',
         md: 'default',
         lg: 'large',
@@ -70,13 +82,13 @@ export default {
     },
   },
   methods: {
-    handleClick(event) {
+    handleClick(event: MouseEvent): void {
       if (!this.disabled) {
         this.$emit('click', event);
       }
     },
   },
-};
+});
 </script>
 
 <style scoped>

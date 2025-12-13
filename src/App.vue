@@ -99,15 +99,16 @@
   </v-app>
 </template>
 
-<script>
-import { DsButton } from './components/index.js';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { DsButton } from './components/index';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     DsButton,
   },
-};
+});
 </script>
 
 <style>

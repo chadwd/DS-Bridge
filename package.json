@@ -52,13 +52,14 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/test-utils": "^2.4.3",
-    "@vitest/ui": "^1.0.4",
     "@vitest/coverage-v8": "^1.0.4",
+    "@vitest/ui": "^1.0.4",
+    "@vue/test-utils": "^2.4.3",
     "eslint": "^8.55.0",
     "eslint-plugin-vue": "^9.19.2",
     "jsdom": "^23.0.1",
     "material-design-icons-iconfont": "^6.7.0",
+    "typescript": "^5.9.3",
     "vite": "^5.0.10",
     "vitepress": "^1.0.0-rc.45",
     "vitest": "^1.0.4"

@@ -48,7 +48,9 @@ export const colors = {
 
   // Divider
   divider: '#E5E7EB',            // Gray-200 (with ~12% opacity in design)
-};
+} as const;
+
+export type ColorToken = typeof colors;
 
 export const spacing = {
   xs: '4px',
@@ -57,7 +59,9 @@ export const spacing = {
   lg: '24px',
   xl: '32px',
   xxl: '48px',
-};
+} as const;
+
+export type SpacingToken = typeof spacing;
 
 export const typography = {
   fontFamily: {
@@ -85,7 +89,9 @@ export const typography = {
     semibold: 600,
     bold: 700,
   },
-};
+} as const;
+
+export type TypographyToken = typeof typography;
 
 export const borderRadius = {
   none: '0',
@@ -95,7 +101,9 @@ export const borderRadius = {
   lg: '12px',
   xl: '16px',
   full: '9999px',
-};
+} as const;
+
+export type BorderRadiusToken = typeof borderRadius;
 
 export const shadows = {
   none: 'none',
@@ -105,12 +113,24 @@ export const shadows = {
   md: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
   lg: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
   xl: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-};
+} as const;
 
-export default {
+export type ShadowToken = typeof shadows;
+
+export interface DesignTokens {
+  colors: ColorToken;
+  spacing: SpacingToken;
+  typography: TypographyToken;
+  borderRadius: BorderRadiusToken;
+  shadows: ShadowToken;
+}
+
+export const tokens: DesignTokens = {
   colors,
   spacing,
   typography,
   borderRadius,
   shadows,
 };
+
+export default tokens;

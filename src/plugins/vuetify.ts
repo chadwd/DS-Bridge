@@ -1,7 +1,7 @@
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
-import tokens from '../tokens/index.js';
+import tokens from '../tokens/index';
 
 export default createVuetify({
   components,
