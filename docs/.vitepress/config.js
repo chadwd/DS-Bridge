@@ -20,7 +20,7 @@ export default {
       ],
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yourusername/design-system-vuetify-whitelabel' },
+      { icon: 'github', link: 'https://github.com/yourusername/DS-Bridge' },
     ],
   },
 };

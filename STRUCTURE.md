@@ -3,7 +3,7 @@
 ## Complete Folder Tree
 
 ```
-design-system-vuetify-whitelabel/
+design-system/
 │
 ├── 📁 src/                                 # Vue 3 Component Library
 │   ├── 📁 tokens/

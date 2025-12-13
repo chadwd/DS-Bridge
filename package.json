@@ -1,5 +1,5 @@
 {
-  "name": "design-system-vuetify-whitelabel",
+  "name": "design-system",
   "version": "0.0.1",
   "description": "A white-label design system built with Vue 3, Vite, and Vuetify 3",
   "type": "module",

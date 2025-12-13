@@ -1,7 +1,7 @@
 # 📋 Agent Work Journal
 
 **Project**: Design System Vuetify - White Label
-**Repository**: `design-system-vuetify-whitelabel`
+**Repository**: `DS-Bridge`
 **Purpose**: Track AI agent work, progress, changes, and learnings
 **Last Updated**: 2025-12-13 (Session #1)
 

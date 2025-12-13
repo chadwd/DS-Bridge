@@ -67,7 +67,7 @@ npm run lint:fix
 ## Project Structure
 
 ```
-design-system-vuetify-whitelabel/
+design-system/
 ├── src/                    # Component library source
 │   ├── tokens/            # Design tokens (colors, spacing, typography)
 │   ├── components/        # Vue components
@@ -110,7 +110,7 @@ Each component:
 In your Vue applications:
 
 ```javascript
-import { DsButton } from 'design-system-vuetify-whitelabel/components';
+import { DsButton } from 'design-system/components';
 ```
 
 ## Building for Production

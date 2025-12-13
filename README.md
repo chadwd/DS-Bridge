@@ -34,8 +34,8 @@ This is a complete, ready-to-run design system for creating consistent, accessib
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/design-system-vuetify-whitelabel.git
-cd design-system-vuetify-whitelabel
+git clone https://github.com/yourusername/DS-Bridge.git
+cd design-system
 
 # Install dependencies
 npm install
