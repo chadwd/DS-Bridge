@@ -1,7 +1,16 @@
-export default {
+import { defineConfig } from 'vitepress';
+
+export default defineConfig({
   title: 'DS-Bridge',
   description: 'Enterprise-grade, white-label Vue 3 design system built on Vuetify 3 and TypeScript',
   appearance: true, // Enable dark mode toggle
+
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+  },
+
   themeConfig: {
     logo: '/logo.svg',
     nav: [
@@ -50,4 +59,4 @@ export default {
       copyright: 'Copyright © 2024 DS-Bridge',
     },
   },
-};
+});
