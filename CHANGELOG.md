@@ -7,9 +7,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-12-14
+
+### Session #3: Documentation Site Redesign & Design System Alignment (Complete)
+
+#### Added
+- **Custom VitePress Theme**
+  - Created `.vitepress/theme/` directory structure
+  - Custom `index.js` theme entry point with design system integration
+  - Comprehensive `style.css` with all design tokens as CSS custom properties
+  - Custom `Layout.vue` component for future enhancements
+  - Roboto font integration with Google Fonts (weights: 300, 400, 500, 600, 700)
+  - Dark mode support with color mappings
+
+- **Guide Pages** (New Documentation Section)
+  - `docs/guide/introduction.md` - Comprehensive DS-Bridge overview
+  - `docs/guide/getting-started.md` - Complete installation and setup guide
+  - `docs/guide/philosophy.md` - Design principles and philosophy
+
+- **Design Documentation Pages** (New Section)
+  - `docs/design/tokens.md` - Design tokens overview with usage examples
+  - `docs/design/colors.md` - Complete color palette with live visual swatches
+  - `docs/design/typography.md` - Type system with font samples and hierarchy
+  - `docs/design/spacing.md` - Spacing scale with visual demonstrations
+  - `docs/design/style-guide.md` - Comprehensive usage guidelines and best practices
+
+- **Planning Documentation**
+  - `SESSION_3_PLAN.md` - Complete implementation plan for Session 3
+  - `SESSION_4_PLAN.md` - Future work plan for interactive components
+  - `create-session-3-issues.sh` - GitHub issues creation script
+
+#### Enhanced
+- **VitePress Navigation**
+  - Reorganized navigation with 4 main sections (Home, Guide, Design, Components)
+  - Enhanced sidebar with collapsible sections
+  - Added footer with branding
+  - Enabled dark mode toggle in navigation bar
+  - Added previous/next page navigation
+
+- **Typography System**
+  - Applied Roboto font family globally
+  - Configured complete font size scale (xs, sm, base, lg, xl, 2xl, 3xl)
+  - Set line heights (tight: 1.2, normal: 1.5, relaxed: 1.75)
+  - Applied font weights across all heading levels and body text
+  - Created responsive typography with mobile breakpoints
+
+- **Color System**
+  - Created CSS custom properties for all 40+ color tokens
+  - Applied primary color (#6366F1 - Indigo) throughout navigation
+  - Applied secondary color (#EC4899 - Pink) for accents
+  - Implemented all semantic colors (error, warning, success, info)
+  - Configured text color hierarchy (textHigh, textMedium, textLow)
+  - Added surface and background color variants
+  - Visual color swatches with hex codes and Material Design names
+
+- **Design Tokens Documentation**
+  - Live visual examples for colors (40+ swatches)
+  - Typography samples showing all font sizes and weights
+  - Spacing visualizations with pixel measurements
+  - Usage examples in Vue 3 and CSS
+  - Accessibility information (WCAG 2.1 AAA compliance)
+  - Figma integration instructions
+
+#### Fixed
+- **Repository Structure**
+  - Cleaned up root directory (moved all files into `design-system/`)
+  - Removed redundant `.git`, `.gitignore`, `README.md` from root
+  - Moved `.claude/` configuration into `design-system/`
+  - Consolidated all documentation and scripts into project folder
+  - Created single-project structure for clarity
+
+#### Documentation
+- 11 new documentation pages created
+- 1 theme configuration file modified
+- 3 custom theme files created
+- Visual examples and live demonstrations throughout
+- Code samples in Vue 3 Composition API and CSS
+- Accessibility guidelines in every section
+
+#### Metrics
+- **Files Created**: 14 (11 markdown + 3 theme files)
+- **Files Modified**: 1 (config.js)
+- **Lines of Documentation**: 2500+
+- **Color Swatches**: 40+ with visual previews
+- **Typography Samples**: 7 font sizes + 5 weights
+- **Spacing Examples**: 6 spacing values with visualizations
+
 ## [0.1.1] - 2025-12-14
 
-### Session #3: UI Layout & Component Refinement (Complete)
+### Session #2: UI Layout & Component Refinement (Complete)
 
 #### Added
 - **App Layout Component**

@@ -1,0 +1,369 @@
+/**
+ * Custom VitePress Theme Styles
+ * Integrates DS-Bridge design system tokens
+ */
+
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* ============================================
+   Design System Tokens as CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* Colors - Primary Brand */
+  --ds-color-primary: #6366F1;
+  --ds-color-primary-dark: #4F46E5;
+  --ds-color-primary-light: #818CF8;
+  --ds-color-primary-lighter: #E0E7FF;
+
+  /* Colors - Secondary */
+  --ds-color-secondary: #EC4899;
+  --ds-color-secondary-dark: #DB2777;
+  --ds-color-secondary-light: #F472B6;
+
+  /* Colors - Semantic */
+  --ds-color-error: #DC2626;
+  --ds-color-error-light: #FEE2E2;
+  --ds-color-warning: #F59E0B;
+  --ds-color-warning-light: #FEF3C7;
+  --ds-color-success: #10B981;
+  --ds-color-success-light: #D1FAE5;
+  --ds-color-info: #3B82F6;
+  --ds-color-info-light: #DBEAFE;
+
+  /* Colors - Surfaces */
+  --ds-color-surface: #FFFFFF;
+  --ds-color-surface-variant: #F3F4F6;
+  --ds-color-surface-hover: #F9FAFB;
+  --ds-color-on-surface: #000000;
+
+  /* Colors - Background */
+  --ds-color-background: #FFFFFF;
+  --ds-color-background-secondary: #F9FAFB;
+
+  /* Colors - Text */
+  --ds-color-text-high: #111827;
+  --ds-color-text-medium: #6B7280;
+  --ds-color-text-low: #D1D5DB;
+  --ds-color-text-inverse: #FFFFFF;
+
+  /* Colors - Neutral */
+  --ds-color-neutral: #6B7280;
+  --ds-color-neutral-light: #E5E7EB;
+  --ds-color-neutral-dark: #374151;
+
+  /* Colors - Divider */
+  --ds-color-divider: #0000001f;
+  --ds-color-border: #000000;
+
+  /* Spacing */
+  --ds-spacing-xs: 4px;
+  --ds-spacing-sm: 8px;
+  --ds-spacing-md: 16px;
+  --ds-spacing-lg: 24px;
+  --ds-spacing-xl: 32px;
+  --ds-spacing-xxl: 48px;
+
+  /* Typography - Font Family */
+  --ds-font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --ds-font-family-code: Menlo, Monaco, 'Courier New', monospace;
+
+  /* Typography - Font Size */
+  --ds-font-size-xs: 12px;
+  --ds-font-size-sm: 14px;
+  --ds-font-size-base: 16px;
+  --ds-font-size-lg: 18px;
+  --ds-font-size-xl: 20px;
+  --ds-font-size-2xl: 24px;
+  --ds-font-size-3xl: 30px;
+
+  /* Typography - Line Height */
+  --ds-line-height-tight: 1.2;
+  --ds-line-height-normal: 1.5;
+  --ds-line-height-relaxed: 1.75;
+
+  /* Typography - Font Weight */
+  --ds-font-weight-light: 300;
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+  --ds-font-weight-bold: 700;
+
+  /* Border Radius */
+  --ds-radius-none: 0;
+  --ds-radius-xs: 4px;
+  --ds-radius-sm: 6px;
+  --ds-radius-md: 8px;
+  --ds-radius-lg: 12px;
+  --ds-radius-xl: 16px;
+  --ds-radius-full: 9999px;
+
+  /* Shadows */
+  --ds-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ds-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --ds-shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ds-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --ds-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --ds-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================
+   VitePress Theme Overrides
+   ============================================ */
+
+/* Apply Roboto font globally */
+:root {
+  font-family: var(--ds-font-family-base);
+  font-size: var(--ds-font-size-base);
+  line-height: var(--ds-line-height-normal);
+}
+
+/* Override VitePress default colors with design system tokens */
+:root {
+  /* Brand colors */
+  --vp-c-brand-1: var(--ds-color-primary);
+  --vp-c-brand-2: var(--ds-color-primary-dark);
+  --vp-c-brand-3: var(--ds-color-primary-light);
+  --vp-c-brand-soft: var(--ds-color-primary-lighter);
+
+  /* Text colors */
+  --vp-c-text-1: var(--ds-color-text-high);
+  --vp-c-text-2: var(--ds-color-text-medium);
+  --vp-c-text-3: var(--ds-color-text-low);
+
+  /* Background colors */
+  --vp-c-bg: var(--ds-color-background);
+  --vp-c-bg-soft: var(--ds-color-background-secondary);
+  --vp-c-bg-alt: var(--ds-color-surface-variant);
+
+  /* Divider */
+  --vp-c-divider: var(--ds-color-divider);
+
+  /* Typography */
+  --vp-font-family-base: var(--ds-font-family-base);
+  --vp-font-family-mono: var(--ds-font-family-code);
+}
+
+/* Dark mode overrides */
+.dark {
+  --ds-color-background: #1F2937;
+  --ds-color-background-secondary: #111827;
+  --ds-color-surface: #374151;
+  --ds-color-surface-variant: #4B5563;
+  --ds-color-surface-hover: #6B7280;
+  --ds-color-on-surface: #FFFFFF;
+
+  --ds-color-text-high: #F9FAFB;
+  --ds-color-text-medium: #D1D5DB;
+  --ds-color-text-low: #9CA3AF;
+
+  --ds-color-divider: #ffffff1f;
+
+  /* VitePress dark mode */
+  --vp-c-bg: var(--ds-color-background);
+  --vp-c-bg-soft: var(--ds-color-background-secondary);
+  --vp-c-bg-alt: var(--ds-color-surface-variant);
+}
+
+/* ============================================
+   Typography Styles
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ds-font-family-base);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height-tight);
+  color: var(--ds-color-text-high);
+}
+
+h1 {
+  font-size: var(--ds-font-size-3xl);
+}
+
+h2 {
+  font-size: var(--ds-font-size-2xl);
+}
+
+h3 {
+  font-size: var(--ds-font-size-xl);
+}
+
+h4 {
+  font-size: var(--ds-font-size-lg);
+}
+
+h5, h6 {
+  font-size: var(--ds-font-size-base);
+}
+
+p {
+  font-size: var(--ds-font-size-base);
+  line-height: var(--ds-line-height-relaxed);
+  color: var(--ds-color-text-medium);
+}
+
+code {
+  font-family: var(--ds-font-family-code);
+  font-size: var(--ds-font-size-sm);
+}
+
+/* ============================================
+   Component Enhancements
+   ============================================ */
+
+/* Navigation */
+.VPNav {
+  background-color: var(--ds-color-background);
+  border-bottom: 1px solid var(--ds-color-divider);
+}
+
+.VPNavBar {
+  background-color: var(--ds-color-background);
+}
+
+/* Sidebar */
+.VPSidebar {
+  background-color: var(--ds-color-background-secondary);
+}
+
+/* Buttons and Links */
+.VPButton {
+  border-radius: var(--ds-radius-md);
+  font-weight: var(--ds-font-weight-medium);
+  transition: all 0.2s ease;
+}
+
+.VPButton.brand {
+  background-color: var(--ds-color-primary);
+  color: var(--ds-color-text-inverse);
+}
+
+.VPButton.brand:hover {
+  background-color: var(--ds-color-primary-dark);
+  box-shadow: var(--ds-shadow-md);
+}
+
+/* Links */
+a {
+  color: var(--ds-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--ds-color-primary-dark);
+}
+
+/* Cards and Containers */
+.vp-doc {
+  color: var(--ds-color-text-medium);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  color: var(--ds-color-text-high);
+}
+
+/* Code blocks */
+.vp-code-group {
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+div[class*='language-'] {
+  border-radius: var(--ds-radius-md);
+  margin: var(--ds-spacing-md) 0;
+}
+
+/* Custom container types */
+.custom-block {
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-spacing-md);
+  margin: var(--ds-spacing-md) 0;
+}
+
+.custom-block.tip {
+  background-color: var(--ds-color-success-light);
+  border-left: 4px solid var(--ds-color-success);
+}
+
+.custom-block.warning {
+  background-color: var(--ds-color-warning-light);
+  border-left: 4px solid var(--ds-color-warning);
+}
+
+.custom-block.danger {
+  background-color: var(--ds-color-error-light);
+  border-left: 4px solid var(--ds-color-error);
+}
+
+.custom-block.info {
+  background-color: var(--ds-color-info-light);
+  border-left: 4px solid var(--ds-color-info);
+}
+
+/* ============================================
+   Spacing Utilities
+   ============================================ */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--ds-spacing-lg);
+}
+
+/* ============================================
+   Accessibility Enhancements
+   ============================================ */
+
+/* Focus states */
+*:focus-visible {
+  outline: 2px solid var(--ds-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--ds-color-primary);
+  color: var(--ds-color-text-inverse);
+  padding: var(--ds-spacing-sm) var(--ds-spacing-md);
+  z-index: 100;
+  border-radius: var(--ds-radius-md);
+  font-weight: var(--ds-font-weight-medium);
+}
+
+.skip-to-content:focus {
+  top: var(--ds-spacing-sm);
+  left: var(--ds-spacing-sm);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: var(--ds-font-size-2xl);
+  }
+
+  h2 {
+    font-size: var(--ds-font-size-xl);
+  }
+
+  .container {
+    padding: 0 var(--ds-spacing-md);
+  }
+}
