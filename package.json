@@ -74,6 +74,7 @@
     "jest-axe": "^10.0.0",
     "jsdom": "^23.0.1",
     "material-design-icons-iconfont": "^6.7.0",
+    "pixelmatch": "^7.1.0",
     "terser": "^5.44.1",
     "typescript": "^5.9.3",
     "vite": "^5.0.10",

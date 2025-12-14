@@ -131,9 +131,9 @@ git rebase upstream/main
 
 ## Creating Components
 
-### Component Structure
+### TypeScript Components
 
-Follow the DsButton pattern when creating new components:
+All components must be written in TypeScript. Follow the DsButton pattern:
 
 1. **Create the component file** in `src/components/ComponentName.vue`:
 
@@ -142,12 +142,15 @@ Follow the DsButton pattern when creating new components:
   <v-component
     :prop="prop"
     class="ds-component"
+    @click="handleClick"
   >
     <slot />
   </v-component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+
 /**
  * DsComponentName - Component description
  *
@@ -155,7 +158,7 @@ Follow the DsButton pattern when creating new components:
  *   - prop: Description (type, default)
  *
  * Events:
- *   - event: Description
+ *   - click: Emitted when component is clicked
  *
  * Slots:
  *   - default: Slot description
@@ -163,16 +166,26 @@ Follow the DsButton pattern when creating new components:
  * Accessibility:
  *   - A11y notes
  */
-export default {
+type ComponentVariant = 'default' | 'outlined';
+
+export default defineComponent({
   name: 'DsComponentName',
   props: {
     prop: {
-      type: String,
-      default: 'value',
+      type: String as PropType<ComponentVariant>,
+      default: 'default' as ComponentVariant,
+      validator: (value: ComponentVariant) => ['default', 'outlined'].includes(value),
     },
   },
-  emits: ['event'],
-};
+  emits: {
+    click: (event: MouseEvent) => event instanceof MouseEvent,
+  },
+  methods: {
+    handleClick(event: MouseEvent): void {
+      this.$emit('click', event);
+    },
+  },
+});
 </script>
 
 <style scoped>
@@ -403,29 +416,85 @@ npm run docs:build
 
 ## Code Style
 
-### JavaScript/Vue Style
+### TypeScript Guidelines
 
-- Use 2-space indentation
-- Use semicolons
-- Use single quotes for strings
-- Use camelCase for variables and methods
-- Use PascalCase for component names
-- Use UPPER_SNAKE_CASE for constants
+All code must be written in TypeScript. Key requirements:
+
+- Use `lang="ts"` in component `<script>` tags
+- Define prop types using `PropType<T>`
+- Use type validators for prop values
+- Use `defineComponent` for component definitions
+- Explicitly type all function parameters and return values
+- Avoid using `any` types
+
+#### Type Definition Example
+
+```typescript
+// ✓ Good: Explicit types
+type ButtonVariant = 'filled' | 'outlined' | 'text';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
+interface ButtonProps {
+  variant: ButtonVariant;
+  size: ButtonSize;
+  disabled: boolean;
+}
+
+export default defineComponent({
+  props: {
+    variant: {
+      type: String as PropType<ButtonVariant>,
+      default: 'filled' as ButtonVariant,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    handleClick(event: MouseEvent): void {
+      // Type-safe event handling
+      this.$emit('click', event);
+    },
+  },
+});
+```
+
+#### Avoid Using `any`
+
+```typescript
+// ✗ Avoid
+const handleEvent = (event: any) => {
+  event.preventDefault();
+};
+
+// ✓ Good
+const handleEvent = (event: MouseEvent): void => {
+  event.preventDefault();
+};
+```
 
 ### Vue Component Style
 
 - Use single-file components (.vue)
 - Place `<template>` before `<script>` before `<style>`
 - Use scoped styles
-- Use prop validation
+- Use prop validation with type checking
 - Document with JSDoc comments
+- Always include `lang="ts"` in script block
 
-### ESLint
+### ESLint and TypeScript
 
-The project uses ESLint with Vue plugin. Run:
+The project uses ESLint with Vue plugin and TypeScript support. Run:
 
 ```bash
 npm run lint:fix
+```
+
+Check TypeScript compilation:
+
+```bash
+npx tsc --noEmit
 ```
 
 ## Commit Messages

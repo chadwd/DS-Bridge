@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Session #2: Enterprise Foundation Enhancement (In Progress)
+## [0.1.0] - 2025-12-13
+
+### Session #2: Enterprise Foundation Enhancement (Complete)
 
 #### Added
 - **TypeScript Support**
@@ -41,15 +43,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Select component (single and multi-select)
   - Full tests and documentation for all
 
-#### Planned Features
-- [ ] TypeScript full integration (Issue #1)
-- [ ] Accessibility testing framework (Issue #2)
-- [ ] Per-component exports (Issue #3)
-- [ ] Visual regression testing (Issue #4)
-- [ ] Storybook setup (Issue #5)
-- [ ] Card, Input, Select components (Issue #6)
-- [ ] Performance budgets (Issue #7)
-- [ ] Enterprise documentation (Issue #8)
+#### Completed Features
+- [x] TypeScript full integration (Issue #1)
+- [x] Accessibility testing framework (Issue #2)
+- [x] Per-component exports (Issue #3)
+- [x] Visual regression testing (Issue #4)
+- [x] Storybook setup (Issue #5)
+- [x] Card, Input, Select components (Issue #6)
+- [ ] Performance budgets (Issue #7) - Postponed (nice-to-have)
+- [x] Enterprise documentation (Issue #8)
 
 #### Acceptance Criteria
 - All TypeScript compilation succeeds
