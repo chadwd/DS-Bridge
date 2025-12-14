@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <app-layout>
     <v-container class="pa-8">
       <v-row>
         <v-col cols="12">
@@ -25,11 +25,11 @@
           sm="6"
           md="3"
         >
-          <h3 class="text-body2 font-weight-bold mb-2">Filled (Default)</h3>
+          <h3 class="text-body2 font-weight-bold mb-2">Elevated (Default)</h3>
           <div class="d-flex gap-2 flex-wrap">
-            <ds-button>Primary</ds-button>
-            <ds-button color="secondary">Secondary</ds-button>
-            <ds-button color="error">Error</ds-button>
+            <ds-button variant="elevated">Primary</ds-button>
+            <ds-button variant="elevated" color="secondary">Secondary</ds-button>
+            <ds-button variant="elevated" color="error">Error</ds-button>
           </div>
         </v-col>
 
@@ -93,9 +93,9 @@
         </v-col>
       </v-row>
 
-      <!-- Disabled Buttons -->
+      <!-- Disabled & Loading States -->
       <v-row class="mb-8">
-        <v-col cols="12">
+        <v-col cols="12" md="6">
           <h3 class="text-body2 font-weight-bold mb-2">Disabled State</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button disabled>Disabled Primary</ds-button>
@@ -113,6 +113,19 @@
             </ds-button>
           </div>
         </v-col>
+
+        <v-col cols="12" md="6">
+          <h3 class="text-body2 font-weight-bold mb-2">Loading State</h3>
+          <div class="d-flex gap-2 flex-wrap">
+            <ds-button loading>Loading</ds-button>
+            <ds-button
+              variant="outlined"
+              loading
+            >
+              Loading Outlined
+            </ds-button>
+          </div>
+        </v-col>
       </v-row>
 
       <!-- Design System Info -->
@@ -125,37 +138,43 @@
             <h3 class="text-h6 font-weight-bold mb-3">Getting Started</h3>
             <ul class="text-body2">
               <li class="mb-2">
-                <strong>Design Tokens:</strong> All colors, spacing, and typography are defined in
-                <code>src/tokens/index.js</code>
+                <strong>Design Tokens:</strong> All colors, spacing, and typography are synced 1-to-1
+                with Figma in <code>src/tokens/index.ts</code>
               </li>
               <li class="mb-2">
                 <strong>Components:</strong> Import design system components from
                 <code>src/components</code>
               </li>
               <li class="mb-2">
-                <strong>Vuetify Theme:</strong> Theme colors are synced from design tokens in
-                <code>src/plugins/vuetify.js</code>
+                <strong>Figma Integration:</strong> Components are linked via Code Connect for
+                seamless design-to-code workflow
               </li>
               <li class="mb-2">
                 <strong>Documentation:</strong> Run <code>npm run docs:dev</code> to view the
                 style guide and component documentation
+              </li>
+              <li class="mb-2">
+                <strong>Enterprise Ready:</strong> WCAG 2.1 AAA compliance, TypeScript support,
+                accessibility testing included
               </li>
             </ul>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
-  </v-app>
+  </app-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { DsButton } from './components/index';
+import AppLayout from './components/AppLayout.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     DsButton,
+    AppLayout,
   },
 });
 </script>
