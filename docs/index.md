@@ -1,178 +1,646 @@
-# DS-Bridge
+---
+layout: home
+---
 
-A white-label design system built with Vue 3, Vite, and Vuetify 3.
+<style scoped>
+/* Tron Lab - Clean Light Mode Aesthetic */
+:root {
+  --tron-bg: #F8F9FA;
+  --tron-surface: #FFFFFF;
+  --tron-cyan: #0097A7;
+  --tron-cyan-neon: #00E5FF;
+  --tron-amber: #FFA000;
+  --tron-amber-neon: #FF9100;
+  --tron-grid: #E0E7EB;
+  --tron-text: #1A1F2E;
+  --tron-text-muted: #64748B;
+}
 
-## What is this?
+/* Grid Background Pattern */
+.tron-page {
+  background: var(--tron-bg);
+  background-image:
+    linear-gradient(var(--tron-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tron-grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+}
 
-This is a modular, extensible design system that provides:
+/* Hero Section */
+.hero-section {
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
 
-- **Component Library**: Pre-built, accessible Vue 3 components
-- **Design Tokens**: Centralized design values (colors, spacing, typography) that can be synced with Figma
-- **Style Guide**: Interactive documentation for components and tokens
-- **Design Consistency**: Single source of truth for UI styling across your applications
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-## Goals
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-- **Consistency**: Maintain visual and functional consistency across products
-- **Transparency**: Clear documentation of components, patterns, and tokens
-- **Reusability**: Components and tokens can be used across multiple applications
-- **Clarity**: Easy-to-understand patterns and component APIs
-- **Figma Integration**: Ready for Figma Code Connect and Figma MCP integration
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem 0;
+  color: var(--tron-text);
+  line-height: 1.1;
+}
 
-## Quick Start
+.hero-subtitle {
+  font-size: 1.375rem;
+  color: var(--tron-text-muted);
+  margin: 0 0 3rem 0;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-### Development
+.hero-ctas {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-Start the design system playground and component browser:
+.cta-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
 
-```bash
-npm install
-npm run dev
-```
+.cta-primary {
+  background: var(--tron-cyan);
+  color: white;
+  border: 2px solid var(--tron-cyan);
+  box-shadow: 0 4px 12px rgba(0, 151, 167, 0.2);
+}
 
-The app will open at `http://localhost:5173`.
+.cta-primary:hover {
+  background: #00838F;
+  border-color: var(--tron-cyan-neon);
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4), 0 0 20px rgba(0, 229, 255, 0.2);
+  transform: translateY(-2px);
+}
 
-### Documentation
+.cta-secondary {
+  background: transparent;
+  color: var(--tron-amber);
+  border: 2px solid var(--tron-amber);
+}
 
-Start the interactive style guide and component documentation:
+.cta-secondary:hover {
+  background: rgba(255, 160, 0, 0.05);
+  border-color: var(--tron-amber-neon);
+  box-shadow: 0 4px 20px rgba(255, 145, 0, 0.3);
+  transform: translateY(-2px);
+}
 
-```bash
-npm run docs:dev
-```
+/* Feature Cards */
+.features-section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-The documentation will open at `http://localhost:5173/docs`.
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--tron-text);
+}
 
-### Testing
+.section-subtitle {
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--tron-text-muted);
+  margin: 0 0 4rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-Run the test suite:
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
 
-```bash
-npm run test
-```
+.feature-card {
+  background: var(--tron-surface);
+  border: 1px solid var(--tron-grid);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
 
-### Linting
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--tron-cyan), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 
-Check for code quality issues:
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 151, 167, 0.15);
+}
 
-```bash
-npm run lint
-```
+.feature-card:hover::before {
+  opacity: 1;
+}
 
-Fix issues automatically:
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 151, 167, 0.1), rgba(0, 229, 255, 0.05));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
 
-```bash
-npm run lint:fix
-```
+.feature-icon .material-icons {
+  font-size: 28px;
+  color: var(--tron-cyan);
+}
 
-## Project Structure
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: var(--tron-text);
+}
 
-```
-ds-bridge/
-├── src/                    # Component library source
-│   ├── tokens/            # Design tokens (colors, spacing, typography)
-│   ├── components/        # Vue components
-│   ├── plugins/           # Vue plugins (Vuetify setup)
-│   ├── App.vue            # Main app / playground
-│   └── main.js            # Entry point
-├── docs/                  # VitePress documentation site
-├── tests/                 # Unit tests
-└── .github/workflows/     # CI/CD configuration
-```
+.feature-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tron-text-muted);
+  margin: 0;
+}
 
-## Design Tokens
+/* Visual Previews */
+.previews-section {
+  background: linear-gradient(180deg, var(--tron-surface) 0%, var(--tron-bg) 100%);
+  padding: 5rem 2rem;
+}
 
-All design values are centralized in `src/tokens/index.js`:
+.preview-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-- **Colors**: Primary, secondary, semantic colors, and surfaces
-- **Spacing**: xs, sm, md, lg, xl scale
-- **Typography**: Font families, sizes, weights, and line heights
-- **Border Radius**: Rounded corner sizes
-- **Shadows**: Elevation shadows
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
 
-These tokens are:
-- Used by Vuetify's theme system
-- Exported for use in components
-- Ready to be synced with Figma variables
+.preview-panel {
+  background: var(--tron-surface);
+  border: 1px solid var(--tron-grid);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+}
 
-## Components
+.preview-panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: var(--tron-text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
-The component library is located in `src/components/`.
+.preview-panel-title .material-icons {
+  font-size: 24px;
+  color: var(--tron-cyan);
+}
 
-Each component:
-- Is built on top of Vuetify 3
-- Follows design system conventions
-- Is fully typed (supports JSDoc)
-- Has comprehensive tests
-- Is documented in the style guide
+.color-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
 
-### Using Components
+.color-swatch {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 2px solid var(--tron-grid);
+  position: relative;
+  transition: all 0.3s;
+  cursor: pointer;
+}
 
-In your Vue applications:
+.color-swatch:hover {
+  transform: scale(1.05);
+  border-color: var(--tron-cyan-neon);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.3);
+}
 
-```javascript
-import { DsButton } from 'ds-bridge/components';
-```
+.color-label {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
 
-## Building for Production
+.typography-samples {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-Build the library:
+.type-sample {
+  padding: 1rem;
+  border-left: 3px solid var(--tron-cyan);
+  background: rgba(0, 151, 167, 0.03);
+  border-radius: 0 8px 8px 0;
+}
 
-```bash
-npm run build
-```
+.type-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tron-cyan);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
 
-Build the documentation site:
+/* Quick Links */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
 
-```bash
-npm run docs:build
-```
+.quick-link-card {
+  background: var(--tron-surface);
+  border: 1px solid var(--tron-grid);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s;
+}
 
-## Extending the Design System
+.quick-link-card:hover {
+  border-color: var(--tron-amber);
+  box-shadow: 0 4px 12px rgba(255, 160, 0, 0.2);
+  transform: translateY(-2px);
+}
 
-### Adding a New Component
+.quick-link-icon .material-icons {
+  font-size: 32px;
+  color: var(--tron-amber);
+}
 
-1. Create a new `.vue` file in `src/components/`
-2. Export it from `src/components/index.js`
-3. Add tests in `tests/ComponentName.spec.js`
-4. Document it in `docs/components/ComponentName.md`
+.quick-link-content h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.125rem;
+  color: var(--tron-text);
+}
 
-### Adding Design Tokens
+.quick-link-content p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--tron-text-muted);
+}
 
-1. Update `src/tokens/index.js` with new token values
-2. Update `src/plugins/vuetify.js` to apply new tokens to the theme
-3. Document the tokens in `docs/tokens.md`
+/* Footer */
+.tron-footer {
+  border-top: 1px solid var(--tron-grid);
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--tron-surface);
+}
 
-## Figma Integration
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
-This design system is structured to work with:
+.footer-version {
+  font-size: 0.875rem;
+  color: var(--tron-text-muted);
+}
 
-- **Figma Code Connect**: Generate component code from Figma designs
-- **Figma MCP**: Sync design tokens and variables with Figma
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
 
-To set up integration:
+.footer-link {
+  color: var(--tron-cyan);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s;
+}
 
-1. Install Figma Code Connect
-2. Create `figma.config.js` at the root
-3. Map your components to Figma file keys
-4. Define token mappings for Figma variables
+.footer-link:hover {
+  color: var(--tron-cyan-neon);
+}
 
-## Accessibility
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
 
-- All components follow WCAG 2.1 AA standards
-- Components use semantic HTML
-- Focus management and keyboard navigation are built in
-- Color contrast ratios meet accessibility guidelines
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
 
-## Contributing
+  .features-grid,
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
 
-When contributing to this design system:
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
 
-1. Follow the existing code structure
-2. Write tests for new components
-3. Update documentation
-4. Run `npm run lint:fix` before committing
-5. Ensure all tests pass with `npm run test`
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-## License
+<div class="tron-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">DS-Bridge</h1>
+      <p class="hero-subtitle">
+        Enterprise-grade Vue 3 design system with real-time interactive documentation,
+        Figma-ready tokens, and WCAG 2.1 AAA accessibility.
+      </p>
+      <div class="hero-ctas">
+        <a href="/guide/getting-started" class="cta-button cta-primary">
+          Get Started
+          <span class="material-icons">arrow_forward</span>
+        </a>
+        <a href="/components/button" class="cta-button cta-secondary">
+          View Components
+          <span class="material-icons">visibility</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-MIT
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2 class="section-title">Built for the Modern Web</h2>
+    <p class="section-subtitle">
+      Everything you need to build consistent, accessible, and beautiful user interfaces
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">widgets</span>
+        </div>
+        <h3 class="feature-title">Interactive Components</h3>
+        <p class="feature-description">
+          Live component playground with real-time prop controls, code generation,
+          and copy-to-clipboard functionality.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">palette</span>
+        </div>
+        <h3 class="feature-title">Design Tokens</h3>
+        <p class="feature-description">
+          Centralized design values synced with Figma. Colors, spacing, typography,
+          and more — all in one place.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">accessibility</span>
+        </div>
+        <h3 class="feature-title">WCAG 2.1 AAA</h3>
+        <p class="feature-description">
+          Accessibility-first development with automated testing, proper ARIA,
+          and keyboard navigation built in.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">code</span>
+        </div>
+        <h3 class="feature-title">TypeScript Ready</h3>
+        <p class="feature-description">
+          Full TypeScript support with complete type definitions, IntelliSense,
+          and compile-time safety.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">speed</span>
+        </div>
+        <h3 class="feature-title">Performance First</h3>
+        <p class="feature-description">
+          Tree-shakeable exports, optimized builds, and lazy loading.
+          Bundle size < 250KB gzipped.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <span class="material-icons">description</span>
+        </div>
+        <h3 class="feature-title">Comprehensive Docs</h3>
+        <p class="feature-description">
+          Interactive examples, API references, accessibility guides,
+          and best practices for every component.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Previews Section -->
+  <section class="previews-section">
+    <div class="preview-container">
+      <h2 class="section-title">Design System Preview</h2>
+      <p class="section-subtitle">
+        Explore the building blocks that power beautiful interfaces
+      </p>
+
+      <div class="preview-grid">
+        <!-- Color Palette -->
+        <div class="preview-panel">
+          <h3 class="preview-panel-title">
+            <span class="material-icons">palette</span>
+            Color Palette
+          </h3>
+          <div class="color-swatches">
+            <div class="color-swatch" style="background: #0097A7;">
+              <span class="color-label" style="color: white;">Primary</span>
+            </div>
+            <div class="color-swatch" style="background: #FFA000;">
+              <span class="color-label" style="color: white;">Secondary</span>
+            </div>
+            <div class="color-swatch" style="background: #DC2626;">
+              <span class="color-label" style="color: white;">Error</span>
+            </div>
+            <div class="color-swatch" style="background: #10B981;">
+              <span class="color-label" style="color: white;">Success</span>
+            </div>
+            <div class="color-swatch" style="background: #F59E0B;">
+              <span class="color-label" style="color: white;">Warning</span>
+            </div>
+            <div class="color-swatch" style="background: #3B82F6;">
+              <span class="color-label" style="color: white;">Info</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="preview-panel">
+          <h3 class="preview-panel-title">
+            <span class="material-icons">text_fields</span>
+            Typography Scale
+          </h3>
+          <div class="typography-samples">
+            <div class="type-sample">
+              <div class="type-label">Heading 1 / 2.5rem</div>
+              <div style="font-size: 2.5rem; font-weight: 700; line-height: 1.2;">
+                The quick brown fox
+              </div>
+            </div>
+            <div class="type-sample">
+              <div class="type-label">Heading 2 / 2rem</div>
+              <div style="font-size: 2rem; font-weight: 600; line-height: 1.3;">
+                The quick brown fox
+              </div>
+            </div>
+            <div class="type-sample">
+              <div class="type-label">Body / 1rem</div>
+              <div style="font-size: 1rem; line-height: 1.6;">
+                The quick brown fox jumps over the lazy dog
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="quick-links">
+        <a href="/guide/introduction" class="quick-link-card">
+          <div class="quick-link-icon">
+            <span class="material-icons">menu_book</span>
+          </div>
+          <div class="quick-link-content">
+            <h4>Documentation</h4>
+            <p>Guides and tutorials</p>
+          </div>
+        </a>
+
+        <a href="/design/tokens" class="quick-link-card">
+          <div class="quick-link-icon">
+            <span class="material-icons">settings</span>
+          </div>
+          <div class="quick-link-content">
+            <h4>Design Tokens</h4>
+            <p>Colors, spacing, typography</p>
+          </div>
+        </a>
+
+        <a href="/components/button" class="quick-link-card">
+          <div class="quick-link-icon">
+            <span class="material-icons">view_module</span>
+          </div>
+          <div class="quick-link-content">
+            <h4>Components</h4>
+            <p>Interactive examples</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/chadwd/DS-Bridge" class="quick-link-card" target="_blank">
+          <div class="quick-link-icon">
+            <span class="material-icons">code</span>
+          </div>
+          <div class="quick-link-content">
+            <h4>GitHub</h4>
+            <p>View source code</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="tron-footer">
+    <div class="footer-content">
+      <div class="footer-version">
+        DS-Bridge v0.2.0 • Built with Vue 3, Vuetify 3, and TypeScript
+      </div>
+      <div class="footer-links">
+        <a href="/guide/getting-started" class="footer-link">Get Started</a>
+        <a href="https://github.com/chadwd/DS-Bridge" class="footer-link" target="_blank">GitHub</a>
+        <a href="/guide/philosophy" class="footer-link">Philosophy</a>
+        <a href="https://github.com/chadwd/DS-Bridge/issues" class="footer-link" target="_blank">Issues</a>
+      </div>
+    </div>
+  </footer>
+</div>
