@@ -155,8 +155,8 @@ Optimize build output with per-component exports, CSS modules, and tree-shaking 
 - [ ] Create bundlesize budget config
 
 ## Test Cases
-- [ ] \`import { DsButton } from 'design-system/components/Button'\` works
-- [ ] \`import tokens from 'design-system/tokens'\` works
+- [ ] \`import { DsButton } from 'ds-bridge/components/Button'\` works
+- [ ] \`import tokens from 'ds-bridge/tokens'\` works
 - [ ] Unused components don't increase bundle
 - [ ] CSS is properly separated or tree-shaken
 

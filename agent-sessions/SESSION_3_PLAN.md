@@ -15,17 +15,17 @@ This document outlines the implementation plan for Session #3, focusing on align
 ### Phase 0: Repository Structure Fix (CRITICAL PRIORITY)
 
 #### 0.1 Fix Working Directory Structure
-- [ ] Ensure all work is done in `/design-system/` subdirectory
-- [ ] Move any misplaced files from DS-Bridge root to design-system folder
-- [ ] Update all file paths in documentation to use design-system as base
+- [ ] Ensure all work is done in `/ds-bridge/` subdirectory
+- [ ] Move any misplaced files from DS-Bridge root to ds-bridge folder
+- [ ] Update all file paths in documentation to use ds-bridge as base
 - [ ] Verify git is tracking the correct directory structure
 - [ ] Update any scripts or configs that reference incorrect paths
-- [ ] Ensure VS Code or IDE is opened at the correct level (design-system folder)
+- [ ] Ensure VS Code or IDE is opened at the correct level (ds-bridge folder)
 
-**Note**: The actual project lives in `DS-Bridge/design-system/` not in the root. All paths should be relative to the design-system folder:
-- Source code: `design-system/src/`
-- Documentation: `design-system/docs/`
-- Configuration: `design-system/vite.config.ts`, etc.
+**Note**: The actual project lives in `DS-Bridge/ds-bridge/` not in the root. All paths should be relative to the ds-bridge folder:
+- Source code: `ds-bridge/src/`
+- Documentation: `ds-bridge/docs/`
+- Configuration: `ds-bridge/vite.config.ts`, etc.
 
 ### Phase 1: Foundation (HIGH PRIORITY)
 
@@ -123,7 +123,7 @@ This document outlines the implementation plan for Session #3, focusing on align
 ## File Structure
 
 ```
-design-system/
+ds-bridge/
 ├── docs/
 │   ├── .vitepress/
 │   │   ├── theme/

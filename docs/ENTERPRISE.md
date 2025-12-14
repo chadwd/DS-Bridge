@@ -9,7 +9,7 @@ This document outlines the enterprise-grade features and capabilities of the Des
 3. [Performance Optimization](#performance-optimization)
 4. [Build System](#build-system)
 5. [Testing Infrastructure](#testing-infrastructure)
-6. [Design System Integration](#design-system-integration)
+6. [Design System Integration](#ds-bridge-integration)
 
 ---
 
@@ -247,9 +247,9 @@ npm run build
 ```
 
 Generates optimized production builds:
-- **dist/design-system-vuetify.js** - ES module
-- **dist/design-system-vuetify.cjs** - CommonJS module
-- **dist/design-system-vuetify.d.ts** - TypeScript definitions
+- **dist/ds-bridge-vuetify.js** - ES module
+- **dist/ds-bridge-vuetify.cjs** - CommonJS module
+- **dist/ds-bridge-vuetify.d.ts** - TypeScript definitions
 
 ### Build Features
 

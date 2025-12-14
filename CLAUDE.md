@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **DS-Bridge** is an enterprise-grade, white-label Vue 3 design system built on Vuetify 3 and TypeScript. It provides reusable UI components with design tokens synchronized to Figma, accessibility-first development (WCAG 2.1 AAA compliance), and comprehensive documentation.
 
+The repository name is `ds-bridge` and the npm package name is `ds-bridge`.
+
 The project is a monorepo-style structure with:
 - **Source**: Vue 3 components + design tokens (TypeScript) in `src/`
 - **Tests**: Unit + accessibility tests with Vitest in `tests/`
@@ -132,7 +134,7 @@ const sizeValue = computed(() => SIZES[props.size]);
 
 ### Build & Distribution
 - **Vite library mode** with multiple entry points:
-  - Main: `dist/design-system-vuetify.js` (full library)
+  - Main: `dist/ds-bridge.js` (full library)
   - Per-component: `dist/components/Button.js` (tree-shakeable)
   - Per-category: `dist/tokens/colors.js` (token-only exports)
 - **Dual format**: ES modules (modern) + CommonJS (compatibility)

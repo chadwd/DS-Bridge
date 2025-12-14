@@ -131,7 +131,7 @@ A comprehensive log of all work completed by Claude Code during development sess
   - Updated title and description
 
 #### 5. Repository Structure Cleanup
-- **Moved to design-system/**:
+- **Moved to ds-bridge/**:
   - `CLAUDE.md` (development guidelines)
   - `SESSION_3_PLAN.md` (planning docs)
   - `SESSION_4_PLAN.md` (future planning)
@@ -140,14 +140,14 @@ A comprehensive log of all work completed by Claude Code during development sess
   - `WARP.md` symlink recreated
 
 - **Removed from root**:
-  - Redundant `.git/` folder (git repo is in design-system/)
+  - Redundant `.git/` folder (git repo is in ds-bridge/)
   - Unnecessary `.gitignore` at root
   - Unnecessary `README.md` at root
   - Temporary `.playwright-mcp/` folder
 
 - **Final Structure**:
-  - Clean root with only `design-system/` folder
-  - All project files consolidated inside design-system
+  - Clean root with only `ds-bridge/` folder
+  - All project files consolidated inside ds-bridge
   - Single git repository location
   - Clear, unconfused structure
 
@@ -197,11 +197,11 @@ A comprehensive log of all work completed by Claude Code during development sess
 - `docs/.vitepress/config.js`
 
 ### Files Moved (5)
-- `CLAUDE.md` (root → design-system/)
-- `SESSION_3_PLAN.md` (root → design-system/)
-- `SESSION_4_PLAN.md` (root → design-system/)
-- `create-session-3-issues.sh` (root → design-system/)
-- `.claude/` (root → design-system/)
+- `CLAUDE.md` (root → ds-bridge/)
+- `SESSION_3_PLAN.md` (root → ds-bridge/)
+- `SESSION_4_PLAN.md` (root → ds-bridge/)
+- `create-session-3-issues.sh` (root → ds-bridge/)
+- `.claude/` (root → ds-bridge/)
 
 ### Metrics
 - **Files Created**: 14
@@ -219,7 +219,7 @@ A comprehensive log of all work completed by Claude Code during development sess
 - **CSS Custom Properties**: All tokens as `--ds-*` variables for easy theming
 - **Dark Mode**: CSS-based with VitePress built-in toggle
 - **Visual Examples**: HTML/CSS for color swatches rather than Vue components (faster load)
-- **Repository Structure**: Single project in `design-system/` folder for clarity
+- **Repository Structure**: Single project in `ds-bridge/` folder for clarity
 - **Documentation First**: Comprehensive docs before interactive demos
 
 ### Next Steps (Session #4)

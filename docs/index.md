@@ -1,4 +1,4 @@
-# Design System
+# DS-Bridge
 
 A white-label design system built with Vue 3, Vite, and Vuetify 3.
 
@@ -67,7 +67,7 @@ npm run lint:fix
 ## Project Structure
 
 ```
-design-system/
+ds-bridge/
 ├── src/                    # Component library source
 │   ├── tokens/            # Design tokens (colors, spacing, typography)
 │   ├── components/        # Vue components
@@ -110,7 +110,7 @@ Each component:
 In your Vue applications:
 
 ```javascript
-import { DsButton } from 'design-system/components';
+import { DsButton } from 'ds-bridge/components';
 ```
 
 ## Building for Production

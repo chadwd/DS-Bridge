@@ -130,8 +130,8 @@ Fast is a feature. Every millisecond counts.
 
 ```javascript
 // Import only what you need
-import { DsButton } from 'design-system/components';
-// Not: import * from 'design-system';
+import { DsButton } from 'ds-bridge/components';
+// Not: import * from 'ds-bridge';
 ```
 
 ### Developer Experience

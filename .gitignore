@@ -8,6 +8,7 @@ node_modules
 /docs/.vitepress/dist
 
 # Development
+WARP.md
 .DS_Store
 *.log
 *.swp

@@ -1,16 +1,16 @@
 {
-  "name": "design-system",
+  "name": "ds-bridge",
   "version": "0.0.1",
   "description": "A white-label design system built with Vue 3, Vite, and Vuetify 3",
   "author": "Chad Dunbar",
   "license": "MIT",
   "type": "module",
-  "main": "dist/design-system-vuetify.cjs",
-  "module": "dist/design-system-vuetify.js",
-  "types": "dist/design-system-vuetify.d.ts",
+  "main": "dist/ds-bridge.cjs",
+  "module": "dist/ds-bridge.js",
+  "types": "dist/ds-bridge.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chadwd/DS-Bridge.git"
+    "url": "https://github.com/chadwd/ds-bridge.git"
   },
   "keywords": [
     "vue",
@@ -22,15 +22,15 @@
     "whitespace",
     "design-tokens"
   ],
-  "homepage": "https://github.com/chadwd/DS-Bridge#readme",
+  "homepage": "https://github.com/chadwd/ds-bridge#readme",
   "bugs": {
-    "url": "https://github.com/chadwd/DS-Bridge/issues"
+    "url": "https://github.com/chadwd/ds-bridge/issues"
   },
   "exports": {
     ".": {
-      "import": "./dist/design-system-vuetify.js",
-      "require": "./dist/design-system-vuetify.cjs",
-      "types": "./dist/design-system-vuetify.d.ts"
+      "import": "./dist/ds-bridge.js",
+      "require": "./dist/ds-bridge.cjs",
+      "types": "./dist/ds-bridge.d.ts"
     },
     "./button": {
       "import": "./dist/components/Button.js",

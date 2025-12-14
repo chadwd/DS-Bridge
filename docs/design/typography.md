@@ -213,7 +213,7 @@ export const lineHeight = {
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed } from 'vue';
 
 const headingStyles = computed(() => ({
@@ -297,7 +297,7 @@ code {
 
 ```vue
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed, onMounted, ref } from 'vue';
 
 const isMobile = ref(false);

@@ -1,6 +1,6 @@
-# Contributing to Design System
+# Contributing to DS-Bridge
 
-Thank you for your interest in contributing to this design system! We welcome contributions from everyone. This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to DS-Bridge! We welcome contributions from everyone. This document provides guidelines and instructions for contributing.
 
 ## Table of Contents
 
@@ -35,14 +35,14 @@ This project is committed to providing a welcoming and inspiring community for a
 2. Clone your fork locally:
 
 ```bash
-git clone https://github.com/yourusername/DS-Bridge.git
-cd design-system
+git clone https://github.com/yourusername/ds-bridge.git
+cd ds-bridge
 ```
 
 3. Add the upstream repository:
 
 ```bash
-git remote add upstream https://github.com/yourusername/DS-Bridge.git
+git remote add upstream https://github.com/chadwd/ds-bridge.git
 ```
 
 ## Development Setup

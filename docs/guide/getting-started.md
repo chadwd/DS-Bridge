@@ -17,7 +17,7 @@ Before you begin, ensure you have:
 First, install DS-Bridge and its peer dependencies:
 
 ```bash
-npm install design-system vue@^3 vuetify@^3
+npm install ds-bridge vue@^3 vuetify@^3
 ```
 
 ### Step 2: Install Vuetify Icon Font (Optional)
@@ -39,7 +39,7 @@ import App from './App.vue';
 
 // Import Vuetify and design system
 import { createVuetify } from 'vuetify';
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import 'vuetify/styles';
 import '@mdi/font/css/materialdesignicons.css';
 
@@ -81,7 +81,7 @@ You can import components individually for optimal tree-shaking:
 </template>
 
 <script setup>
-import { DsButton } from 'design-system/components';
+import { DsButton } from 'ds-bridge/components';
 
 const handleClick = () => {
   console.log('Button clicked!');
@@ -101,7 +101,7 @@ Access design tokens directly in your components:
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed } from 'vue';
 
 const containerStyles = computed(() => ({
@@ -119,8 +119,8 @@ If you want to contribute to DS-Bridge or customize it for your needs:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/DS-Bridge.git
-cd DS-Bridge/design-system
+git clone https://github.com/chadwd/ds-bridge.git
+cd ds-bridge
 npm install
 ```
 

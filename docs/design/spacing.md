@@ -185,7 +185,7 @@ export const spacing = {
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed } from 'vue';
 
 const containerStyles = computed(() => ({
@@ -235,7 +235,7 @@ const contentStyles = computed(() => ({
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 
 const flexStyles = {
   display: 'flex',
@@ -257,7 +257,7 @@ const flexStyles = {
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 
 const gridStyles = {
   display: 'grid',
@@ -338,7 +338,7 @@ Adjust spacing for different screen sizes:
 
 ```vue
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed, onMounted, ref } from 'vue';
 
 const isMobile = ref(false);

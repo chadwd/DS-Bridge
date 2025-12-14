@@ -40,7 +40,7 @@ Import and use tokens in your Vue components:
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed } from 'vue';
 
 const containerStyles = computed(() => ({
@@ -72,7 +72,7 @@ Tokens are exported as CSS custom properties:
 Access tokens directly:
 
 ```typescript
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 
 const buttonPadding = tokens.spacing.md;        // '16px'
 const primaryColor = tokens.colors.primary;      // '#6366F1'
@@ -190,7 +190,7 @@ To customize DS-Bridge for your brand:
 
 ```bash
 git clone https://github.com/yourusername/DS-Bridge.git
-cd DS-Bridge/design-system
+cd ds-bridge
 ```
 
 ### 2. Edit Token Values

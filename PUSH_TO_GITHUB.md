@@ -16,7 +16,7 @@ Your design system is ready to push! Follow these steps:
 Replace `yourusername` with your actual GitHub username:
 
 ```bash
-cd /Users/cdunbar/Repos/DS-Bridge/design-system
+cd /Users/cdunbar/Repos/DS-Bridge/ds-bridge
 
 # Update the remote URL
 git remote set-url origin https://github.com/YOUR_USERNAME/DS-Bridge.git

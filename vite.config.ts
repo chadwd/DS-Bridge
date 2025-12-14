@@ -24,11 +24,11 @@ export default defineConfig({
     },
     lib: {
       entry: {
-        'design-system-vuetify': 'src/main.ts',
+        'ds-bridge': 'src/main.ts',
         'button': 'src/button.ts',
         'tokens/index': 'src/tokens.ts',
       },
-      name: 'DesignSystemVuetify',
+      name: 'DSBridge',
       fileName: (format, entryName) => {
         const extension = format === 'es' ? 'js' : 'cjs';
         return `${entryName}.${extension}`;

@@ -71,9 +71,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Fixed
 - **Repository Structure**
-  - Cleaned up root directory (moved all files into `design-system/`)
+  - Cleaned up root directory (moved all files into `ds-bridge/`)
   - Removed redundant `.git`, `.gitignore`, `README.md` from root
-  - Moved `.claude/` configuration into `design-system/`
+  - Moved `.claude/` configuration into `ds-bridge/`
   - Consolidated all documentation and scripts into project folder
   - Created single-project structure for clarity
 

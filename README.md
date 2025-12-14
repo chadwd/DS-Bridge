@@ -1,4 +1,4 @@
-# Design System Vuetify - White Label
+# DS-Bridge - White Label Design System
 
 A production-ready white-label design system built with Vue 3, Vite, and Vuetify 3.
 
@@ -36,8 +36,8 @@ This is a production-ready, enterprise-grade design system for creating consiste
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/DS-Bridge.git
-cd design-system
+git clone https://github.com/chadwd/ds-bridge.git
+cd ds-bridge
 
 # Install dependencies
 npm install
@@ -61,7 +61,7 @@ Documentation will open at `http://localhost:5173/docs`.
 ## Folder Structure
 
 ```
-design-system-vuetify-whitelabel/
+ds-bridge/
 ├── src/                              # Component library
 │   ├── tokens/
 │   │   └── index.js                 # Design tokens (colors, spacing, typography)
@@ -458,7 +458,7 @@ To publish this design system to npm:
 Users can then install:
 
 ```bash
-npm install design-system-vuetify-whitelabel
+npm install ds-bridge
 ```
 
 ## Troubleshooting
@@ -525,9 +525,9 @@ MIT License - see LICENSE file for details.
 
 For issues, questions, or suggestions:
 
-1. Check [existing issues](https://github.com/yourusername/design-system-vuetify-whitelabel/issues)
-2. Open a [new issue](https://github.com/yourusername/design-system-vuetify-whitelabel/issues/new)
-3. Start a [discussion](https://github.com/yourusername/design-system-vuetify-whitelabel/discussions)
+1. Check [existing issues](https://github.com/chadwd/ds-bridge/issues)
+2. Open a [new issue](https://github.com/chadwd/ds-bridge/issues/new)
+3. Start a [discussion](https://github.com/chadwd/ds-bridge/discussions)
 
 ## Changelog
 

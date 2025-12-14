@@ -3,7 +3,7 @@
 ## Complete Folder Tree
 
 ```
-design-system/
+ds-bridge/
 │
 ├── 📁 src/                                 # Vue 3 Component Library
 │   ├── 📁 tokens/

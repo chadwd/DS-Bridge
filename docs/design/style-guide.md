@@ -126,7 +126,7 @@ Use consistent spacing for page structure:
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 
 const pageStyles = {
   display: 'flex',
@@ -445,7 +445,7 @@ Start with mobile styles, enhance for larger screens:
 
 ```vue
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed, onMounted, ref } from 'vue';
 
 const isMobile = ref(false);

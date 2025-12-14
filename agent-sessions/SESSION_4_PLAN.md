@@ -254,7 +254,7 @@ export default defineConfig({
 ## File Structure Changes
 
 ```
-design-system/
+ds-bridge/
 ├── src/
 │   ├── App.vue                    # Developer playground (npm run playground)
 │   └── components/                # Component library

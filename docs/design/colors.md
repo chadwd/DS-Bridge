@@ -58,7 +58,7 @@ The primary brand colors define your product's identity.
 - Important UI elements
 
 ```typescript
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 
 const color = tokens.colors.primary; // '#6366F1'
 ```
@@ -320,7 +320,7 @@ Neutral colors for borders, dividers, and subtle UI elements.
 </template>
 
 <script setup>
-import { tokens } from 'design-system/tokens';
+import { tokens } from 'ds-bridge/tokens';
 import { computed } from 'vue';
 
 const containerStyles = computed(() => ({

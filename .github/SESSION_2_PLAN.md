@@ -284,7 +284,7 @@ All work items are documented in `.github/ISSUES_TEMPLATE.md`
 
 **To create issues:**
 ```bash
-cd /Users/cdunbar/Repos/DS-Bridge/design-system
+cd /Users/cdunbar/Repos/DS-Bridge/ds-bridge
 # Review .github/ISSUES_TEMPLATE.md
 # Create GitHub issues (or use gh cli)
 ```
