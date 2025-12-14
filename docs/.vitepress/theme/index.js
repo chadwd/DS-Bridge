@@ -7,7 +7,6 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import 'vuetify/styles';
-import '@mdi/font/css/materialdesignicons.css';
 
 import Layout from './Layout.vue';
 import './style.css';
@@ -18,7 +17,7 @@ import PropControl from '../components/PropControl.vue';
 import CodePreview from '../components/CodePreview.vue';
 
 // Import design system components
-import * as dsComponents from '../../../src/index';
+import { DsButton } from '../../../src/components/index';
 
 // Import tokens
 import tokens from '../../../src/tokens/index';
@@ -62,8 +61,6 @@ export default {
     app.component('CodePreview', CodePreview);
 
     // Register design system components globally
-    Object.keys(dsComponents).forEach((name) => {
-      app.component(name, dsComponents[name]);
-    });
+    app.component('DsButton', DsButton);
   },
 };
