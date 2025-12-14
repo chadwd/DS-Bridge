@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-12-14
+
+### Session #3: UI Layout & Component Refinement (Complete)
+
+#### Added
+- **App Layout Component**
+  - Professional header bar with gradient background and GitHub link
+  - Navigation drawer with rail mode (collapses on mouse leave)
+  - Navigation items: Home, Components, Tokens, Documentation
+  - Avatar branding with version display (DS v0.1.0)
+  - Responsive design using Vuetify's layout system
+  - Integrated into main App component
+
+#### Enhanced
+- **Button Component**
+  - Updated to support all Vuetify 3 button variants (elevated, flat, tonal, outlined, text)
+  - Changed default variant from 'filled' to 'elevated' (Figma alignment)
+  - Added loading state support with visual indicator
+  - Improved JSDoc documentation with accessibility notes
+
+- **Design Tokens**
+  - 1-to-1 mapping with Figma design variables complete
+  - Added Figma dynamic colors (surface, onSurface, currentColor, borderColor)
+  - Typography updated with Roboto font and size 14 from Figma
+  - Material Design elevation shadows (elevation00, elevation02 dp)
+  - Component-specific tokens for VBtn and ProgressCircular
+  - Opacity tokens for overlay and activation states
+
+- **App Component (App.vue)**
+  - Integrated AppLayout wrapper for consistent UI
+  - Updated button examples with new variant names
+  - Added loading state examples
+  - Updated Getting Started section with enterprise features
+  - Improved documentation references
+
+#### Fixed
+- Removed deprecated `v-list-item-group` from navigation drawer
+- Fixed CSS styling for proper theme color rendering
+- Updated design token references from .js to .ts
+
+#### Completed Features
+- [x] Figma design token sync (1-to-1 mapping)
+- [x] App layout with header and navigation
+- [x] Button component Figma alignment
+- [x] Documentation updates (Issue #8)
+- [ ] Performance budgets (Issue #7) - Postponed
+
 ## [0.1.0] - 2025-12-13
 
 ### Session #2: Enterprise Foundation Enhancement (Complete)
