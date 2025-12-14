@@ -42,21 +42,21 @@ cd ds-bridge
 # Install dependencies
 npm install
 
-# Start the development server
+# Start the documentation site (recommended)
 npm run dev
 ```
 
-The playground will open at `http://localhost:5173`.
+The documentation site will open at `http://localhost:5173`.
 
-### View Documentation
+### Component Development Playground
 
-In another terminal:
+For contributors working on components:
 
 ```bash
-npm run docs:dev
+npm run playground
 ```
 
-Documentation will open at `http://localhost:5173/docs`.
+The component playground will open at `http://localhost:5173`.
 
 ## Folder Structure
 
@@ -148,14 +148,16 @@ Pre-defined tokens for:
 ### Development
 
 ```bash
-# Start playground
+# Start documentation site (default)
 npm run dev
 
-# Start docs
-npm run docs:dev
+# Start component playground (for contributors)
+npm run playground
 
-# Start both (requires two terminals)
-npm run dev & npm run docs:dev
+# Docs commands (alternative)
+npm run docs:dev       # Same as npm run dev
+npm run docs:build     # Build documentation
+npm run docs:preview   # Preview built docs
 ```
 
 ### Testing
@@ -187,11 +189,17 @@ npm run lint:fix
 ### Build
 
 ```bash
-# Build component library
+# Build everything (library + docs + type-check)
 npm run build
 
-# Build documentation
-npm run docs:build
+# Build library only
+npm run build:lib
+
+# Build documentation only
+npm run build:docs
+
+# Type check
+npm run type-check
 
 # Preview production build
 npm run preview

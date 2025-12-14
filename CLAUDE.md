@@ -19,21 +19,25 @@ The project is a monorepo-style structure with:
 ### Setup
 ```bash
 npm install          # Install dependencies
-npm run dev          # Start Vite dev server + documentation site (http://localhost:5173)
+npm run dev          # Start documentation site (http://localhost:5173) - RECOMMENDED
+npm run playground   # Start component playground for contributors (http://localhost:5173)
 ```
+
+**Note:** `npm run dev` now starts the documentation site by default. Use `npm run playground` for component development.
 
 ### Building
 ```bash
-npm run build        # Build library (dist/) and documentation site
+npm run build        # Build everything: type-check + library + documentation
 npm run build:lib    # Build only the library (components + tokens)
 npm run build:docs   # Build only the documentation site
+npm run type-check   # Run TypeScript type checking without emitting files
 ```
 
 ### Testing
 ```bash
 npm run test         # Run all tests once
 npm run test:ui      # Open Vitest UI (visual test browser)
-npm run test:watch   # Run tests in watch mode
+npm run test:watch   # Run tests in watch mode (DEPRECATED: use npm run test -- --watch)
 npm run test:coverage  # Generate coverage reports (see coverage/ directory)
 ```
 
@@ -46,7 +50,8 @@ npm run type-check   # Run TypeScript compiler (npx tsc --noEmit)
 
 ### Documentation
 ```bash
-npm run docs:dev     # Dev server for docs only (port 5173)
+npm run dev          # Start documentation site (RECOMMENDED)
+npm run docs:dev     # Same as npm run dev (alias)
 npm run docs:build   # Build docs static site
 npm run docs:preview # Preview built docs locally
 ```

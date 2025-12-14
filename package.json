@@ -44,9 +44,13 @@
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vitepress dev docs",
+    "playground": "vite",
+    "build": "npm run type-check && npm run build:lib && npm run build:docs",
+    "build:lib": "vite build",
+    "build:docs": "vitepress build docs",
     "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
