@@ -15,6 +15,7 @@ import './style.css';
 import ComponentDemo from '../components/ComponentDemo.vue';
 import PropControl from '../components/PropControl.vue';
 import CodePreview from '../components/CodePreview.vue';
+import TronHomepage from '../components/TronHomepage.vue';
 
 // Import design system components
 import { DsButton } from '../../../src/components/index';
@@ -59,6 +60,7 @@ export default {
     app.component('ComponentDemo', ComponentDemo);
     app.component('PropControl', PropControl);
     app.component('CodePreview', CodePreview);
+    app.component('TronHomepage', TronHomepage);
 
     // Register design system components globally
     app.component('DsButton', DsButton);
