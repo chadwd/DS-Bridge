@@ -1,10 +1,25 @@
 /**
  * Design System Tokens
  * Single source of truth for all design values (colors, spacing, typography)
- * These tokens can be synced with Figma Variables via Figma Code Connect
+ * Synced 1-to-1 with Figma design variables
+ * @see https://www.figma.com/design/GKPD7KWPXqVvQMXaNY5Nvd/Official-Vuetify-3-UI-Kit
  */
 
+// Figma Dynamic Colors
+const figmaColors = {
+  surface: '#FFFFFF',           // dynamic-full-surface (from Figma)
+  onSurface: '#000000',         // dynamic-full-on-surface (from Figma)
+  currentColor: '#000000',      // dynamic-full-current-color (from Figma)
+  borderColor: '#000000',       // dynamic-full-border-color (from Figma)
+} as const;
+
+// Border Color from Figma
+const figuraBorderColor = '#0000001f'; // Borders/border-color-root (from Figma)
+
 export const colors = {
+  // Figma dynamic colors (primary)
+  ...figmaColors,
+
   // Primary brand colors
   primary: '#6366F1',           // Indigo-600 (Material Design 3 inspired)
   primaryDark: '#4F46E5',        // Indigo-700
@@ -26,8 +41,7 @@ export const colors = {
   info: '#3B82F6',               // Blue-500
   infoLight: '#DBEAFE',          // Blue-100
 
-  // Surface colors
-  surface: '#FFFFFF',
+  // Surface colors (from Figma)
   surfaceVariant: '#F3F4F6',     // Gray-100
   surfaceHover: '#F9FAFB',       // Gray-50
 
@@ -46,8 +60,8 @@ export const colors = {
   neutralLight: '#E5E7EB',       // Gray-200
   neutralDark: '#374151',        // Gray-700
 
-  // Divider
-  divider: '#E5E7EB',            // Gray-200 (with ~12% opacity in design)
+  // Divider (from Figma)
+  divider: figuraBorderColor,    // Borders/border-color-root
 } as const;
 
 export type ColorToken = typeof colors;
@@ -65,11 +79,13 @@ export type SpacingToken = typeof spacing;
 
 export const typography = {
   fontFamily: {
-    base: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    // From Figma: Typography/body-font-family
+    base: 'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
     code: 'Menlo, Monaco, "Courier New", monospace',
   },
   fontSize: {
     xs: '12px',
+    // From Figma: Typography/Sizes/font-size-14
     sm: '14px',
     base: '16px',
     lg: '18px',
@@ -85,6 +101,7 @@ export const typography = {
   fontWeight: {
     light: 300,
     regular: 400,
+    // From Figma: Typography/Weights/fw-medium-500
     medium: 500,
     semibold: 600,
     bold: 700,
@@ -100,6 +117,7 @@ export const borderRadius = {
   md: '8px',
   lg: '12px',
   xl: '16px',
+  // From Figma: rounded variable
   full: '9999px',
 } as const;
 
@@ -113,9 +131,52 @@ export const shadows = {
   md: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
   lg: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
   xl: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+
+  // Figma Material Design Elevation tokens
+  // Elevations/Elevation 00 dp - no shadow
+  elevation00: '0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12)',
+
+  // Elevations/Elevation 02 dp - subtle elevation
+  elevation02:
+    '0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2)',
 } as const;
 
 export type ShadowToken = typeof shadows;
+
+// Figma Component-Specific Tokens
+export const components = {
+  button: {
+    // VBtn/default - Standard button size
+    default: {
+      height: '36px',                    // VBtn/default/v-btn-height
+      minWidth: '64px',                  // VBtn/default/v-btn-min-width
+      paddingX: '16px',                  // VBtn/default/v-btn-padding-x
+      fontSize: '14px',                  // VBtn/default/v-btn-size
+      marginLeft: '-4px',                // VBtn/default/v-btn-margin-l
+      marginRight: '8px',                // VBtn/default/v-btn-margin-r
+      iconSize: '18px',                  // VBtn/default/v-btn-icon-size
+    },
+    // VBtn/icon - Icon-only button size
+    icon: {
+      heightWidth: '48px',               // VBtn/icon/v-btn-height-width
+      iconSize: '24px',                  // VBtn/icon/v-btn-icon-size
+    },
+  },
+  progressCircular: {
+    size: '32px',                        // VProgressCircular/v-progress-circular-size
+    stroke: '4px',                       // VProgressCircular/v-progress-circular-stroke
+  },
+} as const;
+
+// Figma Opacity tokens
+export const opacity = {
+  overlay: {
+    elevated: '0',                       // opacity-overlay-e-f
+    tonalOutlined: '0',                  // opacity-overlay-t-o-t-p
+  },
+  currentColor: '0.87',                  // opacity-current-color (87%)
+  activatedOpacity: '0.12',              // Variables/activated-opacity (12%)
+} as const;
 
 export interface DesignTokens {
   colors: ColorToken;
@@ -123,6 +184,8 @@ export interface DesignTokens {
   typography: TypographyToken;
   borderRadius: BorderRadiusToken;
   shadows: ShadowToken;
+  components: typeof components;
+  opacity: typeof opacity;
 }
 
 export const tokens: DesignTokens = {
@@ -131,6 +194,8 @@ export const tokens: DesignTokens = {
   typography,
   borderRadius,
   shadows,
+  components,
+  opacity,
 };
 
 export default tokens;
