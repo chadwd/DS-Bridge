@@ -2,6 +2,92 @@
 
 The `DsButton` component is a flexible button component that wraps Vuetify's `v-btn` with design system conventions and theming.
 
+<script setup>
+import { ref, computed } from 'vue';
+
+const variant = ref('filled');
+const color = ref('primary');
+const size = ref('md');
+const disabled = ref(false);
+const buttonText = ref('Click Me');
+
+const generatedCode = computed(() => {
+  const props = [];
+  if (variant.value !== 'filled') props.push(`variant="${variant.value}"`);
+  if (color.value !== 'primary') props.push(`color="${color.value}"`);
+  if (size.value !== 'md') props.push(`size="${size.value}"`);
+  if (disabled.value) props.push(':disabled="true"');
+
+  const propsString = props.length > 0 ? '\n    ' + props.join('\n    ') + '\n  ' : '';
+
+  return `<template>
+  <DsButton${propsString}>
+    ${buttonText.value}
+  </DsButton>
+</template>`;
+});
+</script>
+
+## Interactive Demo
+
+<ComponentDemo
+  title="Button Playground"
+  description="Customize the button using the controls below to see different variants, colors, and sizes."
+>
+  <template #demo>
+    <DsButton
+      :variant="variant"
+      :color="color"
+      :size="size"
+      :disabled="disabled"
+    >
+      {{ buttonText }}
+    </DsButton>
+  </template>
+
+  <template #controls>
+    <PropControl
+      label="Variant"
+      v-model="variant"
+      :options="['filled', 'outlined', 'text', 'tonal', 'elevated']"
+      description="Button style variant"
+    />
+    <PropControl
+      label="Color"
+      v-model="color"
+      :options="['primary', 'secondary', 'error', 'warning', 'success', 'info']"
+      description="Color from design tokens"
+    />
+    <PropControl
+      label="Size"
+      v-model="size"
+      :options="['sm', 'md', 'lg']"
+      description="Button size"
+    />
+    <PropControl
+      label="Disabled"
+      v-model="disabled"
+      type="boolean"
+      description="Disable button interaction"
+    />
+    <PropControl
+      label="Button Text"
+      v-model="buttonText"
+      type="text"
+      placeholder="Enter button text"
+      description="Text to display on button"
+    />
+  </template>
+
+  <template #code>
+
+```vue
+{{ generatedCode }}
+```
+
+  </template>
+</ComponentDemo>
+
 ## When to Use
 
 Use buttons for:
@@ -42,6 +128,35 @@ For tertiary or low-emphasis actions.
 <ds-button variant="text" color="error">Dismiss</ds-button>
 ```
 
+### Live Example: All Variants
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+      <DsButton variant="filled">Filled</DsButton>
+      <DsButton variant="elevated">Elevated</DsButton>
+      <DsButton variant="tonal">Tonal</DsButton>
+      <DsButton variant="outlined">Outlined</DsButton>
+      <DsButton variant="text">Text</DsButton>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div style="display: flex; gap: 1rem;">
+    <DsButton variant="filled">Filled</DsButton>
+    <DsButton variant="elevated">Elevated</DsButton>
+    <DsButton variant="tonal">Tonal</DsButton>
+    <DsButton variant="outlined">Outlined</DsButton>
+    <DsButton variant="text">Text</DsButton>
+  </div>
+</template>
+```
+
+  </template>
+</CodePreview>
+
 ## Sizes
 
 Buttons come in three sizes: small, medium (default), and large.
@@ -68,6 +183,37 @@ Buttons inherit colors from the design system tokens. Available colors include:
 <ds-button color="secondary">Secondary</ds-button>
 <ds-button color="error">Error</ds-button>
 ```
+
+### Live Example: All Colors
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+      <DsButton color="primary">Primary</DsButton>
+      <DsButton color="secondary">Secondary</DsButton>
+      <DsButton color="success">Success</DsButton>
+      <DsButton color="info">Info</DsButton>
+      <DsButton color="warning">Warning</DsButton>
+      <DsButton color="error">Error</DsButton>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <DsButton color="primary">Primary</DsButton>
+    <DsButton color="secondary">Secondary</DsButton>
+    <DsButton color="success">Success</DsButton>
+    <DsButton color="info">Info</DsButton>
+    <DsButton color="warning">Warning</DsButton>
+    <DsButton color="error">Error</DsButton>
+  </div>
+</template>
+```
+
+  </template>
+</CodePreview>
 
 ## States
 
