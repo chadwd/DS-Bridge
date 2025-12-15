@@ -7,6 +7,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2025-12-14
+
+### Session #4: Component Documentation UX & Complete Dark Mode (Complete)
+
+#### Added
+- **Interactive Component Documentation**
+  - Live examples for all button prop sections (Sizes, States, Loading)
+  - Interactive usage examples (Basic Usage, Router Link, Conditional Styling, Button Groups)
+  - Working click handlers and state management in examples
+  - Dynamic code generation in playground with proper syntax display
+
+- **Vuetify Form Controls**
+  - Replaced native form controls with Vuetify components in PropControl
+  - v-select with outlined variant and compact density
+  - v-text-field for text/number inputs
+  - Material Design dropdown indicators
+  - Significant vertical space savings with compact forms
+
+- **Favicon & Metadata**
+  - Complete favicon set (16x16, 32x32, 180x180, 512x512, ICO)
+  - Apple touch icons for iOS devices
+  - Android Chrome icons
+  - PWA manifest (site.webmanifest)
+  - Dynamic page titles: "Page - Design System Bridge"
+
+#### Enhanced
+- **Dark Mode Support**
+  - Fixed table of contents text colors in dark mode
+  - Added Vuetify dark theme configuration
+  - Automatic Vuetify theme sync with VitePress dark mode toggle
+  - Fixed dropdown menu styling in dark mode (v-select menus)
+  - Updated all code blocks to use design token colors
+  - Proper text colors for all UI elements in dark mode
+
+- **Layout & Responsive Design**
+  - Removed max-width constraints for full-width responsive layout
+  - Content area now uses full viewport width
+  - Better workspace for component development and testing
+  - Improved mobile responsiveness
+
+- **Design System Colors**
+  - Updated to Tron theme colors (Cyan primary #0097A7, Deep Orange secondary #FF6F00)
+  - Eliminated all inline styles throughout codebase
+  - All styling now references design tokens via CSS variables
+  - Ensured color consistency across light and dark modes
+
+- **Code Display**
+  - Fixed interactive playground code generation display
+  - Proper rendering of dynamic Vue code in ComponentDemo
+  - Consistent code block styling across documentation
+  - Added Shiki syntax highlighter dependency
+
+#### Technical
+- Fixed duplicate script setup blocks error in button.md
+- Updated PropControl to use Vuetify v-select and v-text-field components
+- Added useTheme composable for Vuetify theme management
+- Ensured all Vuetify components work properly in SSR mode
+- Proper CSS :deep() selectors for scoped style penetration
+
+#### Files Changed (29 files, +696/-206)
+- docs/.vitepress/components/ComponentDemo.vue
+- docs/.vitepress/components/PropControl.vue
+- docs/.vitepress/components/TronHomepage.vue
+- docs/.vitepress/config.js
+- docs/.vitepress/theme/Layout.vue
+- docs/.vitepress/theme/index.js
+- docs/.vitepress/theme/style.css
+- docs/.vitepress/theme/tron-homepage.css
+- docs/components/button.md
+- docs/public/* (favicon files)
+- src/favicon/* (source favicon files)
+- src/tokens/index.ts
+- package.json (added shiki)
+
 ## [0.2.0] - 2025-12-14
 
 ### Session #3: Documentation Site Redesign & Design System Alignment (Complete)
