@@ -5,15 +5,18 @@ The `DsButton` component is a flexible button component that wraps Vuetify's `v-
 <script setup>
 import { ref, computed } from 'vue';
 
-const variant = ref('filled');
+const variant = ref('elevated');
 const color = ref('primary');
 const size = ref('md');
 const disabled = ref(false);
 const buttonText = ref('Click Me');
 
+// For conditional styling example
+const conditionalValid = ref(false);
+
 const generatedCode = computed(() => {
   const props = [];
-  if (variant.value !== 'filled') props.push(`variant="${variant.value}"`);
+  if (variant.value !== 'elevated') props.push(`variant="${variant.value}"`);
   if (color.value !== 'primary') props.push(`color="${color.value}"`);
   if (size.value !== 'md') props.push(`size="${size.value}"`);
   if (disabled.value) props.push(':disabled="true"');
@@ -49,7 +52,7 @@ const generatedCode = computed(() => {
     <PropControl
       label="Variant"
       v-model="variant"
-      :options="['filled', 'outlined', 'text', 'tonal', 'elevated']"
+      :options="['elevated', 'flat', 'tonal', 'outlined', 'text']"
       description="Button style variant"
     />
     <PropControl
@@ -80,11 +83,7 @@ const generatedCode = computed(() => {
   </template>
 
   <template #code>
-
-```vue
-{{ generatedCode }}
-```
-
+    <pre><code class="language-vue">{{ generatedCode }}</code></pre>
   </template>
 </ComponentDemo>
 
@@ -98,21 +97,39 @@ Use buttons for:
 
 ## Variants
 
-The button supports three variants:
+The button supports five Material Design 3 variants:
 
-### Filled (Default)
+### Elevated (Default)
 
-The primary button style, best for important actions.
+Filled button with shadow elevation, best for important primary actions.
 
 ```vue
-<ds-button>Click me</ds-button>
-<ds-button color="secondary">Secondary</ds-button>
-<ds-button color="error">Delete</ds-button>
+<ds-button variant="elevated">Click me</ds-button>
+<ds-button variant="elevated" color="secondary">Secondary</ds-button>
+<ds-button variant="elevated" color="error">Delete</ds-button>
+```
+
+### Flat
+
+Filled button without shadow, for high-emphasis actions in constrained spaces.
+
+```vue
+<ds-button variant="flat">Save</ds-button>
+<ds-button variant="flat" color="primary">Continue</ds-button>
+```
+
+### Tonal
+
+Subtle filled button with background tint, for medium-emphasis actions.
+
+```vue
+<ds-button variant="tonal">Edit</ds-button>
+<ds-button variant="tonal" color="success">Approve</ds-button>
 ```
 
 ### Outlined
 
-For secondary actions that need emphasis without being primary.
+For secondary actions that need emphasis without solid fill.
 
 ```vue
 <ds-button variant="outlined">Cancel</ds-button>
@@ -132,9 +149,9 @@ For tertiary or low-emphasis actions.
 
 <CodePreview>
   <template #preview>
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-      <DsButton variant="filled">Filled</DsButton>
+    <div class="button-group">
       <DsButton variant="elevated">Elevated</DsButton>
+      <DsButton variant="flat">Flat</DsButton>
       <DsButton variant="tonal">Tonal</DsButton>
       <DsButton variant="outlined">Outlined</DsButton>
       <DsButton variant="text">Text</DsButton>
@@ -144,9 +161,9 @@ For tertiary or low-emphasis actions.
 
 ```vue
 <template>
-  <div style="display: flex; gap: 1rem;">
-    <DsButton variant="filled">Filled</DsButton>
+  <div class="button-group">
     <DsButton variant="elevated">Elevated</DsButton>
+    <DsButton variant="flat">Flat</DsButton>
     <DsButton variant="tonal">Tonal</DsButton>
     <DsButton variant="outlined">Outlined</DsButton>
     <DsButton variant="text">Text</DsButton>
@@ -166,6 +183,31 @@ Buttons come in three sizes: small, medium (default), and large.
 <ds-button size="md">Medium</ds-button>
 <ds-button size="lg">Large</ds-button>
 ```
+
+### Live Example: All Sizes
+
+<CodePreview>
+  <template #preview>
+    <div class="button-group">
+      <DsButton size="sm">Small</DsButton>
+      <DsButton size="md">Medium</DsButton>
+      <DsButton size="lg">Large</DsButton>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div class="button-group">
+    <DsButton size="sm">Small</DsButton>
+    <DsButton size="md">Medium</DsButton>
+    <DsButton size="lg">Large</DsButton>
+  </div>
+</template>
+```
+
+  </template>
+</CodePreview>
 
 ## Colors
 
@@ -188,7 +230,7 @@ Buttons inherit colors from the design system tokens. Available colors include:
 
 <CodePreview>
   <template #preview>
-    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+    <div class="button-group button-group--compact">
       <DsButton color="primary">Primary</DsButton>
       <DsButton color="secondary">Secondary</DsButton>
       <DsButton color="success">Success</DsButton>
@@ -201,7 +243,7 @@ Buttons inherit colors from the design system tokens. Available colors include:
 
 ```vue
 <template>
-  <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <div class="button-group button-group--compact">
     <DsButton color="primary">Primary</DsButton>
     <DsButton color="secondary">Secondary</DsButton>
     <DsButton color="success">Success</DsButton>
@@ -230,6 +272,31 @@ Disabled buttons:
 - Have reduced opacity
 - Have a different cursor style
 
+### Live Example: Disabled States
+
+<CodePreview>
+  <template #preview>
+    <div class="button-group">
+      <DsButton disabled>Disabled</DsButton>
+      <DsButton variant="outlined" disabled>Outlined Disabled</DsButton>
+      <DsButton variant="text" disabled>Text Disabled</DsButton>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div class="button-group">
+    <DsButton disabled>Disabled</DsButton>
+    <DsButton variant="outlined" disabled>Outlined Disabled</DsButton>
+    <DsButton variant="text" disabled>Text Disabled</DsButton>
+  </div>
+</template>
+```
+
+  </template>
+</CodePreview>
+
 ### Loading
 
 While Vuetify's loading state isn't directly exposed, you can use slots:
@@ -239,6 +306,35 @@ While Vuetify's loading state isn't directly exposed, you can use slots:
   {{ isLoading ? 'Loading...' : 'Submit' }}
 </ds-button>
 ```
+
+### Live Example: Loading State
+
+<CodePreview>
+  <template #preview>
+    <div class="button-group">
+      <DsButton disabled>Loading...</DsButton>
+      <DsButton>Submit</DsButton>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div class="button-group">
+    <DsButton :disabled="isLoading">
+      {{ isLoading ? 'Loading...' : 'Submit' }}
+    </DsButton>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+const isLoading = ref(false);
+</script>
+```
+
+  </template>
+</CodePreview>
 
 ## API Reference
 
@@ -303,6 +399,28 @@ export default {
 </script>
 ```
 
+<CodePreview>
+  <template #preview>
+    <DsButton @click="() => alert('Changes saved!')">Save Changes</DsButton>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsButton @click="handleClick">Save Changes</DsButton>
+</template>
+
+<script setup>
+const handleClick = () => {
+  console.log('Button clicked');
+  alert('Changes saved!');
+};
+</script>
+```
+
+  </template>
+</CodePreview>
+
 ### With Router Link
 
 ```vue
@@ -312,6 +430,34 @@ export default {
   </ds-button>
 </template>
 ```
+
+<CodePreview>
+  <template #preview>
+    <DsButton @click="() => alert('Navigating to dashboard...')">
+      Go to Dashboard
+    </DsButton>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsButton @click="navigateToDashboard">
+    Go to Dashboard
+  </DsButton>
+</template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const navigateToDashboard = () => {
+  router.push('/dashboard');
+};
+</script>
+```
+
+  </template>
+</CodePreview>
 
 ### Conditional Styling
 
@@ -338,6 +484,42 @@ export default {
 </script>
 ```
 
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
+      <DsButton
+        :color="conditionalValid ? 'success' : 'error'"
+        :disabled="!conditionalValid"
+        @click="conditionalValid = !conditionalValid"
+      >
+        {{ conditionalValid ? 'Valid - Click to toggle' : 'Invalid - Click to toggle' }}
+      </DsButton>
+      <p style="color: var(--vp-c-text-2); font-size: 0.875rem; margin: 0;">
+        Click the button to toggle between valid and invalid states
+      </p>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsButton
+    :color="isValid ? 'success' : 'error'"
+    :disabled="!isValid"
+  >
+    {{ isValid ? 'Submit' : 'Fix errors' }}
+  </DsButton>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+const isValid = ref(false);
+</script>
+```
+
+  </template>
+</CodePreview>
+
 ### Button Groups
 
 ```vue
@@ -348,6 +530,37 @@ export default {
   </div>
 </template>
 ```
+
+<CodePreview>
+  <template #preview>
+    <div class="button-group">
+      <DsButton variant="outlined" @click="() => alert('Cancelled')">Cancel</DsButton>
+      <DsButton @click="() => alert('Saved!')">Save</DsButton>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div class="button-group">
+    <DsButton variant="outlined" @click="handleCancel">Cancel</DsButton>
+    <DsButton @click="handleSave">Save</DsButton>
+  </div>
+</template>
+
+<script setup>
+const handleCancel = () => {
+  console.log('Cancelled');
+};
+
+const handleSave = () => {
+  console.log('Saved');
+};
+</script>
+```
+
+  </template>
+</CodePreview>
 
 ## Design System Integration
 

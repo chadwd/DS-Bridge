@@ -155,4 +155,31 @@ const copyCode = () => {
   background-color: var(--vp-c-brand);
   color: white;
 }
+
+.demo-code :deep(pre) {
+  margin: 0 !important;
+  padding: 1.25rem 1.5rem !important;
+  background-color: var(--vp-code-block-bg) !important;
+  overflow-x: auto;
+  border-radius: 0;
+}
+
+.demo-code :deep(pre code) {
+  display: block;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--vp-code-block-color, var(--vp-c-text-1));
+  white-space: pre;
+  background: transparent !important;
+}
+
+/* Dark mode code styling */
+.dark .demo-code :deep(pre) {
+  background-color: var(--ds-color-background-secondary) !important;
+}
+
+.dark .demo-code :deep(pre code) {
+  color: var(--ds-color-text-high);
+}
 </style>

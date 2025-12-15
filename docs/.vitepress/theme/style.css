@@ -14,16 +14,16 @@
    ============================================ */
 
 :root {
-  /* Colors - Primary Brand */
-  --ds-color-primary: #6366F1;
-  --ds-color-primary-dark: #4F46E5;
-  --ds-color-primary-light: #818CF8;
-  --ds-color-primary-lighter: #E0E7FF;
+  /* Colors - Primary Brand (Tron Cyan) */
+  --ds-color-primary: #0097A7;
+  --ds-color-primary-dark: #00838F;
+  --ds-color-primary-light: #00BCD4;
+  --ds-color-primary-lighter: #B2EBF2;
 
-  /* Colors - Secondary */
-  --ds-color-secondary: #EC4899;
-  --ds-color-secondary-dark: #DB2777;
-  --ds-color-secondary-light: #F472B6;
+  /* Colors - Secondary (Tron Deep Orange) */
+  --ds-color-secondary: #FF6F00;
+  --ds-color-secondary-dark: #E65100;
+  --ds-color-secondary-light: #FF8F00;
 
   /* Colors - Semantic */
   --ds-color-error: #DC2626;
@@ -167,6 +167,58 @@
   --vp-c-bg: var(--ds-color-background);
   --vp-c-bg-soft: var(--ds-color-background-secondary);
   --vp-c-bg-alt: var(--ds-color-surface-variant);
+  --vp-c-text-1: var(--ds-color-text-high);
+  --vp-c-text-2: var(--ds-color-text-medium);
+  --vp-c-text-3: var(--ds-color-text-low);
+}
+
+/* Force dark mode on main content areas */
+.dark .VPContent,
+.dark .vp-doc,
+.dark .content-container {
+  background-color: var(--ds-color-background) !important;
+}
+
+.dark .VPDoc {
+  background-color: var(--ds-color-background) !important;
+}
+
+/* Sidebar matches page background with darker border */
+.dark .VPSidebar {
+  background-color: var(--ds-color-background) !important;
+  border-right: 1px solid var(--ds-color-background-secondary) !important;
+}
+
+.dark .VPSidebarItem,
+.dark .VPSidebarGroup {
+  background-color: transparent !important;
+}
+
+/* Dark blue-grey code blocks in dark mode */
+.dark div[class*='language-'],
+.dark .vp-code-group,
+.dark pre,
+.dark code {
+  background-color: var(--ds-color-background-secondary) !important;
+}
+
+.dark .vp-code {
+  background-color: var(--ds-color-background-secondary) !important;
+}
+
+/* Table of contents and aside text in dark mode */
+.dark .VPDocAsideOutline,
+.dark .VPDocAside {
+  color: var(--ds-color-text-high) !important;
+}
+
+.dark .VPDocOutlineItem,
+.dark .outline-link {
+  color: var(--ds-color-text-medium) !important;
+}
+
+.dark .outline-title {
+  color: var(--ds-color-text-high) !important;
 }
 
 /* ============================================
@@ -318,6 +370,33 @@ div[class*='language-'] {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 var(--ds-spacing-lg);
+}
+
+/* Remove max-width constraints for full-width responsive layout */
+.VPDoc .container,
+.VPContent .container,
+.vp-doc {
+  max-width: none !important;
+}
+
+.VPDoc:not(.has-sidebar) .content {
+  max-width: none !important;
+}
+
+.VPDoc.has-sidebar .content {
+  max-width: none !important;
+}
+
+/* Button groups for examples */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.button-group--compact {
+  gap: 0.75rem;
 }
 
 /* ============================================

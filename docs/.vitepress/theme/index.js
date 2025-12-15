@@ -45,6 +45,22 @@ const vuetify = createVuetify({
           background: tokens.colors.background,
         },
       },
+      dark: {
+        dark: true,
+        colors: {
+          primary: tokens.colors.primary,
+          primaryDark: tokens.colors.primaryDark,
+          primaryLight: tokens.colors.primaryLight,
+          secondary: tokens.colors.secondary,
+          secondaryDark: tokens.colors.secondaryDark,
+          error: tokens.colors.error,
+          warning: tokens.colors.warning,
+          success: tokens.colors.success,
+          info: tokens.colors.info,
+          surface: '#374151',
+          background: '#1F2937',
+        },
+      },
     },
   },
 });

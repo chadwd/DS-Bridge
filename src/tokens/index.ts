@@ -20,16 +20,16 @@ export const colors = {
   // Figma dynamic colors (primary)
   ...figmaColors,
 
-  // Primary brand colors
-  primary: '#6366F1',           // Indigo-600 (Material Design 3 inspired)
-  primaryDark: '#4F46E5',        // Indigo-700
-  primaryLight: '#818CF8',       // Indigo-400
-  primaryLighter: '#E0E7FF',     // Indigo-100
+  // Primary brand colors (Tron Cyan)
+  primary: '#0097A7',           // Cyan-700 (Tron inspired)
+  primaryDark: '#00838F',        // Cyan-800
+  primaryLight: '#00BCD4',       // Cyan-500
+  primaryLighter: '#B2EBF2',     // Cyan-100
 
-  // Secondary colors
-  secondary: '#EC4899',          // Pink-500
-  secondaryDark: '#DB2777',      // Pink-600
-  secondaryLight: '#F472B6',     // Pink-300
+  // Secondary colors (Tron Deep Orange)
+  secondary: '#FF6F00',          // Deep Orange-900
+  secondaryDark: '#E65100',      // Deep Orange-A700
+  secondaryLight: '#FF8F00',     // Deep Orange-800
 
   // Semantic colors
   error: '#DC2626',              // Red-600

@@ -1,42 +1,42 @@
 <template>
   <div class="prop-control">
-    <label :for="id" class="prop-label">
-      {{ label }}
-      <span v-if="required" class="required">*</span>
-    </label>
-
-    <!-- Select dropdown for options -->
-    <select
+    <!-- Vuetify Select for options -->
+    <v-select
       v-if="options && options.length > 0"
-      :id="id"
-      :value="modelValue"
-      @change="handleChange"
-      class="prop-select"
-    >
-      <option v-for="option in options" :key="option" :value="option">
-        {{ option }}
-      </option>
-    </select>
-
-    <!-- Checkbox for boolean -->
-    <input
-      v-else-if="type === 'boolean'"
-      :id="id"
-      type="checkbox"
-      :checked="modelValue"
-      @change="handleBooleanChange"
-      class="prop-checkbox"
+      :label="label"
+      :model-value="modelValue"
+      @update:model-value="emit('update:modelValue', $event)"
+      :items="options"
+      variant="outlined"
+      density="compact"
+      hide-details
     />
 
+    <!-- Checkbox for boolean -->
+    <div v-else-if="type === 'boolean'" class="boolean-control">
+      <label :for="id" class="prop-label">
+        {{ label }}
+      </label>
+      <input
+        :id="id"
+        type="checkbox"
+        :checked="modelValue"
+        @change="handleBooleanChange"
+        class="prop-checkbox"
+      />
+    </div>
+
     <!-- Text input for string/number -->
-    <input
+    <v-text-field
       v-else
-      :id="id"
+      :label="label"
       :type="type === 'number' ? 'number' : 'text'"
-      :value="modelValue"
-      @input="handleInput"
-      class="prop-input"
+      :model-value="modelValue"
+      @update:model-value="handleInputChange"
+      variant="outlined"
+      density="compact"
       :placeholder="placeholder"
+      hide-details
     />
 
     <p v-if="description" class="prop-description">{{ description }}</p>
@@ -69,15 +69,9 @@ const id = computed(() => {
   return `prop-${props.label.toLowerCase().replace(/\s+/g, '-')}`;
 });
 
-const handleChange = (event: Event) => {
-  const target = event.target as HTMLSelectElement;
-  emit('update:modelValue', target.value);
-};
-
-const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const value = props.type === 'number' ? Number(target.value) : target.value;
-  emit('update:modelValue', value);
+const handleInputChange = (value: any) => {
+  const finalValue = props.type === 'number' ? Number(value) : value;
+  emit('update:modelValue', finalValue);
 };
 
 const handleBooleanChange = (event: Event) => {
@@ -91,35 +85,18 @@ const handleBooleanChange = (event: Event) => {
   margin-bottom: 1rem;
 }
 
+.boolean-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .prop-label {
   display: block;
-  margin-bottom: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--vp-c-text-1);
-}
-
-.required {
-  color: var(--vp-c-danger);
-  margin-left: 0.25rem;
-}
-
-.prop-select,
-.prop-input {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-1);
-  background-color: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: var(--ds-radius-sm, 4px);
-  transition: border-color 0.2s ease;
-}
-
-.prop-select:focus,
-.prop-input:focus {
-  outline: none;
-  border-color: var(--vp-c-brand);
+  margin: 0;
 }
 
 .prop-checkbox {
@@ -134,5 +111,20 @@ const handleBooleanChange = (event: Event) => {
   font-size: 0.75rem;
   color: var(--vp-c-text-2);
   font-style: italic;
+}
+
+/* Vuetify component overrides for dark mode consistency */
+.prop-control :deep(.v-select),
+.prop-control :deep(.v-text-field) {
+  font-size: 0.875rem;
+}
+
+.prop-control :deep(.v-field__input) {
+  font-size: 0.875rem;
+  min-height: auto;
+}
+
+.prop-control :deep(.v-field--variant-outlined) {
+  --v-field-border-opacity: 1;
 }
 </style>

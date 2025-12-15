@@ -9,11 +9,11 @@
           Figma-ready tokens, and WCAG 2.1 AAA accessibility.
         </p>
         <div class="hero-ctas">
-          <a href="/guide/getting-started" class="cta-button cta-primary">
+          <a href="/guide/getting-started" class="cta-button cta-primary" @click.prevent="$router?.push('/guide/getting-started')">
             Get Started
             <span class="material-icons">arrow_forward</span>
           </a>
-          <a href="/components/button" class="cta-button cta-secondary">
+          <a href="/components/button" class="cta-button cta-secondary" @click.prevent="$router?.push('/components/button')">
             View Components
             <span class="material-icons">visibility</span>
           </a>
@@ -113,23 +113,23 @@
               Color Palette
             </h3>
             <div class="color-swatches">
-              <div class="color-swatch" style="background: #0097A7;">
-                <span class="color-label" style="color: white;">Primary</span>
+              <div class="color-swatch color-swatch--primary">
+                <span class="color-label">Primary</span>
               </div>
-              <div class="color-swatch" style="background: #FFA000;">
-                <span class="color-label" style="color: white;">Secondary</span>
+              <div class="color-swatch color-swatch--secondary">
+                <span class="color-label">Secondary</span>
               </div>
-              <div class="color-swatch" style="background: #DC2626;">
-                <span class="color-label" style="color: white;">Error</span>
+              <div class="color-swatch color-swatch--error">
+                <span class="color-label">Error</span>
               </div>
-              <div class="color-swatch" style="background: #10B981;">
-                <span class="color-label" style="color: white;">Success</span>
+              <div class="color-swatch color-swatch--success">
+                <span class="color-label">Success</span>
               </div>
-              <div class="color-swatch" style="background: #F59E0B;">
-                <span class="color-label" style="color: white;">Warning</span>
+              <div class="color-swatch color-swatch--warning">
+                <span class="color-label">Warning</span>
               </div>
-              <div class="color-swatch" style="background: #3B82F6;">
-                <span class="color-label" style="color: white;">Info</span>
+              <div class="color-swatch color-swatch--info">
+                <span class="color-label">Info</span>
               </div>
             </div>
           </div>
@@ -143,19 +143,19 @@
             <div class="typography-samples">
               <div class="type-sample">
                 <div class="type-label">Heading 1 / 2.5rem</div>
-                <div style="font-size: 2.5rem; font-weight: 700; line-height: 1.2;">
+                <div class="type-text type-text--h1">
                   The quick brown fox
                 </div>
               </div>
               <div class="type-sample">
                 <div class="type-label">Heading 2 / 2rem</div>
-                <div style="font-size: 2rem; font-weight: 600; line-height: 1.3;">
+                <div class="type-text type-text--h2">
                   The quick brown fox
                 </div>
               </div>
               <div class="type-sample">
                 <div class="type-label">Body / 1rem</div>
-                <div style="font-size: 1rem; line-height: 1.6;">
+                <div class="type-text type-text--body">
                   The quick brown fox jumps over the lazy dog
                 </div>
               </div>

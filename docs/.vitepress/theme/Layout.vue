@@ -23,10 +23,24 @@
 
 <script setup>
 import { useData } from 'vitepress';
+import { useTheme } from 'vuetify';
+import { watch, onMounted } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 
 const { Layout } = DefaultTheme;
-const { frontmatter } = useData();
+const { isDark } = useData();
+const theme = useTheme();
+
+// Sync Vuetify theme with VitePress dark mode
+const syncTheme = () => {
+  theme.global.name.value = isDark.value ? 'dark' : 'light';
+};
+
+// Watch for dark mode changes
+watch(isDark, syncTheme, { immediate: true });
+
+// Sync on mount
+onMounted(syncTheme);
 </script>
 
 <style scoped>
