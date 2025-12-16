@@ -4,12 +4,14 @@
       <button
         :class="['tab', { active: activeTab === 'preview' }]"
         @click="activeTab = 'preview'"
+        aria-label="Show preview"
       >
         Preview
       </button>
       <button
         :class="['tab', { active: activeTab === 'code' }]"
         @click="activeTab = 'code'"
+        aria-label="Show code"
       >
         Code
       </button>
@@ -17,6 +19,7 @@
         v-if="activeTab === 'code'"
         @click="copyCode"
         class="copy-button"
+        aria-label="Copy code to clipboard"
       >
         {{ copied ? 'Copied!' : 'Copy' }}
       </button>
@@ -24,11 +27,11 @@
 
     <div class="preview-content">
       <div v-show="activeTab === 'preview'" class="preview-pane">
-        <slot name="preview"></slot>
+        <slot name="preview" />
       </div>
 
-      <div v-show="activeTab === 'code'" class="code-pane">
-        <slot name="code"></slot>
+      <div v-show="activeTab === 'code'" class="code-pane" ref="codeContainer">
+        <slot name="code" />
       </div>
     </div>
   </div>
@@ -47,23 +50,29 @@ const props = withDefaults(defineProps<Props>(), {
 
 const activeTab = ref(props.defaultTab);
 const copied = ref(false);
+const codeContainer = ref<HTMLElement | null>(null);
 
-const copyCode = () => {
-  const codeElement = document.querySelector('.code-pane pre code');
-  if (codeElement) {
-    const code = codeElement.textContent || '';
-    navigator.clipboard.writeText(code);
+const copyCode = async () => {
+  if (!codeContainer.value) return;
+
+  const codeElement = codeContainer.value.querySelector('pre code');
+  if (!codeElement?.textContent) return;
+
+  try {
+    await navigator.clipboard.writeText(codeElement.textContent);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;
     }, 2000);
+  } catch (error) {
+    console.error('Failed to copy code:', error);
   }
 };
 </script>
 
 <style scoped>
 .code-preview {
-  margin: 1.5rem 0;
+  margin: var(--ds-spacing-lg, 1.5rem) 0;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--ds-radius-md, 6px);
   overflow: hidden;
@@ -71,14 +80,14 @@ const copyCode = () => {
 
 .preview-tabs {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  gap: var(--ds-spacing-sm, 0.5rem);
+  padding: var(--ds-spacing-sm, 0.75rem) var(--ds-spacing-md, 1rem);
   background-color: var(--vp-c-bg-soft);
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
 .tab {
-  padding: 0.5rem 1rem;
+  padding: var(--ds-spacing-sm, 0.5rem) var(--ds-spacing-md, 1rem);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--vp-c-text-2);
@@ -101,7 +110,7 @@ const copyCode = () => {
 
 .copy-button {
   margin-left: auto;
-  padding: 0.5rem 1rem;
+  padding: var(--ds-spacing-sm, 0.5rem) var(--ds-spacing-md, 1rem);
   font-size: 0.875rem;
   color: var(--vp-c-brand);
   background-color: transparent;
@@ -121,11 +130,14 @@ const copyCode = () => {
 }
 
 .preview-pane {
-  padding: 2rem;
+  padding: var(--ds-spacing-xxl, 2rem);
   background-color: var(--vp-c-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  /* Ensure ripple effects work correctly */
+  isolation: auto;
 }
 
 .code-pane {
@@ -134,7 +146,7 @@ const copyCode = () => {
 
 .code-pane :deep(pre) {
   margin: 0;
-  padding: 1.5rem;
+  padding: var(--ds-spacing-lg, 1.5rem);
   background-color: transparent !important;
 }
 </style>

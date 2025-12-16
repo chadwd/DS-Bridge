@@ -530,7 +530,7 @@ npx tsc --noEmit
 For questions or issues:
 
 1. Check existing [GitHub issues](https://github.com/chadwd/DS-Bridge/issues)
-2. Review the [main README](../README.md)
+2. Review the [main README](https://github.com/chadwd/DS-Bridge/blob/main/README.md)
 3. Open a [new issue](https://github.com/chadwd/DS-Bridge/issues/new)
 
 ---

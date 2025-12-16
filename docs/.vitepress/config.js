@@ -18,6 +18,17 @@ export default defineConfig({
     ssr: {
       noExternal: ['vuetify'],
     },
+    build: {
+      chunkSizeWarningLimit: 1000, // Increase limit to 1000kb (Vuetify is large)
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vuetify': ['vuetify'],
+            'vuetify-components': ['vuetify/components'],
+          },
+        },
+      },
+    },
   },
 
   themeConfig: {

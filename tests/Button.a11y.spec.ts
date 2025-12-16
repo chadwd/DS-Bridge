@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { mount, VueWrapper } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
@@ -12,11 +12,9 @@ import DsButton from '../src/components/Button.vue';
 import {
   hasAccessibleName,
   isWCAG_AA_Compliant,
-  isWCAG_AAA_Compliant,
   getContrastRatio,
   testKeyboardNavigation,
   checkSemanticHTML,
-  getElementColors,
 } from './a11y.utils';
 
 const vuetify = createVuetify({

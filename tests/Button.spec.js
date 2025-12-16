@@ -135,11 +135,13 @@ describe('DsButton.vue', () => {
         global: { plugins: [vuetify] },
       });
 
-      expect(wrapper.vm.mappedSize).toBe(mappedSizes[index]);
+      // Verify the size is passed correctly to Vuetify's v-btn
+      const vBtn = wrapper.findComponent({ name: 'VBtn' });
+      expect(vBtn.props('size')).toBe(mappedSizes[index]);
     });
   });
 
-  it('applies the correct size class', () => {
+  it('applies the correct size prop to Vuetify', () => {
     const wrapper = mount(DsButton, {
       props: {
         size: 'lg',
@@ -152,6 +154,8 @@ describe('DsButton.vue', () => {
       },
     });
 
-    expect(wrapper.find('.ds-button--lg').exists()).toBe(true);
+    // Check that the size prop is correctly mapped to Vuetify's 'large' size
+    const vBtn = wrapper.findComponent({ name: 'VBtn' });
+    expect(vBtn.props('size')).toBe('large');
   });
 });

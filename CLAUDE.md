@@ -25,6 +25,27 @@ npm run playground   # Start component playground for contributors (http://local
 
 **Note:** `npm run dev` now starts the documentation site by default. Use `npm run playground` for component development.
 
+### Creating New Components
+```bash
+npm run create-component ComponentName  # Generate new component from template
+```
+
+**Example:**
+```bash
+npm run create-component Card    # Creates Card component
+npm run create-component Input   # Creates Input component
+npm run create-component Select  # Creates Select component
+```
+
+**What gets created:**
+- `src/components/ComponentName.vue` - Vue component with TypeScript
+- `tests/ComponentName.spec.js` - Unit tests (6 tests)
+- `tests/ComponentName.a11y.spec.ts` - Accessibility tests (4 tests)
+- `docs/components/componentname.md` - Interactive documentation
+- Export added to `src/index.ts`
+
+See [COMPONENT_TEMPLATE.md](./COMPONENT_TEMPLATE.md) for detailed documentation.
+
 ### Building
 ```bash
 npm run build        # Build everything: type-check + library + documentation

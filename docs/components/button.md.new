@@ -9,15 +9,10 @@ const variant = ref('elevated');
 const color = ref('primary');
 const size = ref('md');
 const disabled = ref(false);
-const loading = ref(false);
-const icon = ref(false);
 const buttonText = ref('Click Me');
 
-// Card Actions example state
-const isFavorite = ref(false);
-const toggleFavorite = () => {
-  isFavorite.value = !isFavorite.value;
-};
+// For conditional styling example
+const conditionalValid = ref(false);
 
 const generatedCode = computed(() => {
   const props = [];
@@ -25,17 +20,13 @@ const generatedCode = computed(() => {
   if (color.value !== 'primary') props.push(`color="${color.value}"`);
   if (size.value !== 'md') props.push(`size="${size.value}"`);
   if (disabled.value) props.push(':disabled="true"');
-  if (loading.value) props.push(':loading="true"');
-  if (icon.value) props.push('icon');
 
   const propsString = props.length > 0 ? '\n    ' + props.join('\n    ') + '\n  ' : '';
 
-  const content = icon.value
-    ? '\n    <v-icon icon="mdi-emoticon-happy-outline" />\n  '
-    : `\n    ${buttonText.value}\n  `;
-
   return `<template>
-  <DsButton${propsString}>${content}</DsButton>
+  <DsButton${propsString}>
+    ${buttonText.value}
+  </DsButton>
 </template>`;
 });
 </script>
@@ -52,12 +43,8 @@ const generatedCode = computed(() => {
       :color="color"
       :size="size"
       :disabled="disabled"
-      :loading="loading"
-      :icon="icon"
-      :aria-label="icon ? 'Sentiment satisfied' : undefined"
     >
-      <v-icon v-if="icon" icon="mdi-emoticon-happy-outline" />
-      <template v-else>{{ buttonText }}</template>
+      {{ buttonText }}
     </DsButton>
   </template>
 
@@ -81,25 +68,12 @@ const generatedCode = computed(() => {
       description="Button size"
     />
     <PropControl
-      label="Icon"
-      v-model="icon"
-      type="boolean"
-      description="Render as icon-only button (48px × 48px)"
-    />
-    <PropControl
-      label="Loading"
-      v-model="loading"
-      type="boolean"
-      description="Show loading spinner"
-    />
-    <PropControl
       label="Disabled"
       v-model="disabled"
       type="boolean"
       description="Disable button interaction"
     />
     <PropControl
-      v-if="!icon"
       label="Button Text"
       v-model="buttonText"
       type="text"
@@ -122,6 +96,56 @@ Use buttons for:
 - Triggering modals or dialogs
 
 ## Variants
+
+The button supports five Material Design 3 variants:
+
+### Elevated (Default)
+
+Filled button with shadow elevation, best for important primary actions.
+
+```vue
+<ds-button variant="elevated">Click me</ds-button>
+<ds-button variant="elevated" color="secondary">Secondary</ds-button>
+<ds-button variant="elevated" color="error">Delete</ds-button>
+```
+
+### Flat
+
+Filled button without shadow, for high-emphasis actions in constrained spaces.
+
+```vue
+<ds-button variant="flat">Save</ds-button>
+<ds-button variant="flat" color="primary">Continue</ds-button>
+```
+
+### Tonal
+
+Subtle filled button with background tint, for medium-emphasis actions.
+
+```vue
+<ds-button variant="tonal">Edit</ds-button>
+<ds-button variant="tonal" color="success">Approve</ds-button>
+```
+
+### Outlined
+
+For secondary actions that need emphasis without solid fill.
+
+```vue
+<ds-button variant="outlined">Cancel</ds-button>
+<ds-button variant="outlined" color="primary">Learn more</ds-button>
+```
+
+### Text
+
+For tertiary or low-emphasis actions.
+
+```vue
+<ds-button variant="text">Skip</ds-button>
+<ds-button variant="text" color="error">Dismiss</ds-button>
+```
+
+### Live Example: All Variants
 
 <CodePreview>
   <template #preview>
@@ -150,15 +174,17 @@ Use buttons for:
   </template>
 </CodePreview>
 
-The button supports five Material Design 3 variants:
-
-- **Elevated** (default): Filled button with shadow elevation, best for important primary actions
-- **Flat**: Filled button without shadow, for high-emphasis actions in constrained spaces
-- **Tonal**: Subtle filled button with background tint, for medium-emphasis actions
-- **Outlined**: For secondary actions that need emphasis without solid fill
-- **Text**: For tertiary or low-emphasis actions
-
 ## Sizes
+
+Buttons come in three sizes: small, medium (default), and large.
+
+```vue
+<ds-button size="sm">Small</ds-button>
+<ds-button size="md">Medium</ds-button>
+<ds-button size="lg">Large</ds-button>
+```
+
+### Live Example: All Sizes
 
 <CodePreview>
   <template #preview>
@@ -183,13 +209,24 @@ The button supports five Material Design 3 variants:
   </template>
 </CodePreview>
 
-Buttons come in three sizes:
-
-- **sm** (small): Compact buttons for tight spaces
-- **md** (medium, default): Standard button size for most use cases
-- **lg** (large): Larger buttons for prominent actions or touch interfaces
-
 ## Colors
+
+Buttons inherit colors from the design system tokens. Available colors include:
+
+- `primary` (default) - Brand primary color
+- `secondary` - Secondary brand color
+- `error` - For destructive actions
+- `warning` - For cautionary actions
+- `success` - For positive actions
+- `info` - For informational actions
+
+```vue
+<ds-button color="primary">Primary</ds-button>
+<ds-button color="secondary">Secondary</ds-button>
+<ds-button color="error">Error</ds-button>
+```
+
+### Live Example: All Colors
 
 <CodePreview>
   <template #preview>
@@ -220,18 +257,22 @@ Buttons come in three sizes:
   </template>
 </CodePreview>
 
-Buttons inherit colors from the design system tokens. Available colors include:
-
-- **primary** (default): Brand primary color for main actions
-- **secondary**: Secondary brand color for supporting actions
-- **success**: Green color for positive or successful actions
-- **info**: Blue color for informational actions
-- **warning**: Amber/orange color for cautionary actions
-- **error**: Red color for destructive or error-related actions
-
 ## States
 
 ### Disabled
+
+Disable buttons to prevent interaction:
+
+```vue
+<ds-button disabled>Disabled</ds-button>
+```
+
+Disabled buttons:
+- Do not respond to clicks
+- Have reduced opacity
+- Have a different cursor style
+
+### Live Example: Disabled States
 
 <CodePreview>
   <template #preview>
@@ -256,14 +297,21 @@ Buttons inherit colors from the design system tokens. Available colors include:
   </template>
 </CodePreview>
 
-Disabled buttons prevent user interaction and indicate unavailable actions:
-
-- Do not respond to clicks or keyboard events
-- Display with reduced opacity
-- Show a "not-allowed" cursor on hover
-- Maintain accessibility with `disabled` attribute for screen readers
-
 ### Loading
+
+Use the `:loading` prop to show a loading spinner in the button:
+
+```vue
+<ds-button :loading="isLoading">Submit</ds-button>
+```
+
+The loading state:
+- Displays a circular progress indicator
+- Automatically disables the button during loading
+- Works with all variants and colors
+- Maintains button size and shape
+
+### Live Example: Loading State
 
 <CodePreview>
   <template #preview>
@@ -300,32 +348,48 @@ const handleSubmit = async () => {
   </template>
 </CodePreview>
 
-The loading state provides visual feedback during async operations:
-
-- Displays a circular progress indicator
-- Automatically disables the button to prevent multiple submissions
-- Works seamlessly with all variants and colors
-- Maintains button dimensions to prevent layout shift
-
 ## Icon Buttons
+
+Icon buttons are square buttons (48px × 48px) designed for icon-only actions. Use the `:icon` prop to enable icon button styling.
+
+### When to Use Icon Buttons
+
+Use icon buttons for:
+- Close/dismiss actions
+- Common actions (edit, delete, share, favorite)
+- Toolbar actions
+- Compact UI where space is limited
+- Actions where icons are universally understood
+
+**Important:** Always provide an `aria-label` for screen readers when using icon-only buttons.
+
+### Basic Icon Button
+
+```vue
+<ds-button icon aria-label="Close dialog">
+  <v-icon icon="mdi-close"></v-icon>
+</ds-button>
+```
+
+### Live Example: Icon Buttons with Variants
 
 <CodePreview>
   <template #preview>
     <div class="button-group">
       <DsButton icon aria-label="Close" variant="elevated">
-        <v-icon icon="mdi-close" />
+        <v-icon icon="mdi-close"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Edit" variant="flat">
-        <v-icon icon="mdi-pencil" />
+        <v-icon icon="mdi-pencil"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Share" variant="tonal">
-        <v-icon icon="mdi-share-variant" />
+        <v-icon icon="mdi-share-variant"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Favorite" variant="outlined">
-        <v-icon icon="mdi-heart" />
+        <v-icon icon="mdi-heart"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Settings" variant="text">
-        <v-icon icon="mdi-cog" />
+        <v-icon icon="mdi-cog"></v-icon>
       </DsButton>
     </div>
   </template>
@@ -335,19 +399,19 @@ The loading state provides visual feedback during async operations:
 <template>
   <div class="button-group">
     <DsButton icon aria-label="Close" variant="elevated">
-      <v-icon icon="mdi-close" />
+      <v-icon icon="mdi-close"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Edit" variant="flat">
-      <v-icon icon="mdi-pencil" />
+      <v-icon icon="mdi-pencil"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Share" variant="tonal">
-      <v-icon icon="mdi-share-variant" />
+      <v-icon icon="mdi-share-variant"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Favorite" variant="outlined">
-      <v-icon icon="mdi-heart" />
+      <v-icon icon="mdi-heart"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Settings" variant="text">
-      <v-icon icon="mdi-cog" />
+      <v-icon icon="mdi-cog"></v-icon>
     </DsButton>
   </div>
 </template>
@@ -356,36 +420,27 @@ The loading state provides visual feedback during async operations:
   </template>
 </CodePreview>
 
-Icon buttons are square buttons (48px × 48px) designed for icon-only actions. Use the `:icon` prop to enable icon button styling.
+### Icon Buttons with Colors
 
-**When to use:**
-- Close/dismiss actions
-- Common actions (edit, delete, share, favorite)
-- Toolbar actions
-- Compact UI where space is limited
-- Actions where icons are universally understood
-
-**Important:** Always provide an `aria-label` for screen readers when using icon-only buttons.
-
-### Icon Button Colors
+Icon buttons support all color tokens:
 
 <CodePreview>
   <template #preview>
     <div class="button-group">
       <DsButton icon aria-label="Add" color="primary">
-        <v-icon icon="mdi-plus" />
+        <v-icon icon="mdi-plus"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Delete" color="error">
-        <v-icon icon="mdi-delete" />
+        <v-icon icon="mdi-delete"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Check" color="success">
-        <v-icon icon="mdi-check" />
+        <v-icon icon="mdi-check"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Alert" color="warning">
-        <v-icon icon="mdi-alert" />
+        <v-icon icon="mdi-alert"></v-icon>
       </DsButton>
       <DsButton icon aria-label="Info" color="info">
-        <v-icon icon="mdi-information" />
+        <v-icon icon="mdi-information"></v-icon>
       </DsButton>
     </div>
   </template>
@@ -395,19 +450,19 @@ Icon buttons are square buttons (48px × 48px) designed for icon-only actions. U
 <template>
   <div class="button-group">
     <DsButton icon aria-label="Add" color="primary">
-      <v-icon icon="mdi-plus" />
+      <v-icon icon="mdi-plus"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Delete" color="error">
-      <v-icon icon="mdi-delete" />
+      <v-icon icon="mdi-delete"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Check" color="success">
-      <v-icon icon="mdi-check" />
+      <v-icon icon="mdi-check"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Alert" color="warning">
-      <v-icon icon="mdi-alert" />
+      <v-icon icon="mdi-alert"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Info" color="info">
-      <v-icon icon="mdi-information" />
+      <v-icon icon="mdi-information"></v-icon>
     </DsButton>
   </div>
 </template>
@@ -416,21 +471,21 @@ Icon buttons are square buttons (48px × 48px) designed for icon-only actions. U
   </template>
 </CodePreview>
 
-Icon buttons work with all color options to convey semantic meaning.
-
 ### Icon Button States
+
+Icon buttons support all the same states as regular buttons:
 
 <CodePreview>
   <template #preview>
     <div class="button-group">
-      <DsButton icon aria-label="Save changes">
-        <v-icon icon="mdi-content-save" />
+      <DsButton icon aria-label="Active button">
+        <v-icon icon="mdi-check"></v-icon>
       </DsButton>
-      <DsButton icon aria-label="Cannot save" :disabled="true">
-        <v-icon icon="mdi-content-save" />
+      <DsButton icon aria-label="Disabled button" disabled>
+        <v-icon icon="mdi-check"></v-icon>
       </DsButton>
-      <DsButton icon aria-label="Saving changes" :loading="true">
-        <v-icon icon="mdi-content-save" />
+      <DsButton icon aria-label="Loading button" :loading="true">
+        <v-icon icon="mdi-check"></v-icon>
       </DsButton>
     </div>
   </template>
@@ -441,17 +496,17 @@ Icon buttons work with all color options to convey semantic meaning.
   <div class="button-group">
     <!-- Active -->
     <DsButton icon aria-label="Save changes">
-      <v-icon icon="mdi-content-save" />
+      <v-icon icon="mdi-content-save"></v-icon>
     </DsButton>
 
     <!-- Disabled -->
     <DsButton icon aria-label="Cannot save" :disabled="true">
-      <v-icon icon="mdi-content-save" />
+      <v-icon icon="mdi-content-save"></v-icon>
     </DsButton>
 
     <!-- Loading -->
     <DsButton icon aria-label="Saving changes" :loading="isSaving">
-      <v-icon icon="mdi-content-save" />
+      <v-icon icon="mdi-content-save"></v-icon>
     </DsButton>
   </div>
 </template>
@@ -465,116 +520,106 @@ const isSaving = ref(false);
   </template>
 </CodePreview>
 
-Icon buttons support disabled and loading states just like regular buttons.
-
 ### Common Icon Button Patterns
-
-**Dialog Header with Close Button:**
 
 <CodePreview>
   <template #preview>
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 1px solid var(--vp-c-divider); border-radius: 8px; background: var(--vp-c-bg-soft);">
-      <h3 style="margin: 0; font-size: 1.25rem;">Dialog Title</h3>
-      <DsButton icon aria-label="Close dialog" variant="text" @click="() => alert('Dialog closed!')">
-        <v-icon icon="mdi-close" />
-      </DsButton>
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Dialog header with close button -->
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--vp-c-bg-soft); border-radius: 8px;">
+        <h3 style="margin: 0; font-size: 1.125rem;">Dialog Title</h3>
+        <DsButton icon aria-label="Close dialog" variant="text">
+          <v-icon icon="mdi-close"></v-icon>
+        </DsButton>
+      </div>
+
+      <!-- Toolbar actions -->
+      <div style="display: flex; gap: 0.5rem; padding: 0.5rem; background: var(--vp-c-bg-soft); border-radius: 8px;">
+        <DsButton icon aria-label="Add item" variant="tonal">
+          <v-icon icon="mdi-plus"></v-icon>
+        </DsButton>
+        <DsButton icon aria-label="Edit" variant="tonal">
+          <v-icon icon="mdi-pencil"></v-icon>
+        </DsButton>
+        <DsButton icon aria-label="Delete" variant="tonal" color="error">
+          <v-icon icon="mdi-delete"></v-icon>
+        </DsButton>
+        <div style="flex: 1;"></div>
+        <DsButton icon aria-label="Refresh" variant="tonal">
+          <v-icon icon="mdi-refresh"></v-icon>
+        </DsButton>
+        <DsButton icon aria-label="Settings" variant="tonal">
+          <v-icon icon="mdi-cog"></v-icon>
+        </DsButton>
+      </div>
+
+      <!-- Card actions -->
+      <div style="padding: 1rem; background: var(--vp-c-bg-soft); border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Product Item</span>
+          <div style="display: flex; gap: 0.5rem;">
+            <DsButton icon aria-label="Favorite" variant="text">
+              <v-icon icon="mdi-heart-outline"></v-icon>
+            </DsButton>
+            <DsButton icon aria-label="Share" variant="text">
+              <v-icon icon="mdi-share-variant"></v-icon>
+            </DsButton>
+            <DsButton icon aria-label="More options" variant="text">
+              <v-icon icon="mdi-dots-vertical"></v-icon>
+            </DsButton>
+          </div>
+        </div>
+      </div>
     </div>
   </template>
   <template #code>
 
 ```vue
 <template>
+  <!-- Dialog header with close button -->
   <div class="dialog-header">
     <h3>Dialog Title</h3>
     <DsButton icon aria-label="Close dialog" variant="text" @click="closeDialog">
-      <v-icon icon="mdi-close" />
+      <v-icon icon="mdi-close"></v-icon>
     </DsButton>
   </div>
-</template>
 
-<script setup>
-const closeDialog = () => {
-  // Handle dialog close
-};
-</script>
-```
-
-  </template>
-</CodePreview>
-
-**Toolbar Actions:**
-
-<CodePreview>
-  <template #preview>
-    <div style="display: flex; gap: 0.5rem; padding: 0.75rem; border: 1px solid var(--vp-c-divider); border-radius: 8px; background: var(--vp-c-bg-soft);">
-      <DsButton icon aria-label="Add item" variant="tonal" @click="() => alert('Add item clicked!')">
-        <v-icon icon="mdi-plus" />
-      </DsButton>
-      <DsButton icon aria-label="Edit" variant="tonal" @click="() => alert('Edit clicked!')">
-        <v-icon icon="mdi-pencil" />
-      </DsButton>
-      <DsButton icon aria-label="Delete" variant="tonal" color="error" @click="() => alert('Delete clicked!')">
-        <v-icon icon="mdi-delete" />
-      </DsButton>
-    </div>
-  </template>
-  <template #code>
-
-```vue
-<template>
+  <!-- Toolbar actions -->
   <div class="toolbar">
     <DsButton icon aria-label="Add item" variant="tonal" @click="addItem">
-      <v-icon icon="mdi-plus" />
+      <v-icon icon="mdi-plus"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Edit" variant="tonal" @click="editItem">
-      <v-icon icon="mdi-pencil" />
+      <v-icon icon="mdi-pencil"></v-icon>
     </DsButton>
     <DsButton icon aria-label="Delete" variant="tonal" color="error" @click="deleteItem">
-      <v-icon icon="mdi-delete" />
+      <v-icon icon="mdi-delete"></v-icon>
+    </DsButton>
+    <div class="spacer"></div>
+    <DsButton icon aria-label="Refresh" variant="tonal" @click="refresh">
+      <v-icon icon="mdi-refresh"></v-icon>
+    </DsButton>
+    <DsButton icon aria-label="Settings" variant="tonal" @click="openSettings">
+      <v-icon icon="mdi-cog"></v-icon>
     </DsButton>
   </div>
-</template>
 
-<script setup>
-const addItem = () => console.log('Add item');
-const editItem = () => console.log('Edit item');
-const deleteItem = () => console.log('Delete item');
-</script>
-```
-
-  </template>
-</CodePreview>
-
-**Card Actions:**
-
-<CodePreview>
-  <template #preview>
-    <div style="display: flex; gap: 0.5rem; padding: 0.75rem; border: 1px solid var(--vp-c-divider); border-radius: 8px; background: var(--vp-c-bg-soft);">
-      <DsButton icon aria-label="Favorite" variant="text" @click="toggleFavorite">
-        <v-icon :icon="isFavorite ? 'mdi-heart' : 'mdi-heart-outline'" />
-      </DsButton>
-      <DsButton icon aria-label="Share" variant="text" @click="() => alert('Share clicked!')">
-        <v-icon icon="mdi-share-variant" />
-      </DsButton>
-      <DsButton icon aria-label="More options" variant="text" @click="() => alert('More options clicked!')">
-        <v-icon icon="mdi-dots-vertical" />
-      </DsButton>
+  <!-- Card actions -->
+  <div class="card">
+    <div class="card-header">
+      <span>Product Item</span>
+      <div class="card-actions">
+        <DsButton icon aria-label="Favorite" variant="text" @click="toggleFavorite">
+          <v-icon :icon="isFavorite ? 'mdi-heart' : 'mdi-heart-outline'" />
+        </DsButton>
+        <DsButton icon aria-label="Share" variant="text" @click="share">
+          <v-icon icon="mdi-share-variant"></v-icon>
+        </DsButton>
+        <DsButton icon aria-label="More options" variant="text" @click="showMenu">
+          <v-icon icon="mdi-dots-vertical"></v-icon>
+        </DsButton>
+      </div>
     </div>
-  </template>
-  <template #code>
-
-```vue
-<template>
-  <div class="card-actions">
-    <DsButton icon aria-label="Favorite" variant="text" @click="toggleFavorite">
-      <v-icon :icon="isFavorite ? 'mdi-heart' : 'mdi-heart-outline'" />
-    </DsButton>
-    <DsButton icon aria-label="Share" variant="text" @click="share">
-      <v-icon icon="mdi-share-variant" />
-    </DsButton>
-    <DsButton icon aria-label="More options" variant="text" @click="showMenu">
-      <v-icon icon="mdi-dots-vertical" />
-    </DsButton>
   </div>
 </template>
 
@@ -582,6 +627,12 @@ const deleteItem = () => console.log('Delete item');
 import { ref } from 'vue';
 const isFavorite = ref(false);
 
+const closeDialog = () => console.log('Close dialog');
+const addItem = () => console.log('Add item');
+const editItem = () => console.log('Edit item');
+const deleteItem = () => console.log('Delete item');
+const refresh = () => console.log('Refresh');
+const openSettings = () => console.log('Settings');
 const toggleFavorite = () => isFavorite.value = !isFavorite.value;
 const share = () => console.log('Share');
 const showMenu = () => console.log('Show menu');
@@ -634,12 +685,12 @@ Icon-only buttons require special attention for screen reader users:
 ```vue
 <!-- Good: Screen readers announce "Close dialog" -->
 <ds-button icon aria-label="Close dialog">
-  <v-icon icon="mdi-close" />
+  <v-icon icon="mdi-close"></v-icon>
 </ds-button>
 
 <!-- Bad: Screen readers cannot identify the button's purpose -->
 <ds-button icon>
-  <v-icon icon="mdi-close" />
+  <v-icon icon="mdi-close"></v-icon>
 </ds-button>
 ```
 
@@ -648,12 +699,12 @@ Icon-only buttons require special attention for screen reader users:
 ```vue
 <!-- Good: Clear, action-oriented -->
 <ds-button icon aria-label="Delete user account">
-  <v-icon icon="mdi-delete" />
+  <v-icon icon="mdi-delete"></v-icon>
 </ds-button>
 
 <!-- Less helpful: Too generic -->
 <ds-button icon aria-label="Delete">
-  <v-icon icon="mdi-delete" />
+  <v-icon icon="mdi-delete"></v-icon>
 </ds-button>
 ```
 
@@ -757,6 +808,67 @@ const navigateToDashboard = () => {
   </template>
 </CodePreview>
 
+### Conditional Styling
+
+```vue
+<template>
+  <div>
+    <ds-button
+      :color="isValid ? 'primary' : 'error'"
+      :disabled="!isValid"
+    >
+      {{ isValid ? 'Submit' : 'Fix errors' }}
+    </ds-button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isValid: false,
+    };
+  },
+};
+</script>
+```
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
+      <DsButton
+        :color="conditionalValid ? 'success' : 'error'"
+        :disabled="!conditionalValid"
+        @click="conditionalValid = !conditionalValid"
+      >
+        {{ conditionalValid ? 'Valid - Click to toggle' : 'Invalid - Click to toggle' }}
+      </DsButton>
+      <p style="color: var(--vp-c-text-2); font-size: 0.875rem; margin: 0;">
+        Click the button to toggle between valid and invalid states
+      </p>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsButton
+    :color="isValid ? 'success' : 'error'"
+    :disabled="!isValid"
+  >
+    {{ isValid ? 'Submit' : 'Fix errors' }}
+  </DsButton>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+const isValid = ref(false);
+</script>
+```
+
+  </template>
+</CodePreview>
+
 ### Button Groups
 
 ```vue
@@ -799,3 +911,31 @@ const handleSave = () => {
   </template>
 </CodePreview>
 
+## Design System Integration
+
+The button component uses design tokens from `src/tokens/index.ts` for complete Figma alignment:
+
+- **Colors**: All color props map to design token values (primary, secondary, error, etc.)
+- **Typography**: Font weights (500) and letter spacing (0.5px) follow Figma typography tokens
+- **Spacing**: Internal padding uses token spacing scale
+- **Border Radius**: Uses `borderRadius.full` token (9999px) for pill-shaped buttons
+- **Icon Button Dimensions**: Fixed at 48px × 48px from `components.button.icon.heightWidth` token
+- **Component Sizing**: Button heights and padding use Figma-defined component tokens
+
+### Figma Token Mapping
+
+```typescript
+// Border radius
+borderRadius.full = '9999px'
+
+// Icon button sizing
+components.button.icon.heightWidth = '48px'
+components.button.icon.iconSize = '24px'
+
+// Default button sizing
+components.button.default.height = '36px'
+components.button.default.minWidth = '64px'
+components.button.default.paddingX = '16px'
+```
+
+This ensures pixel-perfect consistency between your Figma designs and production code. Update design tokens to change styles globally across your entire application.

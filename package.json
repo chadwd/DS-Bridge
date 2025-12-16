@@ -57,9 +57,11 @@
     "lint:fix": "eslint . --ext .js,.vue --fix",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "create-component": "bash scripts/create-component.sh"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "shiki": "^3.20.0",
     "vue": "^3.4.21",
     "vuetify": "^3.4.1"

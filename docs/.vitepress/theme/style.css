@@ -367,24 +367,28 @@ div[class*='language-'] {
    ============================================ */
 
 .container {
-  max-width: 1280px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 0 var(--ds-spacing-lg);
 }
 
-/* Remove max-width constraints for full-width responsive layout */
+/* Override VitePress default content width constraints */
+:root {
+  --vp-layout-max-width: 1920px;
+}
+
 .VPDoc .container,
-.VPContent .container,
+.VPDoc.has-sidebar .content-container,
+.VPDoc.has-aside .content-container {
+  max-width: 1920px !important;
+}
+
 .vp-doc {
-  max-width: none !important;
+  max-width: 1920px !important;
 }
 
-.VPDoc:not(.has-sidebar) .content {
-  max-width: none !important;
-}
-
-.VPDoc.has-sidebar .content {
-  max-width: none !important;
+.VPContent {
+  max-width: 1920px !important;
 }
 
 /* Button groups for examples */

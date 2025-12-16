@@ -5,14 +5,16 @@
     :disabled="disabled"
     :size="mappedSize"
     :loading="loading"
-    :class="['ds-button', `ds-button--${size}`]"
-    @click="handleClick"
+    :icon="icon"
+    :ripple="true"
+    class="ds-button"
+    v-bind="$attrs"
   >
     <slot />
   </v-btn>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 /**
  * DsButton - Design System Button Component
  *
@@ -33,99 +35,70 @@
  *     * 'sm': Small button
  *     * 'md': Medium button (default)
  *     * 'lg': Large button
- *
- * Events:
- *   - @click: Emitted when the button is clicked (if not disabled)
+ *   - icon: Boolean to render as icon button (default: false)
+ *     * When true, button becomes square/circular with fixed dimensions (48px × 48px)
+ *     * Only shows icon content without text padding
+ *     * Maintains all variants (elevated, flat, tonal, outlined, text)
  *
  * Slots:
  *   - default: Button label/content (text or icons)
  *
  * Accessibility:
- *   - For icon-only buttons, use the aria-label prop on the v-btn to provide screen reader text
- *   - Example: <ds-button aria-label="Close dialog">
+ *   - For icon-only buttons, use the aria-label prop to provide screen reader text
+ *   - Example: <DsButton icon aria-label="Close dialog">
  *     <v-icon icon="mdi-close" />
- *   </ds-button>
+ *   </DsButton>
  *   - All buttons have proper focus management and keyboard support
  *   - Supports WCAG 2.1 AAA contrast requirements
  */
-import { defineComponent, PropType } from 'vue';
+import { computed } from 'vue';
 
 type ButtonVariant = 'elevated' | 'flat' | 'tonal' | 'outlined' | 'text';
 type ButtonSize = 'sm' | 'md' | 'lg';
 type VuetifySize = 'small' | 'default' | 'large';
 
-interface SizeMap {
-  [key in ButtonSize]: VuetifySize;
+interface Props {
+  variant?: ButtonVariant;
+  color?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  size?: ButtonSize;
+  icon?: boolean;
 }
 
-export default defineComponent({
-  name: 'DsButton',
-  props: {
-    variant: {
-      type: String as PropType<ButtonVariant>,
-      default: 'elevated' as ButtonVariant,
-      validator: (value: ButtonVariant) =>
-        ['elevated', 'flat', 'tonal', 'outlined', 'text'].includes(value),
-    },
-    color: {
-      type: String,
-      default: 'primary',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    size: {
-      type: String as PropType<ButtonSize>,
-      default: 'md' as ButtonSize,
-      validator: (value: ButtonSize) => ['sm', 'md', 'lg'].includes(value),
-    },
-  },
-  emits: {
-    click: (event: MouseEvent) => event instanceof MouseEvent,
-  },
-  computed: {
-    mappedSize(): VuetifySize {
-      // Map our size prop to Vuetify's size prop
-      const sizeMap: SizeMap = {
-        sm: 'small',
-        md: 'default',
-        lg: 'large',
-      };
-      return sizeMap[this.size];
-    },
-  },
-  methods: {
-    handleClick(event: MouseEvent): void {
-      if (!this.disabled) {
-        this.$emit('click', event);
-      }
-    },
-  },
+const props = withDefaults(defineProps<Props>(), {
+  variant: 'elevated',
+  color: 'primary',
+  disabled: false,
+  loading: false,
+  size: 'md',
+  icon: false,
 });
+
+const SIZE_MAP: Record<ButtonSize, VuetifySize> = {
+  sm: 'small',
+  md: 'default',
+  lg: 'large',
+} as const;
+
+const mappedSize = computed<VuetifySize>(() => SIZE_MAP[props.size]);
 </script>
 
 <style scoped>
 .ds-button {
-  /* Add minimal scoped styles if needed. Most styling comes from Vuetify theme. */
+  /* Apply pill-shaped border radius from design tokens (9999px = full pill shape) */
+  border-radius: 9999px;
+
+  /* Typography from design system - DO NOT CHANGE */
   font-weight: 500;
   letter-spacing: 0.5px;
-  transition: all 0.2s ease-in-out;
+  text-transform: capitalize;
 }
 
-.ds-button--sm {
-  /* Size-specific adjustments if needed */
-}
-
-.ds-button--md {
-  /* Default size adjustments */
-}
-
-.ds-button--lg {
-  /* Large size adjustments */
+/* Icon button specific sizing from Figma tokens (48px x 48px) */
+.ds-button:deep(.v-btn--icon) {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
 }
 </style>

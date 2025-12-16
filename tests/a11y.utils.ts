@@ -3,8 +3,6 @@
  * Helper functions for WCAG 2.1 compliance testing
  */
 
-import { VueWrapper } from '@vue/test-utils';
-
 /**
  * Check color contrast ratio
  * @param foreground - Foreground color (hex or rgb)
