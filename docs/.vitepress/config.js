@@ -67,6 +67,13 @@ export default defineConfig({
           text: 'Components',
           items: [
             { text: 'Button', link: '/components/button' },
+            { text: 'Card', link: '/components/card' },
+            { text: 'Chip', link: '/components/chip' },
+            { text: 'Dialog', link: '/components/dialog' },
+            { text: 'Divider', link: '/components/divider' },
+            { text: 'Expansion Panel', link: '/components/expansion-panel' },
+            { text: 'List', link: '/components/list' },
+            { text: 'Menu', link: '/components/menu' },
           ],
         },
       ],

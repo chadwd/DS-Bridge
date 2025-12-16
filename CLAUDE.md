@@ -13,6 +13,30 @@ The project is a monorepo-style structure with:
 - **Tests**: Unit + accessibility tests with Vitest in `tests/`
 - **Docs**: VitePress documentation site in `docs/`
 - **Build**: Dual-format distribution (ES modules + CommonJS) in `dist/`
+- **Agent Sessions**: Contributor-specific session plans in `agent-sessions/`
+- **Agent Journals**: Contributor-specific work journals in `agent-journals/`
+
+## Multi-Contributor Workflow
+
+DS-Bridge supports multiple designers and developers working in parallel using **contributor-specific tracking files**.
+
+**File Naming Convention**:
+- Session Plans: `agent-sessions/{name}-SESSION_N_PLAN.md`
+- Work Journals: `agent-journals/{name}-agent-work-journal.md`
+
+**Example**:
+```
+agent-sessions/chad-SESSION_6_PLAN.md
+agent-sessions/jake-SESSION_1_PLAN.md
+agent-journals/chad-agent-work-journal.md
+agent-journals/jake-agent-work-journal.md
+```
+
+**See [CONTRIBUTOR_WORKFLOW.md](./CONTRIBUTOR_WORKFLOW.md) for complete details on:**
+- Slash command usage (`/session-plan-start`, `/ds-build-component`, etc.)
+- Working in parallel with other contributors
+- Session planning and wrap-up procedures
+- Best practices for collaboration
 
 ## Common Development Commands
 
