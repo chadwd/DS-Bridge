@@ -113,8 +113,13 @@ Pre-defined tokens for:
 
 - **Button**: Flexible button component with variants, sizes, colors, and states
 - **Card**: Container component with multiple layout options
-- **Input**: Form input with support for various input types
-- **Select**: Dropdown selection component with single and multi-select support
+- **Chip**: Status and label component with customizable colors
+- **Dialog**: Modal dialog component for user interactions
+- **Divider**: Visual separator component
+- **Expansion Panel**: Collapsible content panels
+- **GuaranteedSale**: Enterprise component displaying guaranteed offer value with status badge, datetime information, and action buttons (5 status states, 2 alignment modes, interactive tooltips)
+- **List**: List component for displaying structured data
+- **Menu**: Dropdown menu component for navigation
 - All components fully typed with TypeScript, tested, and documented
 - Easily extensible for additional components
 
@@ -219,19 +224,34 @@ npm run preview
     <ds-button variant="text" size="sm">
       Small text button
     </ds-button>
+
+    <ds-guaranteed-sale
+      price-value="22,500"
+      status="Accepted"
+      align="center"
+      @primary-action="handlePrimaryAction"
+      @secondary-action="handleSecondaryAction"
+    />
   </div>
 </template>
 
 <script>
-import { DsButton } from '@/components/index.js';
+import { DsButton, DsGuaranteedSale } from '@/components/index.js';
 
 export default {
   components: {
     DsButton,
+    DsGuaranteedSale,
   },
   methods: {
     handleClick() {
       console.log('Button clicked');
+    },
+    handlePrimaryAction() {
+      console.log('Primary action clicked');
+    },
+    handleSecondaryAction() {
+      console.log('Secondary action clicked');
     },
   },
 };
@@ -311,7 +331,7 @@ All Vuetify components are registered globally via the Vuetify plugin.
 2. **Accessibility**: WCAG 2.1 AAA compliance built in
 3. **Modularity**: Each component is independent and reusable
 4. **Documentation**: Every component and token is clearly documented
-5. **Testability**: All components are unit tested with 30+ test cases
+5. **Testability**: All components are unit tested with comprehensive test coverage
 6. **Enterprise-Ready**: Performance optimized with tree-shaking and per-component exports
 
 ## Enterprise Features

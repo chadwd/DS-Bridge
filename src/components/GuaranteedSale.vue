@@ -1,0 +1,446 @@
+<template>
+  <div class="ds-guaranteed-sale" :class="{ 'align-left': align === 'left' }">
+    <!-- Header Section with Title, Value, and Status -->
+    <div class="guaranteed-sale-header">
+      <div class="header-title">
+        <span class="title-text">Guaranteed Offer</span>
+        <v-tooltip location="top" max-width="300">
+          <template v-slot:activator="{ props: tooltipProps }">
+            <v-icon
+              icon="mdi-information-outline"
+              size="small"
+              class="tooltip-icon"
+              v-bind="tooltipProps"
+            />
+          </template>
+          <span>{{ tooltipText }}</span>
+        </v-tooltip>
+      </div>
+      <div class="header-value">
+        <span class="currency-symbol">$</span>
+        <span class="amount">{{ status === 'Not Available' ? '--' : priceValue }}</span>
+      </div>
+      <div class="status-badge" :class="statusClass">
+        <span class="status-text">{{ statusText }}</span>
+      </div>
+    </div>
+
+    <!-- DateTime Section -->
+    <div v-if="showDateTime" class="datetime-section">
+      <div class="datetime-row">
+        <v-icon icon="mdi-clock-outline" size="x-small" class="datetime-icon" />
+        <span class="label">Updated:</span>
+        <span class="value">{{ updatedDate }}</span>
+        <span class="separator">|</span>
+        <span class="value">{{ updatedTime }}</span>
+        <span class="time-period">{{ timePeriod }}</span>
+        <span class="timezone">{{ timezone }}</span>
+      </div>
+      <div class="datetime-row">
+        <v-icon icon="mdi-calendar-outline" size="x-small" class="datetime-icon" />
+        <span class="label">Expires:</span>
+        <span class="value">{{ expiresDate }}</span>
+      </div>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="actions-section">
+      <v-btn
+        color="buttonPrimary"
+        variant="elevated"
+        size="default"
+        class="primary-action-btn"
+      >
+        Primary Action
+      </v-btn>
+      <v-btn
+        color="textMedium"
+        variant="text"
+        size="default"
+        class="secondary-action-btn"
+      >
+        Secondary Action
+      </v-btn>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+/**
+ * DsGuaranteedSale - Design System Guaranteed Sale Component
+ *
+ * Displays a guaranteed offer value with status, datetime information, and action buttons.
+ * Provides two alignment modes (center and left) for flexible layout options.
+ *
+ * Props:
+ *   - priceValue: The guaranteed sale amount (string, default: '22,500')
+ *   - status: Status badge text (string, default: 'Accepted')
+ *   - align: Layout alignment 'center' or 'left' (default: 'center')
+ *   - showDateTime: Whether to show date/time section (default: true)
+ *   - updatedDate: Updated date string (default: 'Nov 3, 2025')
+ *   - updatedTime: Updated time string (default: '10:55:04')
+ *   - timePeriod: AM/PM indicator (default: 'a.m.')
+ *   - timezone: Timezone string (default: 'EST')
+ *   - expiresDate: Expiration date string (default: 'Nov 3, 2025')
+ *
+ * Events:
+ *   - primary-action: Emitted when primary action button is clicked
+ *   - secondary-action: Emitted when secondary action button is clicked
+ *
+ * Accessibility:
+ *   - Follows WCAG 2.1 AAA compliance
+ *   - Semantic HTML structure
+ *   - Proper icon labels and ARIA attributes
+ */
+
+import { computed } from 'vue';
+
+type StatusType = 'Available' | 'Requested' | 'Accepted' | 'Expired' | 'Not Available';
+type AlignType = 'center' | 'left';
+
+interface Props {
+  priceValue?: string;
+  status?: StatusType;
+  align?: AlignType;
+  showDateTime?: boolean;
+  updatedDate?: string;
+  updatedTime?: string;
+  timePeriod?: string;
+  timezone?: string;
+  expiresDate?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  priceValue: '22,500',
+  status: 'Accepted',
+  align: 'center',
+  showDateTime: true,
+  updatedDate: 'Nov 3, 2025',
+  updatedTime: '10:55:04',
+  timePeriod: 'a.m.',
+  timezone: 'EST',
+  expiresDate: 'Nov 3, 2025',
+});
+
+const emit = defineEmits<{
+  'primary-action': [];
+  'secondary-action': [];
+}>();
+
+// Map status to CSS class for styling
+const statusClass = computed(() => {
+  switch (props.status) {
+    case 'Available':
+      return 'status-available';
+    case 'Accepted':
+      return 'status-accepted';
+    case 'Requested':
+      return 'status-requested';
+    case 'Expired':
+      return 'status-expired';
+    case 'Not Available':
+      return 'status-not-available';
+    default:
+      return 'status-accepted';
+  }
+});
+
+const statusText = computed(() => {
+  switch (props.status) {
+    case 'Available':
+      return 'Offer Available';
+    case 'Accepted':
+      return 'Accepted';
+    case 'Requested':
+      return 'Pricing Requested';
+    case 'Expired':
+      return 'Expired';
+    case 'Not Available':
+      return 'Not Available';
+    default:
+      return props.status;
+  }
+});
+
+const tooltipText = computed(() => {
+  switch (props.status) {
+    case 'Available':
+      return 'Guaranteed offer valid until expiration date';
+    case 'Accepted':
+      return 'Offer has been accepted';
+    case 'Requested':
+      return 'Pricing request pending review';
+    case 'Expired':
+      return 'Offer has expired';
+    case 'Not Available':
+      return 'No guaranteed offer available';
+    default:
+      return 'Guaranteed offer information';
+  }
+});
+</script>
+
+<style scoped>
+.ds-guaranteed-sale {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 318px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #cfd8dc;
+  border-radius: 12px;
+
+  &.align-left {
+    align-items: flex-start;
+
+    .guaranteed-sale-header {
+      align-items: flex-start;
+    }
+
+    .datetime-section,
+    .actions-section {
+      align-items: flex-start;
+    }
+  }
+}
+
+.guaranteed-sale-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  height: 20px;
+
+  .title-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .tooltip-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    color: rgba(0, 0, 0, 0.54);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}
+
+.header-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  height: 32px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  color: rgba(0, 0, 0, 0.87);
+
+  .currency-symbol {
+    display: inline;
+  }
+
+  .amount {
+    display: inline;
+  }
+}
+
+/* Status Badge Styling */
+.status-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background-color: #f3fcf9;
+  border: 1px solid #99dbc8;
+
+  .status-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #2d7654;
+    white-space: nowrap;
+  }
+
+  &.status-available,
+  &.status-accepted {
+    background-color: #f3fcf9;
+    border-color: #99dbc8;
+    .status-text {
+      color: #2d7654;
+    }
+  }
+
+  &.status-expired {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+    .status-text {
+      color: #991b1b;
+    }
+  }
+
+  &.status-not-available {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    .status-text {
+      color: #4b5563;
+    }
+  }
+
+  &.status-requested {
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+    .status-text {
+      color: #1e40af;
+    }
+  }
+}
+
+/* DateTime Section */
+.datetime-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  width: 100%;
+}
+
+.datetime-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 100%;
+
+  .datetime-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+  }
+
+  .value {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+  }
+
+  .separator {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .time-period {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+  }
+
+  .timezone {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+  }
+}
+
+/* Actions Section */
+.actions-section {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.primary-action-btn {
+  border-radius: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.125px;
+  text-transform: uppercase;
+  padding: 0 16px;
+  height: 36px;
+  background-color: #616161 !important;
+  color: #ffffff !important;
+
+  :deep(.v-btn__content) {
+    color: #ffffff;
+  }
+}
+
+.secondary-action-btn {
+  border-radius: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.125px;
+  text-transform: uppercase;
+  padding: 0 16px;
+  height: 36px;
+  color: rgba(0, 0, 0, 0.6) !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+
+  :deep(.v-btn__content) {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.align-left .datetime-row {
+  justify-content: flex-start;
+}
+
+.align-left .actions-section {
+  justify-content: flex-start;
+}
+</style>

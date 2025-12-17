@@ -19,7 +19,7 @@ import CodePreview from '../components/CodePreview.vue';
 import TronHomepage from '../components/TronHomepage.vue';
 
 // Import design system components
-import { DsButton } from '../../../src/components/index';
+import { DsButton, DsGuaranteedSale } from '../../../src/components/index';
 
 // Import tokens
 import tokens from '../../../src/tokens/index';
@@ -81,5 +81,6 @@ export default {
 
     // Register design system components globally
     app.component('DsButton', DsButton);
+    app.component('DsGuaranteedSale', DsGuaranteedSale);
   },
 };

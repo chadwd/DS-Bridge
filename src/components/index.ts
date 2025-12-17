@@ -4,3 +4,4 @@
  */
 
 export { default as DsButton } from './Button.vue';
+export { default as DsGuaranteedSale } from './GuaranteedSale.vue';

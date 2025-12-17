@@ -72,6 +72,7 @@ export default defineConfig({
             { text: 'Dialog', link: '/components/dialog' },
             { text: 'Divider', link: '/components/divider' },
             { text: 'Expansion Panel', link: '/components/expansion-panel' },
+            { text: 'Guaranteed Sale', link: '/components/guaranteedsale' },
             { text: 'List', link: '/components/list' },
             { text: 'Menu', link: '/components/menu' },
           ],
