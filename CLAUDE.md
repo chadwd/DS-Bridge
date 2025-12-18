@@ -38,6 +38,58 @@ agent-journals/jake-agent-work-journal.md
 - Session planning and wrap-up procedures
 - Best practices for collaboration
 
+## Branching Convention
+
+DS-Bridge uses a simple, descriptive branching convention for feature development:
+
+### Branch Naming Format
+
+```
+sN-component-feature
+```
+
+**Pattern**: `s<session-number>-<component-name>-<feature>`
+
+**Examples**:
+```bash
+s2-gsale-btn          # Session 2: GuaranteedSale buttons
+s3-card-layout        # Session 3: Card component layout
+s4-input-validation   # Session 4: Input validation
+s5-gsale-loading      # Session 5: GuaranteedSale loading states
+```
+
+### Git Workflow
+
+1. **Create branch** for your session:
+   ```bash
+   git checkout -b s2-gsale-btn
+   ```
+
+2. **Work throughout the session** without committing after every change
+
+3. **Commit and push at end of session** (or when taking breaks):
+   ```bash
+   git add <files>
+   git commit -m "feat(components): add dynamic button labels"
+   git push -u origin s2-gsale-btn
+   ```
+
+   **Commit Policy**:
+   - ✅ Commit/push at end of session
+   - ✅ Commit/push when taking breaks (to save progress)
+   - ❌ Do NOT commit after every small change
+   - Follow Git Safety Protocol (see below)
+
+4. **Create Pull Request** on GitHub to merge into `main`
+
+### Branch Naming Benefits
+
+- ✅ **Short but contextful** - Quick to type, easy to understand
+- ✅ **Session tracking** - Links directly to session plans in `agent-sessions/`
+- ✅ **Component scoped** - Clear what part of the system is being worked on
+- ✅ **Feature focused** - Describes the specific work being done
+- ✅ **Team friendly** - Multiple contributors can work in parallel without branch name conflicts
+
 ## Common Development Commands
 
 ### Setup

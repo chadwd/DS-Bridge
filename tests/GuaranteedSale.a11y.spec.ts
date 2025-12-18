@@ -64,6 +64,7 @@ describe('DsGuaranteedSale Accessibility (WCAG 2.1 AAA)', () => {
   describe('Keyboard Navigation', () => {
     it('should have keyboard accessible action buttons', () => {
       const wrapper = mount(DsGuaranteedSale, {
+        props: { status: 'Requested' }, // Requested status shows both buttons
         global: { plugins: [vuetify] },
       });
 
@@ -115,8 +116,7 @@ describe('DsGuaranteedSale Accessibility (WCAG 2.1 AAA)', () => {
       expect(wrapper.text()).toContain('Guaranteed Offer');
       expect(wrapper.text()).toContain('$22,500');
       expect(wrapper.text()).toContain('Accepted');
-      expect(wrapper.text()).toContain('Primary Action');
-      expect(wrapper.text()).toContain('Secondary Action');
+      expect(wrapper.text()).toContain('Cancel Offer'); // Dynamic button label for Accepted status
     });
 
     it('should provide datetime information when enabled', () => {

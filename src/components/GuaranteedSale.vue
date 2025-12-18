@@ -26,17 +26,21 @@
     </div>
 
     <!-- DateTime Section -->
-    <div v-if="showDateTime" class="datetime-section">
-      <div class="datetime-row">
+    <div v-if="showDateTime && shouldShowDateTime" class="datetime-section">
+      <div v-if="showUpdatedDate || showUpdatedTime" class="datetime-row">
         <v-icon icon="mdi-clock-outline" size="x-small" class="datetime-icon" />
         <span class="label">Updated:</span>
-        <span class="value">{{ updatedDate }}</span>
-        <span class="separator">|</span>
-        <span class="value">{{ updatedTime }}</span>
-        <span class="time-period">{{ timePeriod }}</span>
-        <span class="timezone">{{ timezone }}</span>
+        <template v-if="showUpdatedDate">
+          <span class="value">{{ updatedDate }}</span>
+          <span v-if="showUpdatedTime" class="separator">|</span>
+        </template>
+        <template v-if="showUpdatedTime">
+          <span class="value">{{ updatedTime }}</span>
+          <span class="time-period">{{ timePeriod }}</span>
+          <span class="timezone">{{ timezone }}</span>
+        </template>
       </div>
-      <div class="datetime-row">
+      <div v-if="showExpiresDate" class="datetime-row">
         <v-icon icon="mdi-calendar-outline" size="x-small" class="datetime-icon" />
         <span class="label">Expires:</span>
         <span class="value">{{ expiresDate }}</span>
@@ -46,20 +50,28 @@
     <!-- Actions Section -->
     <div class="actions-section">
       <v-btn
+        v-if="showPrimaryButton"
         color="buttonPrimary"
         variant="elevated"
         size="default"
         class="primary-action-btn"
+        :disabled="primaryButtonDisabled"
+        :loading="primaryButtonLoading"
+        @click="emit('primary-action')"
       >
-        Primary Action
+        {{ primaryButtonLabel }}
       </v-btn>
       <v-btn
+        v-if="showSecondaryButton"
         color="textMedium"
         variant="text"
         size="default"
         class="secondary-action-btn"
+        :disabled="secondaryButtonDisabled"
+        :loading="secondaryButtonLoading"
+        @click="emit('secondary-action')"
       >
-        Secondary Action
+        {{ secondaryButtonLabel }}
       </v-btn>
     </div>
   </div>
@@ -108,6 +120,19 @@ interface Props {
   timePeriod?: string;
   timezone?: string;
   expiresDate?: string;
+  // DateTime visibility props
+  showUpdatedDate?: boolean;
+  showUpdatedTime?: boolean;
+  showExpiresDate?: boolean;
+  // Button customization props
+  primaryButtonText?: string;
+  secondaryButtonText?: string;
+  hidePrimaryButton?: boolean;
+  hideSecondaryButton?: boolean;
+  primaryButtonDisabled?: boolean;
+  secondaryButtonDisabled?: boolean;
+  primaryButtonLoading?: boolean;
+  secondaryButtonLoading?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -120,6 +145,15 @@ const props = withDefaults(defineProps<Props>(), {
   timePeriod: 'a.m.',
   timezone: 'EST',
   expiresDate: 'Nov 3, 2025',
+  showUpdatedDate: true,
+  showUpdatedTime: true,
+  showExpiresDate: true,
+  hidePrimaryButton: false,
+  hideSecondaryButton: false,
+  primaryButtonDisabled: false,
+  secondaryButtonDisabled: false,
+  primaryButtonLoading: false,
+  secondaryButtonLoading: false,
 });
 
 const emit = defineEmits<{
@@ -177,6 +211,64 @@ const tooltipText = computed(() => {
     default:
       return 'Guaranteed offer information';
   }
+});
+
+// Dynamic button labels based on status (with prop override)
+const primaryButtonLabel = computed(() => {
+  if (props.primaryButtonText) return props.primaryButtonText;
+
+  switch (props.status) {
+    case 'Available':
+      return 'Accept Offer';
+    case 'Accepted':
+      return 'Cancel Offer';
+    case 'Requested':
+      return 'Check Status';
+    case 'Expired':
+      return 'Request New Offer';
+    case 'Not Available':
+      return 'Learn More';
+    default:
+      return 'Primary Action';
+  }
+});
+
+const secondaryButtonLabel = computed(() => {
+  if (props.secondaryButtonText) return props.secondaryButtonText;
+
+  switch (props.status) {
+    case 'Requested':
+      return 'Cancel Request';
+    default:
+      return 'Secondary Action';
+  }
+});
+
+// Button visibility logic
+const showPrimaryButton = computed(() => {
+  if (props.hidePrimaryButton) return false;
+  return true; // Always show primary unless explicitly hidden
+});
+
+const showSecondaryButton = computed(() => {
+  if (props.hideSecondaryButton) return false;
+
+  // Only show secondary button for "Requested" status by default
+  switch (props.status) {
+    case 'Requested':
+      return true;
+    default:
+      return false;
+  }
+});
+
+// DateTime visibility logic - hide for Expired and Not Available statuses
+const shouldShowDateTime = computed(() => {
+  // Never show date/time for Expired or Not Available statuses
+  if (props.status === 'Expired' || props.status === 'Not Available') {
+    return false;
+  }
+  return true;
 });
 </script>
 

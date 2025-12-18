@@ -15,6 +15,14 @@ const updatedTime = ref('10:55:04');
 const timePeriod = ref('a.m.');
 const timezone = ref('EST');
 const expiresDate = ref('Nov 3, 2025');
+const showUpdatedDate = ref(true);
+const showUpdatedTime = ref(true);
+const showExpiresDate = ref(true);
+
+// Disable date/time controls for Expired and Not Available statuses
+const isDateTimeDisabled = computed(() => {
+  return status.value === 'Expired' || status.value === 'Not Available';
+});
 
 const generatedCode = computed(() => {
   const props = [];
@@ -27,6 +35,9 @@ const generatedCode = computed(() => {
   if (timePeriod.value !== 'a.m.') props.push(`time-period="${timePeriod.value}"`);
   if (timezone.value !== 'EST') props.push(`timezone="${timezone.value}"`);
   if (expiresDate.value !== 'Nov 3, 2025') props.push(`expires-date="${expiresDate.value}"`);
+  if (showUpdatedDate.value === false) props.push(':show-updated-date="false"');
+  if (showUpdatedTime.value === false) props.push(':show-updated-time="false"');
+  if (showExpiresDate.value === false) props.push(':show-expires-date="false"');
 
   const propsString = props.length > 0 ? '\n    ' + props.join('\n    ') + '\n  ' : '';
 
@@ -67,6 +78,9 @@ const handleSecondaryAction = () => {
         :time-period="timePeriod"
         :timezone="timezone"
         :expires-date="expiresDate"
+        :show-updated-date="showUpdatedDate"
+        :show-updated-time="showUpdatedTime"
+        :show-expires-date="showExpiresDate"
       />
     </div>
   </template>
@@ -95,38 +109,73 @@ const handleSecondaryAction = () => {
       label="Show DateTime"
       v-model="showDateTime"
       type="boolean"
-      description="Display date/time information section"
+      :disabled="isDateTimeDisabled"
+      description="Display date/time information section (disabled for Expired and Not Available statuses)"
     />
     <PropControl
+      v-if="showDateTime"
+      label="Show Updated Date"
+      v-model="showUpdatedDate"
+      type="boolean"
+      :disabled="isDateTimeDisabled"
+      description="Display the updated date in the datetime section"
+    />
+    <PropControl
+      v-if="showDateTime"
+      label="Show Updated Time"
+      v-model="showUpdatedTime"
+      type="boolean"
+      :disabled="isDateTimeDisabled"
+      description="Display the updated time in the datetime section"
+    />
+    <PropControl
+      v-if="showDateTime"
+      label="Show Expires Date"
+      v-model="showExpiresDate"
+      type="boolean"
+      :disabled="isDateTimeDisabled"
+      description="Display the expires date in the datetime section"
+    />
+    <PropControl
+      v-if="showDateTime && showUpdatedDate"
       label="Updated Date"
       v-model="updatedDate"
       type="text"
+      :disabled="isDateTimeDisabled"
       placeholder="e.g., Nov 3, 2025"
       description="Update date string"
     />
     <PropControl
+      v-if="showDateTime && showUpdatedTime"
       label="Updated Time"
       v-model="updatedTime"
       type="text"
+      :disabled="isDateTimeDisabled"
       placeholder="e.g., 10:55:04"
       description="Update time string"
     />
     <PropControl
+      v-if="showDateTime && showUpdatedTime"
       label="Time Period"
       v-model="timePeriod"
       :options="['a.m.', 'p.m.']"
+      :disabled="isDateTimeDisabled"
       description="AM/PM indicator"
     />
     <PropControl
+      v-if="showDateTime && showUpdatedTime"
       label="Timezone"
       v-model="timezone"
       :options="['PST', 'MST', 'CST', 'EST']"
+      :disabled="isDateTimeDisabled"
       description="Timezone abbreviation"
     />
     <PropControl
+      v-if="showDateTime && showExpiresDate"
       label="Expires Date"
       v-model="expiresDate"
       type="text"
+      :disabled="isDateTimeDisabled"
       placeholder="e.g., Nov 3, 2025"
       description="Expiration date string"
     />
@@ -183,11 +232,11 @@ Use GuaranteedSale for:
 <CodePreview>
   <template #preview>
     <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-      <DsGuaranteedSale status="Available" :show-date-time="false" />
-      <DsGuaranteedSale status="Accepted" :show-date-time="false" />
-      <DsGuaranteedSale status="Requested" :show-date-time="false" />
-      <DsGuaranteedSale status="Expired" :show-date-time="false" />
-      <DsGuaranteedSale status="Not Available" :show-date-time="false" />
+      <DsGuaranteedSale status="Available" />
+      <DsGuaranteedSale status="Accepted" />
+      <DsGuaranteedSale status="Requested" />
+      <DsGuaranteedSale status="Expired" />
+      <DsGuaranteedSale status="Not Available" />
     </div>
   </template>
   <template #code>
