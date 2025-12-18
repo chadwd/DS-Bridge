@@ -7,6 +7,77 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-12-18
+
+### Session #2: GuaranteedSale Action Button & DateTime Enhancements (Complete)
+
+#### Added
+- **Dynamic Button System** ⭐
+  - Smart default button labels based on component status (5 states)
+  - 8 button customization props for complete control:
+    - `primaryButtonText`, `secondaryButtonText` - Override default labels
+    - `hidePrimaryButton`, `hideSecondaryButton` - Show/hide buttons
+    - `primaryButtonDisabled`, `secondaryButtonDisabled` - Disable states
+    - `primaryButtonLoading`, `secondaryButtonLoading` - Loading states
+  - Conditional button display (only "Requested" shows secondary button)
+  - Status-aware button labels:
+    - Available: "Accept Offer"
+    - Accepted: "Cancel Offer"
+    - Requested: "Check Status" / "Cancel Request"
+    - Expired: "Request New Offer"
+    - Not Available: "Learn More"
+
+- **DateTime Visibility Controls** ⭐
+  - 3 granular show/hide props:
+    - `showUpdatedDate` - Toggle updated date display
+    - `showUpdatedTime` - Toggle updated time display
+    - `showExpiresDate` - Toggle expires date display
+  - Auto-hide datetime section for Expired and Not Available statuses
+  - Conditional rendering in component template
+  - Smart separator logic (| only shows when both date and time visible)
+  - Interactive playground with conditional control display (following Button component pattern)
+  - Controls hide/show based on parent toggle states
+
+#### Changed
+- **GuaranteedSale Component**
+  - Props increased from 9 → 20 (9 core + 8 button + 3 datetime visibility)
+  - Template updated with conditional rendering for datetime elements
+  - Added computed properties for button labels and visibility logic
+  - Added computed property for datetime visibility based on status
+
+- **Documentation**
+  - Updated playground with 11 new prop controls
+  - Added conditional control display (v-if pattern from Button component)
+  - Updated API reference with all new props
+  - Added button behavior documentation for each status state
+
+- **Testing**
+  - Test count: 13 → 35 tests (13 a11y + 22 unit)
+  - Added 8 new unit tests for datetime visibility
+  - Updated existing tests for dynamic button behavior
+  - All tests passing with 100% coverage of new features
+
+#### Fixed
+- Date/time section now properly hidden for Expired and Not Available statuses
+- Separator (|) only displays when both date and time are shown
+- Test failures due to conflicting date values (updated to use unique dates)
+- Documentation playground controls now follow Button component pattern
+
+#### Technical Details
+- Component complexity: Simple → Moderate (20 props, conditional rendering)
+- TypeScript: 100% type-safe (no any types)
+- WCAG 2.1 AAA compliance maintained
+- Zero TypeScript errors
+- 35/35 tests passing
+
+#### Metrics
+- Component Props: 9 → 20 (+11)
+- Test Cases: 13 → 35 (+22, +169%)
+- Button Customization Options: 8 new props
+- DateTime Visibility Options: 3 new props
+- Status States: 5 (all with dynamic button labels)
+- Lines of Code: ~400 → ~550 (+37%)
+
 ## [0.3.0] - 2025-12-15
 
 ### Session #5: Refactoring & Component Template System (Complete)

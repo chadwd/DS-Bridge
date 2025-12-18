@@ -5,7 +5,7 @@ import {
   Ripple,
   Touch,
   VTooltip
-} from "./chunk-Y2LP5Q6L.js";
+} from "./chunk-HFGPJ2W7.js";
 import {
   consoleError,
   isObject
