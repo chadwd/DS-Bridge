@@ -1,8 +1,8 @@
-# DS-Bridge Session #2: GuaranteedSale Action Button Enhancements
+# DS-Bridge Session #2: GuaranteedSale Action Button & DateTime Enhancements
 
-**Date**: 2025-12-17
-**Status**: PAUSED (Awaiting button label approval)
-**Focus**: Enhance action buttons with dynamic labels, conditional display, and status-aware behavior
+**Date**: 2025-12-17 to 2025-12-18
+**Status**: COMPLETED
+**Focus**: Enhance action buttons with dynamic labels, conditional display, and status-aware behavior + DateTime visibility controls
 
 ---
 
@@ -12,7 +12,8 @@
 2. Add props for button customization and flexibility
 3. Implement conditional button display logic
 4. Add loading states and disabled states
-5. Maintain WCAG 2.1 AAA compliance
+5. Add DateTime visibility controls for granular show/hide capability
+6. Maintain WCAG 2.1 AAA compliance
 
 ---
 
@@ -22,42 +23,51 @@
 - [x] Review current button implementation
 - [x] Identify improvement opportunities
 - [x] Define dynamic button behavior per status (proposed, pending approval)
-- [ ] Design new prop interface for buttons (pending button label approval)
+- [x] Design new prop interface for buttons (APPROVED)
 
 ### Phase 2: Implementation
-- [ ] Add new button-related props
-- [ ] Implement dynamic button labels based on status
-- [ ] Add conditional button display logic
-- [ ] Add loading state support
-- [ ] Add disabled state handling
-- [ ] Wire up button click events properly
+- [x] Add new button-related props
+- [x] Implement dynamic button labels based on status
+- [x] Add conditional button display logic
+- [x] Add loading state support
+- [x] Add disabled state handling
+- [x] Wire up button click events properly
 
 ### Phase 3: Testing
-- [ ] Update unit tests for new button props
-- [ ] Test dynamic labels for all status states
-- [ ] Test conditional display logic
-- [ ] Test loading and disabled states
-- [ ] Verify accessibility (keyboard nav, ARIA)
+- [x] Update unit tests for new button props
+- [x] Test dynamic labels for all status states
+- [x] Test conditional display logic
+- [x] Test loading and disabled states
+- [x] Verify accessibility (keyboard nav, ARIA)
 
 ### Phase 4: Documentation
-- [ ] Update API reference with new props
-- [ ] Add button customization examples
-- [ ] Document button behavior per status
-- [ ] Update interactive playground
+- [x] Update API reference with new props
+- [x] Add button customization examples
+- [x] Document button behavior per status
+- [x] Update interactive playground
+
+### Phase 5: DateTime Visibility Enhancements
+- [x] Auto-hide date/time section for Expired and Not Available statuses
+- [x] Add showUpdatedDate, showUpdatedTime, showExpiresDate props
+- [x] Implement conditional rendering in component template
+- [x] Update documentation playground with toggle controls
+- [x] Add conditional control display (controls hide when toggles are off)
+- [x] Write 8 new unit tests for show/hide functionality
+- [x] Verify all 35 tests passing (13 a11y + 22 unit)
 
 ---
 
-## 🎨 Proposed Button Behavior
+## 🎨 Finalized Button Behavior
 
-### Status-Based Button Labels
+### Status-Based Button Labels (APPROVED)
 
 **Available**
 - Primary: "Accept Offer"
-- Secondary: "Decline"
+- Secondary: Hidden
 
 **Accepted**
-- Primary: "View Details"
-- Secondary: "Contact Support"
+- Primary: "Cancel Offer"
+- Secondary: Hidden
 
 **Requested**
 - Primary: "Check Status"
@@ -65,12 +75,11 @@
 
 **Expired**
 - Primary: "Request New Offer"
-- Secondary: "View Details"
-- Consider: Disable or hide buttons
+- Secondary: Hidden
 
 **Not Available**
-- Primary: Hidden or "Request Pricing"
-- Secondary: Hidden or "Learn More"
+- Primary: "Learn More"
+- Secondary: Hidden
 
 ---
 
@@ -124,16 +133,26 @@ interface Props {
 
 ## ✅ Success Criteria
 
-- [ ] Dynamic button labels working for all 5 status states
-- [ ] Props to override button labels
-- [ ] Props to hide/show buttons individually
-- [ ] Loading states visually distinct
-- [ ] Disabled states properly styled
-- [ ] Events emit correctly for both buttons
-- [ ] Unit tests updated and passing
-- [ ] Documentation updated with examples
-- [ ] No TypeScript errors
-- [ ] WCAG 2.1 AAA compliance maintained
+### Button Enhancements
+- [x] Dynamic button labels working for all 5 status states
+- [x] Props to override button labels
+- [x] Props to hide/show buttons individually
+- [x] Loading states visually distinct
+- [x] Disabled states properly styled
+- [x] Events emit correctly for both buttons
+
+### DateTime Enhancements
+- [x] Auto-hide date/time for Expired and Not Available statuses
+- [x] showUpdatedDate, showUpdatedTime, showExpiresDate props implemented
+- [x] Conditional rendering in component template
+- [x] Conditional control display in playground (Button component pattern)
+- [x] Separator (|) only shows when both date and time are visible
+
+### Testing & Quality
+- [x] Unit tests updated and passing (22 unit + 13 a11y = 35 total)
+- [x] Documentation updated with examples
+- [x] No TypeScript errors
+- [x] WCAG 2.1 AAA compliance maintained
 
 ---
 
@@ -184,6 +203,31 @@ interface Props {
 
 ---
 
-## 🚀 Ready to Begin
+## 🚀 Session Complete
 
-Start with adding the new props interface and computed properties for button labels.
+### Final Component Props (17 total)
+
+**Core Props (9)**:
+- priceValue, status, align, showDateTime
+- updatedDate, updatedTime, timePeriod, timezone, expiresDate
+
+**Button Props (8)**:
+- primaryButtonText, secondaryButtonText
+- hidePrimaryButton, hideSecondaryButton
+- primaryButtonDisabled, secondaryButtonDisabled
+- primaryButtonLoading, secondaryButtonLoading
+
+**DateTime Visibility Props (3)**:
+- showUpdatedDate, showUpdatedTime, showExpiresDate
+
+### Test Coverage
+- **35 tests passing** (13 accessibility + 22 unit)
+- Coverage for button behavior, datetime visibility, status states
+- All edge cases tested (hidden controls, separator logic, etc.)
+
+### Key Achievements
+1. ✅ Smart default button labels with override capability
+2. ✅ Status-aware datetime visibility (auto-hide for Expired/Not Available)
+3. ✅ Granular show/hide controls for date/time elements
+4. ✅ Interactive playground with conditional control display
+5. ✅ Maintained WCAG 2.1 AAA compliance throughout

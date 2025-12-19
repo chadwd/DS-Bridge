@@ -210,6 +210,58 @@ npm run type-check
 npm run preview
 ```
 
+## Branching Convention
+
+This project uses a simple, descriptive branching convention for feature development:
+
+### Branch Naming Format
+
+```
+sN-component-feature
+```
+
+**Pattern**: `s<session-number>-<component-name>-<feature>`
+
+### Examples
+
+```bash
+s2-gsale-btn          # Session 2: GuaranteedSale buttons
+s3-card-layout        # Session 3: Card component layout
+s4-input-validation   # Session 4: Input validation
+s5-gsale-loading      # Session 5: GuaranteedSale loading states
+```
+
+### Workflow
+
+1. **Create a branch** for your session work:
+   ```bash
+   git checkout -b s2-gsale-btn
+   ```
+
+2. **Work on your changes** throughout the session
+
+3. **Commit and push at end of session** (or when taking breaks):
+   ```bash
+   git add .
+   git commit -m "feat(components): add dynamic button labels"
+   git push -u origin s2-gsale-btn
+   ```
+
+   **Important**: Only commit/push at:
+   - ✅ End of session
+   - ✅ When taking breaks (to save progress)
+   - ❌ Not after every small change
+
+4. **Create a Pull Request** on GitHub to merge into `main`
+
+### Why This Convention?
+
+- ✅ **Short but contextful** - Quick to type, easy to understand
+- ✅ **Session tracking** - Links to session plans in `agent-sessions/`
+- ✅ **Component scoped** - Clear what part of the system is affected
+- ✅ **Feature focused** - Describes what's being worked on
+- ✅ **Team friendly** - Multiple people can work in parallel without conflicts
+
 ## Component Usage
 
 ### In Your App

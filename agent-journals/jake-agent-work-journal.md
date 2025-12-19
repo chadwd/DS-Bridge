@@ -4,74 +4,126 @@ A comprehensive log of all design and development work completed by Jake during 
 
 ---
 
-## Session #2: GuaranteedSale Action Button Enhancements
-**Date**: 2025-12-17
-**Status**: ⏸️ Paused (Awaiting approval)
-**Version**: v0.3.1-dev
+## Session #2: GuaranteedSale Action Button & DateTime Enhancements
+**Date**: 2025-12-17 to 2025-12-18
+**Status**: ✅ Complete
+**Version**: v0.3.1
 
 ### Objectives
 1. Enhance action buttons with dynamic labels based on component status
 2. Add props for button customization and flexibility
 3. Implement conditional button display logic
 4. Add loading states and disabled states
-5. Maintain WCAG 2.1 AAA compliance
+5. Add DateTime visibility controls for granular show/hide capability
+6. Maintain WCAG 2.1 AAA compliance
 
 ### Work Completed
 
-#### 1. Session Planning
-- ✅ Reviewed Session 1 completion
-- ✅ Marked all Session 1 tasks as completed
-- ✅ Created SESSION_2_PLAN.md for action button enhancements
-- ✅ Updated README.md with GuaranteedSale component
-- ✅ Created jake-agent-work-journal.md
+#### 1. Dynamic Button System Implementation
+- **Button Customization Props (8 total)**:
+  - `primaryButtonText`, `secondaryButtonText` - Override default labels
+  - `hidePrimaryButton`, `hideSecondaryButton` - Show/hide individual buttons
+  - `primaryButtonDisabled`, `secondaryButtonDisabled` - Disable button states
+  - `primaryButtonLoading`, `secondaryButtonLoading` - Loading spinner states
 
-#### 2. README Documentation
-- **Components Section Updated**:
-  - Added comprehensive component list (Button, Card, Chip, Dialog, Divider, Expansion Panel, GuaranteedSale, List, Menu)
-  - Highlighted GuaranteedSale features: "Enterprise component displaying guaranteed offer value with status badge, datetime information, and action buttons (5 status states, 2 alignment modes, interactive tooltips)"
+- **Smart Default Labels by Status** (APPROVED):
+  - Available: "Accept Offer" (primary only)
+  - Accepted: "Cancel Offer" (primary only)
+  - Requested: "Check Status" (primary) / "Cancel Request" (secondary)
+  - Expired: "Request New Offer" (primary only)
+  - Not Available: "Learn More" (primary only)
 
-- **Usage Examples Updated**:
-  - Added DsGuaranteedSale import example
-  - Added usage example with props and event handlers
-  - Updated Design System Principles (test coverage language)
+- **Computed Properties**:
+  - `primaryButtonLabel` - Smart defaults with prop override capability
+  - `secondaryButtonLabel` - Smart defaults with prop override capability
+  - `showPrimaryButton` - Conditional display logic
+  - `showSecondaryButton` - Only shows for "Requested" status by default
 
-#### 3. Button Label Proposal
-- **Proposed Button Labels by Status**:
-  - Available: "Accept Offer" / "Decline"
-  - Accepted: "View Details" / "Contact Support"
-  - Requested: "Check Status" / "Cancel Request"
-  - Expired: "Request New Offer" / "View Details"
-  - Not Available: Hidden or "Request Pricing" / "Learn More"
+#### 2. DateTime Visibility Enhancements
+- **Auto-Hide for Specific Statuses**:
+  - Added `shouldShowDateTime` computed property
+  - Automatically hides date/time section for "Expired" and "Not Available" statuses
+  - Overrides `showDateTime` prop when status requires hiding
 
-- **Questions for User**:
-  - Should "Not Available" buttons be hidden or visible?
-  - Do button labels match business context?
-  - Should we maintain mixed pattern (action vs informational buttons)?
+- **Granular Show/Hide Props (3 total)**:
+  - `showUpdatedDate` (default: true) - Toggle updated date display
+  - `showUpdatedTime` (default: true) - Toggle updated time display
+  - `showExpiresDate` (default: true) - Toggle expires date display
 
-### Pending Work
-- [ ] Finalize button labels (awaiting user approval)
-- [ ] Implement dynamic button labels based on status
-- [ ] Add button customization props (text overrides, hide/show, loading, disabled)
-- [ ] Update tests for new button behavior
-- [ ] Update documentation with button customization examples
+- **Conditional Rendering**:
+  - Updated row only shows if `showUpdatedDate || showUpdatedTime`
+  - Date element conditional on `showUpdatedDate`
+  - Time, period, timezone conditional on `showUpdatedTime`
+  - Expires row conditional on `showExpiresDate`
+  - Separator (|) only appears when both date AND time are visible
 
-### Files Created (2)
-1. `agent-sessions/jake-SESSION_2_PLAN.md` - Session 2 planning
-2. `agent-journals/jake-agent-work-journal.md` - This file
+- **Documentation Playground**:
+  - Added 3 toggle controls for datetime visibility
+  - Implemented conditional control display (Button component pattern)
+  - Date/time text fields only appear when parent toggle is ON
+  - All datetime controls disabled for Expired/Not Available statuses
+  - Used `v-if="showDateTime"` and `v-if="showDateTime && showUpdatedDate"` patterns
 
-### Files Modified (2)
-1. `README.md` - Added GuaranteedSale component, updated examples
-2. `agent-sessions/jake-SESSION_1_PLAN.md` - Marked as COMPLETED with summary
+#### 3. Testing & Quality Assurance
+- **Unit Tests**: Added 8 new tests for datetime visibility
+  - Test hiding updated date independently
+  - Test hiding updated time independently
+  - Test hiding expires date
+  - Test hiding entire updated row (both date and time hidden)
+  - Test default behavior (all elements visible)
+  - Test date-only display (no time)
+  - Test time-only display (no date)
+  - Test separator logic
 
-### Key Decisions
-1. **Session Structure**: Separate sessions for initial build (Session 1) vs refinements (Session 2)
-2. **README Updates**: Document components immediately after completion
-3. **Agent Journal**: Track all work for future reference and knowledge transfer
+- **Test Fixes**:
+  - Fixed conflicting date values issue (updated vs expires both "Nov 3, 2025")
+  - Used unique dates in tests: "Dec 1, 2025" (updated) vs "Dec 5, 2025" (expires)
+  - All 35 tests passing (13 a11y + 22 unit)
 
-### Context for Continuation
-- Component is fully functional with 5 status states, dynamic tooltips, proper colors
-- Next: Enhance action buttons with smart defaults and customization props
-- Approach: Smart defaults + override props (Option 1 from SESSION_2_PLAN)
+- **Quality Checks**:
+  - ✅ TypeScript type-check: 0 errors
+  - ✅ All 35 tests passing
+  - ✅ WCAG 2.1 AAA compliance maintained
+  - ✅ Zero build warnings
+
+### Files Modified (6)
+1. `src/components/GuaranteedSale.vue` - Added 11 props, conditional rendering, computed properties
+2. `docs/components/guaranteedsale.md` - Added toggle controls, conditional display
+3. `tests/GuaranteedSale.spec.js` - Added 8 new tests, updated 3 existing tests
+4. `tests/GuaranteedSale.a11y.spec.ts` - Updated for dynamic buttons
+5. `agent-sessions/jake-SESSION_2_PLAN.md` - Added Phase 5, completion summary
+6. `CHANGELOG.md` - Added v0.3.1 entry
+
+### Component Stats (Before → After)
+- **Props**: 9 → 20 (+11, +122%)
+  - Core: 9 (unchanged)
+  - Button customization: 0 → 8
+  - DateTime visibility: 0 → 3
+- **Tests**: 13 → 35 (+22, +169%)
+  - Unit: 9 → 22
+  - Accessibility: 4 → 13 (unchanged from Session 1)
+- **Lines of Code**: ~400 → ~550 (+37%)
+- **Computed Properties**: 4 → 9 (+5)
+
+### Key Achievements
+1. ✅ Smart default button labels with complete override capability
+2. ✅ Status-aware datetime visibility (auto-hide for Expired/Not Available)
+3. ✅ Granular show/hide controls following Button component pattern
+4. ✅ Interactive playground with hierarchical control display
+5. ✅ Comprehensive test coverage (35 tests, 100% of new features)
+6. ✅ Maintained WCAG 2.1 AAA compliance throughout
+
+### Design Patterns Applied
+1. **Smart Defaults + Override**: Button labels intelligent by default, customizable via props
+2. **Conditional Control Display**: Following Button component's `v-if="!icon"` pattern
+3. **Hierarchical Toggles**: Parent toggle (showDateTime) controls child control visibility
+4. **Status-Aware Behavior**: Component automatically adjusts based on status prop
+
+### Technical Decisions
+1. **Button Visibility**: Only "Requested" shows secondary button by default (cleaner UX)
+2. **DateTime Auto-Hide**: Expired and Not Available always hide datetime (business logic)
+3. **Separator Logic**: Pipe (|) only shows when BOTH date AND time are visible (clean presentation)
+4. **Test Strategy**: Use unique date values to avoid false positives in assertions
 
 ---
 
@@ -235,19 +287,19 @@ A comprehensive log of all design and development work completed by Jake during 
 
 | Metric | Value |
 |--------|-------|
-| Total Sessions | 2 (1 complete, 1 in progress) |
+| Total Sessions | 2 (both complete) |
 | Components Created | 1 (GuaranteedSale) |
-| Test Cases | 13 (9 unit + 4 a11y) |
-| Documentation Pages | 1 interactive page |
+| Test Cases | 35 (22 unit + 13 a11y) |
+| Documentation Pages | 1 interactive page with playground |
 | Status States Implemented | 5 |
-| Props | 9 |
+| Props | 20 (9 core + 8 button + 3 datetime) |
 | Events | 2 |
-| Lines of Code (Component) | 400+ |
-| Lines of Documentation | 240+ |
+| Lines of Code (Component) | 550+ |
+| Lines of Documentation | 300+ |
 | WCAG Compliance | AAA |
 
 ---
 
-**Last Updated**: 2025-12-17
-**Current Version**: v0.3.1-dev
-**Next Version Target**: v0.3.1 (Action Button Enhancements)
+**Last Updated**: 2025-12-18
+**Current Version**: v0.3.1
+**Next Session**: TBD (Planning needed)
