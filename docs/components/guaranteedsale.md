@@ -47,9 +47,6 @@ const showUpdatedDate = ref(true);
 const showUpdatedTime = ref(true);
 const showExpiresDate = ref(true);
 
-// Loading state for "With Loading State" example
-const isLoading = ref(false);
-
 // Disable date/time controls for Expired and Not Available statuses
 const isDateTimeDisabled = computed(() => {
   return status.value === 'Expired' || status.value === 'Not Available';
