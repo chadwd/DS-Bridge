@@ -81,6 +81,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CHANGELOG.md updates (now complete)
 - Layout shift fix completion
 
+## [0.3.1] - 2025-12-19
+
+### Session #4: GuaranteedSale Visual Documentation & Refinement (Complete)
+
+#### Added
+- **CodePreview Documentation Examples** (4 new examples)
+  - Basic Usage: Simple $25,000 Available offer with primary action event
+  - Custom Button Labels: $18,500 Accepted with button text override
+  - Left Alignment in Dashboard: $22,500 Available with full datetime display
+  - Conditional Date/Time Display: $19,800 Accepted with granular visibility controls
+  - All examples follow Button component's CodePreview pattern for consistency
+
+#### Changed
+- **Documentation Structure**
+  - Enhanced Usage Examples section with interactive CodePreview components
+  - Improved visual presentation of common use cases
+  - Aligned documentation patterns with design system standards
+
+#### Technical
+- Explored Vuetify's v-skeleton-loader for loading states (research/exploration only)
+- Cleaned up orphaned state variables from documentation examples
+- Maintained WCAG 2.1 AAA compliance throughout refinements
+
+#### Files Modified (1)
+- docs/components/guaranteedsale.md - Added 4 CodePreview examples (lines 286-423)
+
 ## [0.3.1] - 2025-12-18
 
 ### Session #6: Divider Component Implementation (Complete)
