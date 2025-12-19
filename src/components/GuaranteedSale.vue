@@ -51,7 +51,7 @@
     <div class="actions-section">
       <v-btn
         v-if="showPrimaryButton"
-        color="buttonPrimary"
+        color="primary"
         variant="elevated"
         size="default"
         class="primary-action-btn"
@@ -63,8 +63,8 @@
       </v-btn>
       <v-btn
         v-if="showSecondaryButton"
-        color="textMedium"
-        variant="text"
+        color="secondary"
+        variant="outlined"
         size="default"
         class="secondary-action-btn"
         :disabled="secondaryButtonDisabled"
@@ -494,38 +494,23 @@ const shouldShowDateTime = computed(() => {
 }
 
 .primary-action-btn {
-  border-radius: 50px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.125px;
-  text-transform: uppercase;
-  padding: 0 16px;
-  height: 36px;
-  background-color: #616161 !important;
-  color: #ffffff !important;
+  /* Apply pill-shaped border radius from design tokens (9999px = full pill shape) */
+  border-radius: 9999px;
 
-  :deep(.v-btn__content) {
-    color: #ffffff;
-  }
+  /* Typography from design system - DO NOT CHANGE */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
 }
 
 .secondary-action-btn {
-  border-radius: 50px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.125px;
-  text-transform: uppercase;
-  padding: 0 16px;
-  height: 36px;
-  color: rgba(0, 0, 0, 0.6) !important;
-  background-color: transparent !important;
-  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  /* Apply pill-shaped border radius from design tokens (9999px = full pill shape) */
+  border-radius: 9999px;
 
-  :deep(.v-btn__content) {
-    color: rgba(0, 0, 0, 0.6);
-  }
+  /* Typography from design system - DO NOT CHANGE */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
 }
 
 .align-left .datetime-row {

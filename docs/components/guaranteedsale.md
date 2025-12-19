@@ -1,9 +1,37 @@
 # GuaranteedSale Component
 
+## Overview
+
 The `DsGuaranteedSale` component displays a guaranteed offer with current value, status badge, datetime information, and action buttons. It provides a clean, professional presentation for guaranteed sale offers with flexible alignment options (center or left).
 
+This enterprise component is ideal for real estate, automotive, and marketplace applications where guaranteed pricing needs to be prominently displayed with clear status indicators and actionable controls.
+
+### When to Use
+
+- **Real Estate Applications**: Display guaranteed home offers with acceptance status
+- **Automotive Marketplaces**: Show guaranteed trade-in or purchase values
+- **Enterprise Dashboards**: Present time-sensitive guaranteed pricing with expiration dates
+- **Transaction Workflows**: Guide users through offer acceptance, review, or cancellation flows
+- **Status Tracking**: Monitor pricing requests with visual status indicators
+
+### When NOT to Use
+
+- **Static Pricing Displays** - Use a simple Card or pricing component instead
+- **Non-Guaranteed Values** - This component implies a commitment; use estimates/quotes components for non-binding prices
+- **Simple Call-to-Action** - Use a Button component if you don't need status tracking
+- **Multiple Offers Side-by-Side** - Consider a comparison table or grid layout instead
+
+### Key Features
+
+- **5 Status States**: Available, Accepted, Requested, Expired, Not Available
+- **Smart Button Labels**: Context-aware button text based on status (with override capability)
+- **Flexible Date/Time Display**: Granular show/hide controls for updated and expires timestamps
+- **Dual Alignment Modes**: Center or left alignment for various layout contexts
+- **Full Customization**: 20 props for complete control over appearance and behavior
+- **WCAG 2.1 AAA Compliant**: Meets highest accessibility standards
+
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 // Interactive demo state
 const priceValue = ref('22,500');
@@ -18,6 +46,9 @@ const expiresDate = ref('Nov 3, 2025');
 const showUpdatedDate = ref(true);
 const showUpdatedTime = ref(true);
 const showExpiresDate = ref(true);
+
+// Loading state for "With Loading State" example
+const isLoading = ref(false);
 
 // Disable date/time controls for Expired and Not Available statuses
 const isDateTimeDisabled = computed(() => {
@@ -57,6 +88,25 @@ const handleSecondaryAction = () => {
   console.log('Secondary action clicked!');
 };
 <\/script>`;
+});
+
+// Loading state handler for usage example
+const checkStatus = async () => {
+  isLoading.value = true;
+  // Simulate API call
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  isLoading.value = false;
+  alert('Status checked!');
+};
+
+// Skeleton loading state
+const isSkeletonLoading = ref(true);
+
+// Auto-load skeleton after 3 seconds
+onMounted(() => {
+  setTimeout(() => {
+    isSkeletonLoading.value = false;
+  }, 3000);
 });
 </script>
 
@@ -254,21 +304,322 @@ Use GuaranteedSale for:
   </template>
 </CodePreview>
 
+## Usage Examples
+
+### Basic Usage
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; justify-content: center; padding: 1.5rem;">
+      <DsGuaranteedSale
+        price-value="25,000"
+        status="Available"
+        @primary-action="() => alert('Offer accepted!')"
+      />
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsGuaranteedSale
+    price-value="25,000"
+    status="Available"
+    @primary-action="handleAcceptOffer"
+  />
+</template>
+
+<script setup>
+const handleAcceptOffer = () => {
+  console.log('Offer accepted!');
+  // Handle offer acceptance logic
+};
+</script>
+```
+
+  </template>
+</CodePreview>
+
+### Custom Button Labels
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; justify-content: center; padding: 1.5rem;">
+      <DsGuaranteedSale
+        price-value="18,500"
+        status="Accepted"
+        primary-button-text="View Contract"
+        @primary-action="() => alert('Navigating to contract...')"
+      />
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsGuaranteedSale
+    price-value="18,500"
+    status="Accepted"
+    primary-button-text="View Contract"
+    @primary-action="viewContract"
+  />
+</template>
+
+<script setup>
+const viewContract = () => {
+  // Navigate to contract view
+};
+</script>
+```
+
+  </template>
+</CodePreview>
+
+### With Loading State
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; justify-content: center; padding: 1.5rem;">
+      <DsGuaranteedSale
+        price-value="30,000"
+        status="Requested"
+        :primary-button-loading="isLoading"
+        @primary-action="checkStatus"
+        @secondary-action="() => alert('Request cancelled')"
+      />
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsGuaranteedSale
+    price-value="30,000"
+    status="Requested"
+    :primary-button-loading="isLoading"
+    @primary-action="checkStatus"
+    @secondary-action="cancelRequest"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const isLoading = ref(false);
+
+const checkStatus = async () => {
+  isLoading.value = true;
+  // API call to check status
+  await fetch('/api/offer-status');
+  isLoading.value = false;
+};
+
+const cancelRequest = () => {
+  // Handle cancellation
+};
+</script>
+```
+
+  </template>
+</CodePreview>
+
+### Skeleton Loading State
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; justify-content: center; padding: 1.5rem;">
+      <div v-if="isSkeletonLoading" style="width: 100%; max-width: 350px;">
+        <div style="background: white; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+          <!-- Header skeleton -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+            <v-skeleton-loader type="text" width="100px" />
+            <v-skeleton-loader type="text" width="150px" />
+            <v-skeleton-loader type="chip" width="120px" />
+          </div>
+          <!-- DateTime skeleton -->
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <v-skeleton-loader type="text" width="100%" />
+            <v-skeleton-loader type="text" width="100%" />
+          </div>
+          <!-- Button skeleton -->
+          <div style="display: flex; gap: 0.5rem; justify-content: center;">
+            <v-skeleton-loader type="button" width="140px" />
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <DsGuaranteedSale
+          price-value="27,500"
+          status="Available"
+        />
+      </div>
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <div v-if="isLoading">
+    <!-- Skeleton loading state -->
+    <div style="background: white; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Header skeleton -->
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
+        <v-skeleton-loader type="text" width="100px" />
+        <v-skeleton-loader type="text" width="150px" />
+        <v-skeleton-loader type="chip" width="120px" />
+      </div>
+      <!-- DateTime skeleton -->
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <v-skeleton-loader type="text" width="100%" />
+        <v-skeleton-loader type="text" width="100%" />
+      </div>
+      <!-- Button skeleton -->
+      <div style="display: flex; gap: 0.5rem; justify-content: center;">
+        <v-skeleton-loader type="button" width="140px" />
+      </div>
+    </div>
+  </div>
+  <div v-else>
+    <!-- Actual component -->
+    <DsGuaranteedSale
+      :price-value="priceValue"
+      :status="status"
+      @primary-action="handlePrimaryAction"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const priceValue = ref('27,500');
+const status = ref('Available');
+const isLoading = ref(true);
+
+onMounted(() => {
+  // Simulate data loading
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 2000);
+});
+
+const handlePrimaryAction = () => {
+  console.log('Offer accepted!');
+};
+</script>
+```
+
+This demonstrates how to use Vuetify's `v-skeleton-loader` component to create a loading placeholder while data is being fetched, then swap it with the actual GuaranteedSale component once data is ready.
+
+  </template>
+</CodePreview>
+
+### Left Alignment in Dashboard
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; justify-content: center; padding: 1.5rem;">
+      <DsGuaranteedSale
+        align="left"
+        price-value="22,500"
+        status="Available"
+        updated-date="Dec 18, 2025"
+        updated-time="14:30:00"
+        time-period="p.m."
+        timezone="PST"
+        expires-date="Dec 25, 2025"
+      />
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsGuaranteedSale
+    align="left"
+    price-value="22,500"
+    status="Available"
+    updated-date="Dec 18, 2025"
+    updated-time="14:30:00"
+    time-period="p.m."
+    timezone="PST"
+    expires-date="Dec 25, 2025"
+  />
+</template>
+```
+
+  </template>
+</CodePreview>
+
+### Conditional Date/Time Display
+
+<CodePreview>
+  <template #preview>
+    <div style="display: flex; justify-content: center; padding: 1.5rem;">
+      <DsGuaranteedSale
+        price-value="19,800"
+        status="Accepted"
+        :show-updated-time="false"
+        :show-expires-date="false"
+      />
+    </div>
+  </template>
+  <template #code>
+
+```vue
+<template>
+  <DsGuaranteedSale
+    price-value="19,800"
+    status="Accepted"
+    :show-updated-time="false"
+    :show-expires-date="false"
+  />
+</template>
+```
+
+This displays only the updated date without time or expiration information.
+
+  </template>
+</CodePreview>
+
 ## API Reference
 
 ### Props
+
+#### Core Props
 
 | Name         | Type    | Default        | Description                                                    |
 | ------------ | ------- | -------------- | -------------------------------------------------------------- |
 | priceValue   | String  | '22,500'       | The guaranteed sale amount (displays as $amount)               |
 | status       | String  | 'Accepted'     | Status badge: 'Available', 'Accepted', 'Requested', 'Expired', 'Not Available' |
 | align        | String  | 'center'       | Layout alignment: 'center' or 'left'                           |
-| showDateTime | Boolean | true           | Whether to display the date/time section                       |
+| showDateTime | Boolean | true           | Whether to display the date/time section (auto-hides for Expired/Not Available) |
 | updatedDate  | String  | 'Nov 3, 2025'  | Date string for updated timestamp                              |
 | updatedTime  | String  | '10:55:04'     | Time string for updated timestamp                              |
 | timePeriod   | String  | 'a.m.'         | AM/PM indicator: 'a.m.' or 'p.m.'                              |
 | timezone     | String  | 'EST'          | Timezone: 'PST', 'MST', 'CST', or 'EST'                        |
 | expiresDate  | String  | 'Nov 3, 2025'  | Date string for expiration                                     |
+
+#### DateTime Visibility Props
+
+| Name             | Type    | Default | Description                                                    |
+| ---------------- | ------- | ------- | -------------------------------------------------------------- |
+| showUpdatedDate  | Boolean | true    | Toggle display of updated date in datetime section             |
+| showUpdatedTime  | Boolean | true    | Toggle display of updated time in datetime section             |
+| showExpiresDate  | Boolean | true    | Toggle display of expires date in datetime section             |
+
+#### Button Customization Props
+
+| Name                    | Type    | Default     | Description                                                    |
+| ----------------------- | ------- | ----------- | -------------------------------------------------------------- |
+| primaryButtonText       | String  | (dynamic)   | Override default primary button label (based on status if not provided) |
+| secondaryButtonText     | String  | (dynamic)   | Override default secondary button label (based on status if not provided) |
+| hidePrimaryButton       | Boolean | false       | Hide the primary action button                                 |
+| hideSecondaryButton     | Boolean | false       | Hide the secondary action button                               |
+| primaryButtonDisabled   | Boolean | false       | Disable the primary action button                              |
+| secondaryButtonDisabled | Boolean | false       | Disable the secondary action button                            |
+| primaryButtonLoading    | Boolean | false       | Show loading spinner on primary button                         |
+| secondaryButtonLoading  | Boolean | false       | Show loading spinner on secondary button                       |
 
 ### Events
 
