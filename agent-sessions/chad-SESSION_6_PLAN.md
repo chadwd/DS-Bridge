@@ -12,23 +12,104 @@
 **Revised Plan**: First create workflow automation, then use it to build components
 
 ### Part A: Workflow Automation (COMPLETED)
-Created slash commands in `.claude/commands/`:
-- `/session-wrapup` - End-of-session documentation
-- `/session-plan` - Plan new sessions
-- `/component-demo` - Phase 1: Demo-first component development
-- `/component-docs` - Phase 2: Complete documentation after demo approval
+Created slash commands in `.claude/commands/` (renamed from original names):
 
-### Part B: Knowledge Tracker (PENDING)
-- Waiting for Obsidian `.md` examples from user
-- Will create mind-map style session learnings
+| Final Command Name | Original Name | Purpose |
+|-------------------|---------------|---------|
+| `/done-with-session` | `/session-wrapup` | End-of-session documentation (CHANGELOG, journal, plan updates) |
+| `/start-session-plan` | `/session-plan` | Plan new sessions with structured format |
+| `/ds-build-component` | `/component-demo` | Phase 1: Create component + interactive demo only |
+| `/ds-create-component-docs` | `/component-docs` | Phase 2: Complete full documentation after demo approval |
 
-### Part C: Component Development (COMPLETE)
+**Files Created**:
+```
+.claude/commands/
+├── done-with-session.md
+├── start-session-plan.md
+├── ds-build-component.md
+└── ds-create-component-docs.md
+```
+
+### Part B: Two-Phase Component Workflow (DESIGNED)
+
+**Workflow for designers (Jake):**
+
+```
+Phase 1: /ds-build-component ComponentName
+├── Gather context (purpose, Figma specs, Vuetify base)
+├── Generate component scaffolding (npm run create-component)
+├── Build interactive demo ONLY
+├── Designer reviews and approves demo
+└── No full documentation yet
+
+Phase 2: /ds-create-component-docs ComponentName
+├── Complete Overview & When to Use
+├── Add Props/Events/Slots tables
+├── Add variant examples
+├── Add usage examples
+├── Add accessibility notes
+└── Verify build and tests
+```
+
+**Rationale**: Designers see working code before docs are written, reducing rework.
+
+### Part C: Component Placeholder Pages (CREATED)
+
+Created placeholder documentation pages for all 7 planned components:
+
+```
+docs/components/
+├── card.md
+├── chip.md
+├── dialog.md
+├── divider.md
+├── expansion-panel.md
+├── list.md
+└── menu.md
+```
+
+All 7 placeholder pages added to VitePress sidebar config.
+
+### Part D: Component Development (COMPLETE)
 - ✅ Divider component built (first component using manual approach)
 - Used iterative refinement approach (not slash commands)
 - All tests passing (10/10)
 - Production-ready implementation
 
-**Note**: Slash commands created but not yet tested in practice. Divider was built through direct implementation and iteration.
+### Part E: Knowledge Tracker System (PENDING)
+- **Waiting for**: User's Obsidian `.md` file examples
+- **Goal**: Create markdown files with mind-map style connections (backlinks, tags)
+- **Will track**: Session learnings, problem-solving approaches, decisions
+- **Example content**: Model switching strategy (Opus for planning, Sonnet for building)
+
+**Note**: Slash commands created but may need Claude Code restart to appear in `/` menu. Commands designed to be usable by designers (Jake) not just developers.
+
+---
+
+## 🎯 Key Decisions Made
+
+1. **Demo-First Workflow**: All component changes start in demo area, full docs come after approval
+2. **Session Commands**: Standardize how sessions are planned and wrapped up
+3. **Designer Accessibility**: Commands designed to be usable by designers (Jake) not just developers
+4. **Knowledge Tracker Scope**: Nice-to-have for Session 6, will design after seeing Obsidian examples
+5. **Model Strategy** (User Preference):
+   - **Opus 4.5**: Planning, analytics, complex decisions
+   - **Sonnet 4.5**: Building, agent workflows, implementation
+
+---
+
+## 📝 Context for Next Session
+
+### Immediate Next Steps:
+1. **Test Slash Commands** - Verify commands appear after Claude Code restart
+2. **Obsidian Knowledge Tracker** - User will provide `.md` examples for knowledge tracking system design
+3. **Jake (Designer) Onboarding** - Ready to start using component workflow
+4. **Suggested first component for Jake**: Card or Chip using `/ds-build-component`
+
+### Outstanding Component Work:
+- 6 remaining components to build (Chips, Cards, Lists, Expansion Panels, Dialogs, Menus)
+- All will use the new `/ds-build-component` → `/ds-create-component-docs` workflow
+- Jake or developer can work through these after workflow is validated
 
 ---
 

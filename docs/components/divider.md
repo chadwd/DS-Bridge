@@ -2,6 +2,10 @@
 
 The `DsDivider` component is a flexible divider component that wraps Vuetify's `v-divider` for separating content visually.
 
+## Overview
+
+DsDivider creates visual separation between content sections, list items, or layout areas. It provides both horizontal and vertical dividers with optional text labels.
+
 <script setup>
 import { ref, computed } from 'vue';
 
@@ -89,7 +93,7 @@ const generatedCode = computed(() => {
   <template #preview>
     <div>
       <p>Content above</p>
-      <DsDivider />
+      <DsDivider color="primary" />
       <p>Content below</p>
     </div>
   </template>
@@ -113,7 +117,7 @@ const generatedCode = computed(() => {
 <CodePreview>
   <template #preview>
     <div style="width: 100%;">
-      <DsDivider text="OR" />
+      <DsDivider text="OR" color="primary" />
     </div>
   </template>
   <template #code>
@@ -133,7 +137,7 @@ const generatedCode = computed(() => {
   <template #preview>
     <div style="display: flex; height: 60px; align-items: center; gap: 16px;">
       <span>Left content</span>
-      <DsDivider vertical />
+      <DsDivider vertical color="primary" />
       <span>Right content</span>
     </div>
   </template>
@@ -156,8 +160,10 @@ const generatedCode = computed(() => {
 
 <CodePreview>
   <template #preview>
-    <div>
-      <DsDivider inset />
+    <div style="width: 100%;">
+      <p style="margin: 8px 0;">Content above divider</p>
+      <DsDivider inset color="primary" :thickness="2" />
+      <p style="margin: 8px 0;">Content below divider</p>
     </div>
   </template>
   <template #code>
@@ -175,7 +181,7 @@ const generatedCode = computed(() => {
 
 <CodePreview>
   <template #preview>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="width: 100%; min-height: 150px; display: flex; flex-direction: column; gap: 24px; padding: 16px; justify-content: center;">
       <DsDivider :thickness="2" color="primary" />
       <DsDivider :thickness="4" color="error" />
       <DsDivider :thickness="6" color="success" />
@@ -200,20 +206,63 @@ const generatedCode = computed(() => {
 
 ### Props
 
-| Name      | Type            | Default         | Description                                                    |
-| --------- | --------------- | --------------- | -------------------------------------------------------------- |
-| vertical  | Boolean         | false           | Displays divider vertically instead of horizontally            |
-| inset     | Boolean         | false           | Adds margin to the divider                                     |
-| thickness | Number\|String  | 1               | Thickness of the divider line in pixels                        |
-| color     | String          | 'grey-lighten-5' | Color from design tokens (default, primary, secondary, error, etc.) |
-| text      | String          | undefined       | Optional text displayed in the middle of the divider           |
+| Name      | Type            | Default          | Description                                                    |
+| --------- | --------------- | ---------------- | -------------------------------------------------------------- |
+| vertical  | Boolean         | false            | Displays divider vertically instead of horizontally            |
+| inset     | Boolean         | false            | Adds margin to the divider                                     |
+| thickness | Number\|String  | 1                | Thickness of the divider line in pixels                        |
+| color     | String          | 'grey-lighten-4' | Color from design tokens (default, primary, secondary, error, etc.) |
+| text      | String          | undefined        | Optional text displayed in the middle of the divider           |
+
+### Events
+
+DsDivider does not emit any custom events. It inherits all Vuetify `v-divider` events via `v-bind="$attrs"`.
+
+### Slots
+
+DsDivider does not use slots. Use the `text` prop to display text in the divider center.
+
+**Note**: Earlier versions used a slot, but this was changed to a prop for better conditional rendering control.
+
+## Guidelines
+
+### Do
+
+- Separate sections of content on a page
+- Divide list items in menus or navigation
+- Create visual breaks in forms or cards
+- Add labeled dividers (e.g., "OR" between login options)
+- Separate toolbar items or actions
+- Use inset dividers to separate nested content items
+
+### Don't
+
+- Use dividers for whitespace alone - use CSS margin/padding instead
+- Place dividers between every element - overuse reduces effectiveness
+- Use dividers in place of proper headings - use typography hierarchy instead
+- Use dividers for decorative borders - use CSS borders or cards instead
+- Use full-width dividers for nested content - use inset dividers instead
 
 ## Accessibility
 
-- ✅ WCAG 2.1 AAA compliant
+### ARIA & Semantics
+
 - ✅ Uses semantic `<hr>` element
 - ✅ `role="separator"` applied automatically by Vuetify
-- ✅ Screen reader compatible
+- ✅ `aria-orientation` set to "vertical" when `vertical` prop is true
+- ✅ Screen readers announce as "separator" with appropriate orientation
+
+### Keyboard Navigation
+
+Dividers are non-interactive elements and do not receive keyboard focus. They serve as visual and semantic separators only.
+
+### WCAG Compliance
+
+This component meets WCAG 2.1 AAA standards:
+- **Non-text Contrast**: Divider lines meet 3:1 contrast ratio (when using default or semantic colors)
+- **Semantic HTML**: Uses proper `<hr>` element for content separation
+- **Screen Reader Support**: Announced correctly with role and orientation
+- **Focus Management**: Non-focusable (correct behavior for separator elements)
 
 ## Related Components
 

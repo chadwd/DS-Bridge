@@ -30,16 +30,10 @@ Add after the title, before the demo:
 ```markdown
 ## Overview
 
-{ComponentName} is used for {primary purpose}. It provides {key features}.
-
-### When to Use
-- {Use case 1}
-- {Use case 2}
-- {Use case 3}
-
-### When NOT to Use
-- {Anti-pattern 1} - use {Alternative} instead
+{ComponentName} provides {brief description of what the component does and its key features}.
 ```
+
+**Note**: Keep it concise - 1-2 sentences max. No subsections. The Guidelines section (added later) will cover Do's and Don'ts.
 
 #### B. Props Table
 Add after the interactive demo:
@@ -90,37 +84,55 @@ Add live examples for each variant:
 </ComponentDemo>
 ```
 
-#### F. Usage Examples
-Add practical, real-world examples:
+#### F. Guidelines Section
+Add before Accessibility section:
 ```markdown
-## Usage Examples
+## Guidelines
 
-### Basic Usage
-{code example}
+### Do
 
-### With Icons
-{code example}
+- [Best practice 1 - clear, actionable guidance]
+- [Best practice 2]
+- [Best practice 3]
+- [Best practice 4]
+- [Best practice 5]
+- [Best practice 6]
 
-### In a Form
-{code example}
+### Don't
+
+- [Anti-pattern 1 - what to avoid and why]
+- [Anti-pattern 2]
+- [Anti-pattern 3]
+- [Anti-pattern 4]
+- [Anti-pattern 5]
 ```
+
+**Note**: Focus on practical, actionable guidance. Use Material Design 3 style - text only, no component examples needed.
 
 #### G. Accessibility Section
 ```markdown
 ## Accessibility
 
-### Keyboard Navigation
-- **Tab**: {behavior}
-- **Enter/Space**: {behavior}
-- **Escape**: {behavior if applicable}
+### ARIA & Semantics
 
-### Screen Readers
-- {ARIA attribute notes}
-- {Role information}
+- ✅ Uses semantic HTML elements
+- ✅ Proper ARIA attributes applied
+- ✅ Screen readers announce correctly with {role/aria details}
+
+### Keyboard Navigation
+
+- **Tab**: Focus the component
+- **Enter/Space**: {specific activation behavior}
+- **Escape**: {close/cancel behavior if applicable}
+- **Arrow Keys**: {navigation behavior if applicable}
 
 ### WCAG Compliance
+
 This component meets WCAG 2.1 AAA standards:
-- {Specific compliance notes}
+- **Keyboard Accessible**: Full keyboard navigation support
+- **Screen Reader Support**: Proper semantic markup and ARIA
+- **Focus Management**: Clear focus indicators
+- **Color Contrast**: All color variants meet AAA contrast requirements
 ```
 
 #### H. Related Components
@@ -160,13 +172,13 @@ After completing documentation:
 ## Documentation Complete: {ComponentName}
 
 ### Sections Added:
-- [x] Overview & When to Use
+- [x] Overview (concise description)
 - [x] Props table ({count} props)
 - [x] Events table ({count} events)
 - [x] Slots table ({count} slots)
 - [x] Variant examples
-- [x] Usage examples
-- [x] Accessibility notes
+- [x] Guidelines (Do's and Don'ts)
+- [x] Accessibility (ARIA, Keyboard, WCAG)
 - [x] Related components
 
 ### Verification:

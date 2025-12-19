@@ -2,6 +2,10 @@
 
 The `DsButton` component is a flexible button component that wraps Vuetify's `v-btn` with design system conventions and theming.
 
+## Overview
+
+DsButton provides a comprehensive button solution with multiple variants, sizes, and states. It supports Material Design 3 styling, icon-only buttons, loading states, and full accessibility features.
+
 <script setup>
 import { ref, computed } from 'vue';
 
@@ -112,14 +116,6 @@ const generatedCode = computed(() => {
     <pre><code class="language-vue">{{ generatedCode }}</code></pre>
   </template>
 </ComponentDemo>
-
-## When to Use
-
-Use buttons for:
-- Primary actions (submit, save, create)
-- Secondary or tertiary actions
-- Navigation when paired with routing
-- Triggering modals or dialogs
 
 ## Variants
 
@@ -615,6 +611,26 @@ const showMenu = () => console.log('Show menu');
 | Name    | Description   |
 | ------- | ------------- |
 | default | Button label  |
+
+## Guidelines
+
+### Do
+
+- Use elevated buttons for primary, high-emphasis actions
+- Use outlined or text buttons for secondary actions
+- Provide clear, action-oriented button labels (e.g., "Save Changes", not just "Save")
+- Use icon buttons with `aria-label` for all icon-only buttons
+- Use loading state for async operations to provide feedback
+- Ensure adequate spacing between buttons in button groups
+
+### Don't
+
+- Use too many elevated buttons on one screen - reserve for primary actions
+- Use vague labels like "Click Here" or "Submit" without context
+- Create icon buttons without `aria-label` attributes
+- Use disabled state as the only indicator - provide helper text explaining why
+- Make buttons too small for touch targets (minimum 48×48px)
+- Use buttons for navigation - use links or router-links instead
 
 ## Accessibility
 

@@ -1,0 +1,11 @@
+{
+  "codeConnect": {
+    "include": ["src/components/**/*.figma.ts"],
+    "exclude": [],
+    "parser": "html",
+    "label": "Vue 3"
+  },
+  "documentUrlSubstitutions": {
+    "EuDde9tKZRxoFIPhyOcvG0": "https://www.figma.com/design/EuDde9tKZRxoFIPhyOcvG0/DS-Bridge--white-label-"
+  }
+}

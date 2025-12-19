@@ -286,6 +286,10 @@ cat > "docs/components/${COMPONENT_NAME_LOWER}.md" << 'EOF'
 
 The `DsCOMPONENT_PASCAL` component is a flexible COMPONENT_LOWER component that wraps Vuetify's `v-COMPONENT_LOWER` with design system conventions and theming.
 
+## Overview
+
+DsCOMPONENT_PASCAL provides [brief description of what the component does and its key features].
+
 <script setup>
 import { ref, computed } from 'vue';
 
@@ -360,13 +364,6 @@ const generatedCode = computed(() => {
   </template>
 </ComponentDemo>
 
-## When to Use
-
-Use COMPONENT_LOWER for:
-- [Add use cases here]
-- [Add use cases here]
-- [Add use cases here]
-
 ## Variants
 
 <CodePreview>
@@ -413,12 +410,43 @@ Use COMPONENT_LOWER for:
 | ------- | ----- | --------------------- |
 | default | -     | Component main content |
 
+## Guidelines
+
+### Do
+
+- [Add best practice 1]
+- [Add best practice 2]
+- [Add best practice 3]
+- [Add best practice 4]
+
+### Don't
+
+- [Add anti-pattern 1]
+- [Add anti-pattern 2]
+- [Add anti-pattern 3]
+- [Add anti-pattern 4]
+
 ## Accessibility
 
-- ✅ WCAG 2.1 AAA compliant
-- ✅ Keyboard navigation support
-- ✅ Screen reader compatible
-- ✅ Proper ARIA attributes
+### ARIA & Semantics
+
+- ✅ Uses semantic HTML elements
+- ✅ Proper ARIA attributes applied
+- ✅ Screen readers announce correctly
+
+### Keyboard Navigation
+
+- **Tab**: Focus the component
+- **Enter/Space**: Activate/interact (if applicable)
+- **Escape**: Close/cancel (if applicable)
+
+### WCAG Compliance
+
+This component meets WCAG 2.1 AAA standards:
+- **Keyboard Accessible**: Full keyboard navigation support
+- **Screen Reader Support**: Proper semantic markup and ARIA
+- **Focus Management**: Clear focus indicators
+- **Color Contrast**: Meets AAA contrast requirements
 
 ## Related Components
 

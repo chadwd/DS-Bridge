@@ -1,0 +1,1 @@
+Reminds me of [[Figma MCP Integration]] [[Figma Code Connect]] [[Anthropic Design Team]]

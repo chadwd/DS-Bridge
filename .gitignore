@@ -7,6 +7,9 @@ node_modules
 /dist
 /docs/.vitepress/dist
 
+# VitePress
+/docs/.vitepress/cache/
+
 # Development
 WARP.md
 .DS_Store
@@ -28,6 +31,9 @@ WARP.md
 .env
 .env.local
 .env.*.local
+
+# Figma
+.figma/
 
 # Testing
 coverage

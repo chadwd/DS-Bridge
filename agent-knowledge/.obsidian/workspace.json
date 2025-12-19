@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "426634763a5c0185",
+        "id": "f9ead427ab807be3",
         "type": "tabs",
         "children": [
           {
-            "id": "4c477dc51d42fdd6",
+            "id": "ed4a0c7ee7419575",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,8 +20,19 @@
               "icon": "lucide-file",
               "title": "Vue Composition API Migration"
             }
+          },
+          {
+            "id": "6f8fd2b90e0b3b26",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -75,10 +86,30 @@
             }
           }
         ]
+      },
+      {
+        "id": "1a347828a7ed8fa7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4c477dc51d42fdd6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MCPs.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MCPs"
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 485.5
   },
   "right": {
     "id": "614dcf348d9735dd",
@@ -183,10 +214,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "4c477dc51d42fdd6",
+  "active": "6f8fd2b90e0b3b26",
   "lastOpenFiles": [
-    "_TEMPLATE.md",
     "Vue Composition API Migration.md",
+    "Designer-Developer Collaboration.md",
+    "MCPs.md",
+    "Workflow Automation.md",
+    "Figma MCP Integration.md",
+    "_TEMPLATE.md",
     "chad-session-5-refactoring.mdR",
     "chad-session-5-refactoring.md"
   ]

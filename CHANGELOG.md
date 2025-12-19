@@ -7,6 +7,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2025-12-19
+
+### Session #7: Documentation Polish & Navigation UX (Complete)
+
+#### Added
+- **Chip Component** (DsChip)
+  - Flexible chip wrapper around Vuetify's v-chip
+  - Props: variant, size, closable, icon, prependIcon, appendIcon, color
+  - Multiple variants: filled, outlined, tonal, text
+  - Size options: x-small, small, default, large, x-large
+  - Closable chips with auto-reset demo feature
+  - Export added to src/components/index.ts and src/index.ts
+  - 10 tests (6 unit + 4 accessibility tests) - all passing
+  - Interactive documentation with live playground
+
+- **Chip Documentation** (docs/components/chip.md)
+  - Complete interactive documentation with Material Design 3 structure
+  - Live playground with all prop controls
+  - 7 variant examples: filled, outlined, tonal, sizes, icons, closable, colors
+  - Full API reference tables (props, events, slots)
+  - Usage patterns and best practices
+  - Accessibility notes (WCAG 2.1 AAA compliant)
+  - Guidelines section (Do's and Don'ts)
+  - Related components
+
+- **Figma Code Connect Setup**
+  - Package: @figma/code-connect installed
+  - Configuration: figma.config.json created
+  - GuaranteedSale component mapping (GuaranteedSale.figma.ts)
+  - Documentation: FIGMA_CODE_CONNECT.md
+  - Knowledge base: agent-knowledge/Figma Code Connect.md
+  - ⚠️ Publishing blocked (requires disconnecting lillypad repo from Figma workspace)
+
+#### Enhanced
+- **Divider Documentation (Phase 2)**
+  - Completed all sections with Material Design 3 structure
+  - Full props/events/slots tables
+  - Variant examples: horizontal, text, vertical, inset, custom thickness & color
+  - Usage patterns and guidelines
+  - Accessibility notes (ARIA, Keyboard, WCAG AAA)
+  - Do's and Don'ts section
+  - Related components
+
+- **Navigation UX**
+  - Fixed navbar centering: logo left, navigation centered, controls right
+  - Responsive behavior: desktop shows centered nav, mobile shows hamburger menu
+  - Clean first-principles CSS approach (flexbox + absolute positioning)
+  - Tested at 1280px, 1024px, 960px, 768px, 375px viewports
+  - ⚠️ Layout shift between Home/Guide pages partially fixed (navbar done, content shift remains)
+
+#### Technical Implementation
+- **Navbar Centering** (docs/.vitepress/theme/style.css)
+  - Three-column layout using flexbox
+  - Absolute positioning for centered navigation menu
+  - Full viewport width navbar (100vw)
+  - Responsive media queries for mobile/tablet/desktop
+  - Maintains position consistency across all pages
+
+- **Chip Component Features**
+  - Icon controls with dropdown selectors
+  - Auto-reset demo for closable chips
+  - Comprehensive variant and size options
+  - Full Vuetify v-chip compatibility via v-bind="$attrs"
+
+#### Known Issues
+- Layout shift between Home and Guide pages (content area) - deferred to Session 8
+- Sidebar navigation truncation at ~1500px width - deferred to Session 8
+
+#### Deferred to Session 8
+- File organization and git cleanup
+- Knowledge tracking system enhancements
+- CHANGELOG.md updates (now complete)
+- Layout shift fix completion
+
 ## [0.3.1] - 2025-12-18
 
 ### Session #6: Divider Component Implementation (Complete)

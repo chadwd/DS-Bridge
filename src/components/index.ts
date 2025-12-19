@@ -4,5 +4,6 @@
  */
 
 export { default as DsButton } from './Button.vue';
+export { default as DsChip } from './Chip.vue';
 export { default as DsDivider } from './Divider.vue';
 export { default as DsGuaranteedSale } from './GuaranteedSale.vue';
