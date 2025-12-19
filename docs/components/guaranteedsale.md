@@ -429,21 +429,20 @@ const cancelRequest = () => {
   <template #preview>
     <div style="display: flex; justify-content: center; padding: 1.5rem;">
       <div v-if="isSkeletonLoading" style="width: 100%; max-width: 350px;">
-        <div style="background: white; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-          <!-- Header skeleton -->
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-            <v-skeleton-loader type="text" width="100px" />
-            <v-skeleton-loader type="text" width="150px" />
+        <div style="background: white; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- Header: Title and Value skeleton -->
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+            <v-skeleton-loader type="heading" />
+            <v-skeleton-loader type="text" width="180px" />
             <v-skeleton-loader type="chip" width="120px" />
           </div>
-          <!-- DateTime skeleton -->
+          <!-- DateTime section skeleton -->
           <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <v-skeleton-loader type="text" width="100%" />
-            <v-skeleton-loader type="text" width="100%" />
+            <v-skeleton-loader type="paragraph@2" />
           </div>
-          <!-- Button skeleton -->
-          <div style="display: flex; gap: 0.5rem; justify-content: center;">
-            <v-skeleton-loader type="button" width="140px" />
+          <!-- Action buttons skeleton -->
+          <div style="display: flex; gap: 0.75rem; justify-content: center;">
+            <v-skeleton-loader type="button" />
           </div>
         </div>
       </div>
@@ -460,22 +459,21 @@ const cancelRequest = () => {
 ```vue
 <template>
   <div v-if="isLoading">
-    <!-- Skeleton loading state -->
-    <div style="background: white; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-      <!-- Header skeleton -->
-      <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-        <v-skeleton-loader type="text" width="100px" />
-        <v-skeleton-loader type="text" width="150px" />
+    <!-- Skeleton loading state using Vuetify v-skeleton-loader -->
+    <div style="background: white; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+      <!-- Header: Title and Value skeleton -->
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+        <v-skeleton-loader type="heading" />
+        <v-skeleton-loader type="text" width="180px" />
         <v-skeleton-loader type="chip" width="120px" />
       </div>
-      <!-- DateTime skeleton -->
+      <!-- DateTime section skeleton -->
       <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <v-skeleton-loader type="text" width="100%" />
-        <v-skeleton-loader type="text" width="100%" />
+        <v-skeleton-loader type="paragraph@2" />
       </div>
-      <!-- Button skeleton -->
-      <div style="display: flex; gap: 0.5rem; justify-content: center;">
-        <v-skeleton-loader type="button" width="140px" />
+      <!-- Action buttons skeleton -->
+      <div style="display: flex; gap: 0.75rem; justify-content: center;">
+        <v-skeleton-loader type="button" />
       </div>
     </div>
   </div>
@@ -497,10 +495,10 @@ const status = ref('Available');
 const isLoading = ref(true);
 
 onMounted(() => {
-  // Simulate data loading
+  // Simulate data loading - replace with actual API call
   setTimeout(() => {
     isLoading.value = false;
-  }, 2000);
+  }, 3000);
 });
 
 const handlePrimaryAction = () => {
@@ -509,7 +507,14 @@ const handlePrimaryAction = () => {
 </script>
 ```
 
-This demonstrates how to use Vuetify's `v-skeleton-loader` component to create a loading placeholder while data is being fetched, then swap it with the actual GuaranteedSale component once data is ready.
+Uses Vuetify's built-in `v-skeleton-loader` types:
+- `heading` - For the "Guaranteed Offer" title
+- `text` - For the price value
+- `chip` - For the status badge
+- `paragraph@2` - For two lines of datetime information
+- `button` - For the action button area
+
+The skeleton placeholder automatically displays while data loads, then transitions to the actual component.
 
   </template>
 </CodePreview>
