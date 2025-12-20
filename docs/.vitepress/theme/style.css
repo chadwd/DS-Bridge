@@ -277,6 +277,12 @@ code {
   background-color: var(--ds-color-background);
 }
 
+/* Remove default padding from navbar wrapper */
+.VPNavBar .wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* Navbar layout: logo left, nav centered, controls right */
 .VPNavBar .container {
   display: flex;
@@ -352,30 +358,11 @@ code {
 }
 
 /* ============================================
-   Layout Shift Prevention
+   Layout Variables
    ============================================ */
 
-/*
- * Fix layout shift between Home (no sidebar) and Doc pages (with sidebar).
- * The sidebar is ~272px wide. To prevent content from shifting when navigating,
- * we add left padding to pages without sidebar to match the visual center.
- *
- * Structure:
- * - Home page: .VPContent > .VPPage (no .has-sidebar class)
- * - Doc pages: .VPContent.has-sidebar > .VPDoc (has sidebar)
- */
 :root {
   --vp-sidebar-width: 272px;
-}
-
-/* On screens where sidebar would be visible, offset non-sidebar pages */
-@media (min-width: 960px) {
-  /* Target VPContent that does NOT have the has-sidebar class */
-  .VPContent:not(.has-sidebar) {
-    padding-left: calc(var(--vp-sidebar-width) / 2);
-    padding-right: calc(var(--vp-sidebar-width) / 2);
-    box-sizing: border-box;
-  }
 }
 
 /* Constrain content width */
