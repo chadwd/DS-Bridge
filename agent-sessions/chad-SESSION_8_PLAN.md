@@ -197,9 +197,11 @@ This is a **systems session** (not component development). Focus areas in priori
 ### Bug Fixes (Priority 5) ✅
 - Layout shift: Reduced from 136px to 8px (94% improvement)
 - Sidebar truncation: Fixed at viewports >= 1440px
+- Content alignment: Fixed content overlap with sidebar on doc pages
 
 ### Commits This Session
 1. `62da57c` - Enhanced .gitignore and CLAUDE.md optimization
 2. `c299874` - Knowledge docs consolidation and skills evaluation
 3. `66f473a` - Layout shift and sidebar truncation fixes
-4. Final commit - Session wrap-up and file organization
+4. `b91fe2a` - Session wrap-up and file organization READMEs
+5. `67a683a` - Hotfix: content alignment on sidebar pages
