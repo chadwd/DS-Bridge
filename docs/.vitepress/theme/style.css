@@ -331,6 +331,11 @@ code {
   .VPSidebar {
     width: var(--vp-sidebar-width, 272px) !important;
   }
+
+  /* Ensure content is offset by sidebar width on pages with sidebar */
+  .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width, 272px) !important;
+  }
 }
 
 /* Prevent layout shift between pages with/without sidebar */
