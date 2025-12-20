@@ -7,6 +7,79 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2025-12-19
+
+### Session #8: Knowledge Consolidation & Workflow Infrastructure (Complete)
+
+#### Added
+- **Knowledge Documentation Consolidation**
+  - Completed 3 stub docs: MCPs.md, Designer-Developer Collaboration.md, Figma MCP Integration.md
+  - Created new Meta-Prompting Patterns.md with workflow design patterns
+  - Added blocker note to Figma Code Connect.md (lillypad repo conflict)
+  - All 13 knowledge docs now complete and consistent with YAML frontmatter
+  - Added cross-references using wiki-style links
+
+- **Directory Organization READMEs**
+  - agent-knowledge/README.md - Knowledge base documentation
+  - agent-journals/README.md - Work journal documentation
+  - agent-sessions/README.md - Session plans documentation
+
+#### Enhanced
+- **CLAUDE.md High-Autonomy Optimization**
+  - Added proactive quality gate behaviors
+  - Added parallel execution patterns
+  - Added smart decision making guidelines
+  - Enhanced error prevention rules
+  - Added communication style guidance
+
+- **.gitignore Improvements**
+  - Added agent temp files exclusions
+  - Added editor and IDE patterns
+  - Better organization with section comments
+
+#### Fixed
+- **Layout Shift** (High Priority)
+  - Reduced layout shift between Home and Guide pages from 136px to 8px (94% improvement)
+  - Added CSS to offset non-sidebar pages with consistent padding
+
+- **Sidebar Truncation** (Medium Priority)
+  - Fixed sidebar collapsing at viewports >= 1440px
+  - Added `width: var(--vp-sidebar-width, 272px) !important` to .VPSidebar
+
+- **Content Alignment**
+  - Fixed content overlap with sidebar on doc pages
+  - Applied consistent offset for pages with sidebar
+
+- **Navbar Consistency** (Final Priority)
+  - Removed all custom layout overrides causing menu positioning differences
+  - Applied consistent 32px wrapper padding on all pages (Home, Guide, Design, Components)
+  - Navbar now identical across all pages - same component, same layout, same padding/margins
+
+#### Technical
+- **Skills vs Commands Evaluation**
+  - Evaluated all 5 slash commands against skill migration criteria
+  - Decision: Keep as slash commands (explicit invocation preferred for two-phase workflow)
+  - Documented rationale in Meta-Prompting Patterns.md
+
+#### Commits This Session (11 total)
+1. `62d44cb` - Enhanced .gitignore and CLAUDE.md optimization
+2. `74dd262` - Knowledge base consolidation
+3. `c299874` - Skills vs commands evaluation
+4. `66f473a` - Layout shift and sidebar truncation fixes
+5. `b91fe2a` - Session wrap-up and directory organization READMEs
+6. `67a683a` - Hotfix: content alignment on sidebar pages
+7. `cb3a52b` - Session 8 plan update
+8. `3563dc6` - Navbar padding and layout CSS simplification
+9. `65a396d` - Session 8 plan final layout fixes
+10. `01c17a1` - Remove custom navbar layout overrides
+11. `8358bb6` - Apply consistent 32px wrapper padding
+
+#### Metrics
+- Knowledge Docs: 13 complete (5 new/updated this session)
+- CSS Fixes: 4 layout issues resolved
+- CLAUDE.md: +200 lines of agent behavior guidance
+- Session Duration: ~4 hours
+
 ## [0.3.2] - 2025-12-19
 
 ### Session #7: Documentation Polish & Navigation UX (Complete)
