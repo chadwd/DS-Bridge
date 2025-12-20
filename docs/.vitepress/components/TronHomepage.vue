@@ -3,10 +3,12 @@
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">DS-Bridge</h1>
+        <div class="hero-title-wrapper">
+          <img src="/logo.svg" alt="DS-Bridge Logo" class="hero-logo" />
+          <h1 class="hero-title">DS-Bridge</h1>
+        </div>
         <p class="hero-subtitle">
-          Enterprise-grade Vue 3 design system with real-time interactive documentation,
-          Figma-ready tokens, and WCAG 2.1 AAA accessibility.
+          Connecting Design and Development
         </p>
         <div class="hero-ctas">
           <a href="/guide/getting-started" class="cta-button cta-primary" @click.prevent="$router?.push('/guide/getting-started')">
@@ -25,7 +27,8 @@
     <section class="features-section">
       <h2 class="section-title">Built for the Modern Web</h2>
       <p class="section-subtitle">
-        Everything you need to build consistent, accessible, and beautiful user interfaces
+        Enterprise-grade Vue 3 design system with real-time interactive documentation,
+          Figma-ready tokens, and WCAG 2.1 AAA accessibility.
       </p>
 
       <div class="features-grid">
@@ -229,3 +232,4 @@
 // This component uses the Tron Lab design system styles
 // imported from tron-homepage.css in the main theme
 </script>
+
