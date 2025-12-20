@@ -277,55 +277,6 @@ code {
   background-color: var(--ds-color-background);
 }
 
-/* Remove default padding from navbar wrapper */
-.VPNavBar .wrapper {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* Navbar layout: logo left, nav centered, controls right */
-.VPNavBar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
-  width: 100%;
-}
-
-.VPNavBar .title {
-  flex: 0 0 auto;
-}
-
-.VPNavBar .content {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.VPNavBar .content-body {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  justify-content: flex-end;
-}
-
-/* Center the navigation menu */
-.VPNavBar .VPNavBarMenu {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 32px;
-}
-
-/* Responsive: hide centered nav menu on mobile */
-@media (max-width: 768px) {
-  .VPNavBar .VPNavBarMenu {
-    display: none !important;
-  }
-}
 
 /* Sidebar */
 .VPSidebar {
@@ -344,18 +295,6 @@ code {
   }
 }
 
-/* Prevent layout shift between pages with/without sidebar */
-.VPNav {
-  width: 100vw;
-  position: sticky;
-  top: 0;
-  z-index: var(--vp-z-index-nav, 10);
-}
-
-.VPNavBar .container {
-  max-width: 100%;
-  margin: 0 auto;
-}
 
 /* ============================================
    Layout Variables
