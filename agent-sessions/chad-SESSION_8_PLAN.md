@@ -98,12 +98,15 @@ This is a **systems session** (not component development). Focus areas in priori
 
 ### Priority 5: Optional Bug Fixes
 
-**Deferred from Session 7** (only if time permits):
-- [ ] Layout shift between Home and Guide pages (High Priority)
-  - Navbar fixed, content area still shifts
+**Deferred from Session 7** - COMPLETED:
+- [x] Layout shift between Home and Guide pages (High Priority)
+  - Added CSS to offset non-sidebar pages with padding
+  - Reduced shift from 136px to 8px (94% improvement)
   - Files: `docs/.vitepress/theme/style.css`
-- [ ] Sidebar truncation at ~1500px width (Medium Priority)
-  - Component names get cut off at specific viewport widths
+- [x] Sidebar truncation at ~1500px width (Medium Priority)
+  - Fixed sidebar collapsing at viewports >= 1440px
+  - Added `width: var(--vp-sidebar-width, 272px) !important` to .VPSidebar
+  - Files: `docs/.vitepress/theme/style.css`
 
 ---
 
