@@ -198,6 +198,8 @@ This is a **systems session** (not component development). Focus areas in priori
 - Layout shift: Reduced from 136px to 8px (94% improvement)
 - Sidebar truncation: Fixed at viewports >= 1440px
 - Content alignment: Fixed content overlap with sidebar on doc pages
+- Navbar wrapper: Removed 32px default padding for proper alignment
+- Home page background: Fixed full-width background by removing overly-aggressive layout shift CSS
 
 ### Commits This Session
 1. `62da57c` - Enhanced .gitignore and CLAUDE.md optimization
@@ -205,3 +207,4 @@ This is a **systems session** (not component development). Focus areas in priori
 3. `66f473a` - Layout shift and sidebar truncation fixes
 4. `b91fe2a` - Session wrap-up and file organization READMEs
 5. `67a683a` - Hotfix: content alignment on sidebar pages
+6. `3563dc6` - Navbar padding and layout CSS simplification
