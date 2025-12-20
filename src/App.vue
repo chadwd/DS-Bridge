@@ -28,8 +28,18 @@
           <h3 class="text-body2 font-weight-bold mb-2">Elevated (Default)</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button variant="elevated">Primary</ds-button>
-            <ds-button variant="elevated" color="secondary">Secondary</ds-button>
-            <ds-button variant="elevated" color="error">Error</ds-button>
+            <ds-button
+              variant="elevated"
+              color="secondary"
+            >
+              Secondary
+            </ds-button>
+            <ds-button
+              variant="elevated"
+              color="error"
+            >
+              Error
+            </ds-button>
           </div>
         </v-col>
 
@@ -95,7 +105,10 @@
 
       <!-- Disabled & Loading States -->
       <v-row class="mb-8">
-        <v-col cols="12" md="6">
+        <v-col
+          cols="12"
+          md="6"
+        >
           <h3 class="text-body2 font-weight-bold mb-2">Disabled State</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button disabled>Disabled Primary</ds-button>
@@ -114,7 +127,10 @@
           </div>
         </v-col>
 
-        <v-col cols="12" md="6">
+        <v-col
+          cols="12"
+          md="6"
+        >
           <h3 class="text-body2 font-weight-bold mb-2">Loading State</h3>
           <div class="d-flex gap-2 flex-wrap">
             <ds-button loading>Loading</ds-button>

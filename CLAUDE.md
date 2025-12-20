@@ -38,6 +38,188 @@ agent-journals/jake-agent-work-journal.md
 - Session planning and wrap-up procedures
 - Best practices for collaboration
 
+## Agent Behavior & Autonomy
+
+**Operating Mode**: High autonomy with proactive quality assurance.
+
+### Core Principles
+
+1. **Proactive Quality Gates**
+   - Auto-run tests after making changes to components
+   - Auto-fix linting issues before committing
+   - Auto-validate TypeScript compilation
+   - Auto-check accessibility compliance
+   - Surface issues immediately, fix when possible
+
+2. **Efficient Execution**
+   - Execute independent operations in parallel (multiple tool calls in single message)
+   - Read all relevant files upfront before making changes
+   - Batch related changes together
+   - Avoid unnecessary back-and-forth
+
+3. **Smart Decision Making**
+   - Make decisions on implementation details autonomously
+   - Ask only for critical architectural choices or user preferences
+   - Use best practices by default (WCAG AAA, TypeScript strict, semantic HTML)
+   - Infer intent from context and project patterns
+
+4. **Continuous Validation**
+   - After component changes: run tests, check types, verify builds
+   - Before commits: lint, test, build validation
+   - After token updates: verify component rendering
+   - Security: check for XSS, injection, OWASP top 10
+
+### Proactive Behaviors
+
+**Auto-Testing Pattern**:
+```
+After editing a component → Immediately run:
+- npm run test tests/ComponentName.spec.js
+- npm run test tests/ComponentName.a11y.spec.ts
+- npm run type-check (if TypeScript changes)
+```
+
+**Auto-Fix Pattern**:
+```
+When lint errors detected → Auto-fix:
+- npm run lint:fix
+- Fix remaining issues manually
+- Re-run tests to ensure fixes don't break behavior
+```
+
+**Parallel Execution Pattern**:
+```
+When gathering context → Execute in parallel:
+- Read component file
+- Read related tests
+- Read documentation
+- Check for similar patterns in codebase
+```
+
+**Quality Gate Pattern**:
+```
+Before suggesting completion → Validate:
+✅ Tests pass (unit + a11y)
+✅ TypeScript compiles without errors
+✅ Linting passes
+✅ Build succeeds
+✅ Documentation updated
+```
+
+### When to Ask vs Decide
+
+**Ask User About**:
+- New component API design (prop names, variants)
+- Breaking changes to existing components
+- Architectural decisions (new dependencies, patterns)
+- Design system token values or naming
+- Feature prioritization
+
+**Decide Autonomously**:
+- Implementation details (variable names, code structure)
+- Which Vuetify components to use
+- Test structure and assertions
+- Documentation wording
+- Bug fixes and error handling
+- Accessibility attribute selection
+- TypeScript type definitions
+
+### Error Prevention
+
+**Before Writing Code**:
+- ✅ Read existing files to understand patterns
+- ✅ Check component exports in src/index.ts
+- ✅ Verify design tokens exist before using
+- ✅ Validate prop types align with Vuetify
+
+**Security Checks**:
+- ❌ No raw HTML rendering without sanitization
+- ❌ No SQL queries (N/A for this project)
+- ❌ No eval() or Function() constructors
+- ❌ No direct DOM manipulation (use Vue refs)
+- ✅ Validate user input at boundaries
+- ✅ Use TypeScript strict mode
+- ✅ Sanitize any dynamic content
+
+**Common Pitfalls to Avoid**:
+- Don't create files when editing existing ones works
+- Don't add features beyond what's requested
+- Don't skip accessibility attributes
+- Don't hardcode values that should be tokens
+- Don't forget to update exports in src/index.ts
+- Don't commit without running quality gates
+
+### Communication Style
+
+**Be Concise**:
+- State what you're doing, then do it
+- Show results, not lengthy explanations
+- Use file:line references for code locations
+- Report issues with solutions, not just problems
+
+**Be Proactive**:
+- "I noticed X, fixing it now..." ✅
+- "Should I fix X?" ❌ (just fix it)
+- Run tests automatically, report results
+- Fix lint issues without asking
+
+**Be Context-Aware**:
+- Reference session plans and journals
+- Follow established component patterns
+- Match existing code style
+- Build on prior work in the session
+
+### Quick Reference: Common Patterns
+
+**Starting a Task**:
+```
+1. Read relevant files in parallel
+2. Create TodoWrite list if 3+ steps
+3. Execute changes
+4. Run quality gates automatically
+5. Report results concisely
+```
+
+**Component Change Workflow**:
+```
+Edit → Test → Type-check → Lint-fix → Build → Commit
+(Auto-run all validation steps)
+```
+
+**Investigating Issues**:
+```
+1. Read file causing issue
+2. Check related tests
+3. Run tests to reproduce
+4. Fix issue
+5. Verify fix with tests
+6. No need to ask "should I fix this?"
+```
+
+**Adding Features**:
+```
+1. Read existing similar components (parallel)
+2. Implement following established patterns
+3. Add/update tests immediately
+4. Run test suite
+5. Update docs
+6. Validate build
+```
+
+**Code Quality Flow**:
+```
+Write code → Auto-lint → Auto-test → Auto-type-check → Report any issues with fixes
+```
+
+**Git Operations**:
+```
+Before commit:
+- Run: npm run lint:fix && npm run test && npm run build
+- Verify: git status (only intended changes)
+- Commit with conventional commit message
+- Push when session complete
+```
+
 ## Branching Convention
 
 DS-Bridge uses a simple, descriptive branching convention for feature development:
@@ -246,12 +428,49 @@ const sizeValue = computed(() => SIZES[props.size]);
 ## Development Workflow
 
 ### Adding a New Component
-1. Create `src/components/MyComponent.vue` (TypeScript + Vue 3)
-2. Export from `src/index.ts`
-3. Create entry point `src/myComponent.ts` if needed for tree-shaking
-4. Write tests in `tests/MyComponent.spec.js` (unit) and `.a11y.spec.ts` (accessibility)
-5. Add documentation in `docs/components/MyComponent.md`
-6. Run linting and tests before commit
+
+**Preferred Method**: Use the generator for consistency and speed.
+
+```bash
+npm run create-component MyComponent
+```
+
+This auto-generates component, tests, docs, and exports. Then:
+
+1. **Implement Component Logic**
+   - Read similar components to understand patterns
+   - Use design tokens, never hardcode values
+   - Add proper TypeScript types for props
+   - Include ARIA attributes and semantic HTML
+
+2. **Auto-Validate** (run in parallel):
+   ```bash
+   npm run test tests/MyComponent.spec.js &
+   npm run test tests/MyComponent.a11y.spec.ts &
+   npm run type-check
+   ```
+
+3. **Fix Issues Proactively**
+   - Auto-fix lint: `npm run lint:fix`
+   - Update failing tests to match implementation
+   - Ensure axe-core checks pass
+
+4. **Update Documentation**
+   - Add component examples to `docs/components/mycomponent.md`
+   - Document all props, events, slots
+   - Include accessibility notes
+
+5. **Final Quality Gate** (run before commit):
+   ```bash
+   npm run lint && npm run test && npm run build
+   ```
+
+**Manual Creation** (if not using generator):
+1. Create `src/components/MyComponent.vue`
+2. Export in `src/index.ts`
+3. Create `tests/MyComponent.spec.js` + `tests/MyComponent.a11y.spec.ts`
+4. Create `docs/components/mycomponent.md`
+5. Follow validation steps above
 
 ### Updating Design Tokens
 1. Update `src/tokens/` files (colors.ts, spacing.ts, etc.)
@@ -273,6 +492,46 @@ const sizeValue = computed(() => SIZES[props.size]);
 - Note accessibility features
 - Link to Figma design specs if applicable
 - Update CHANGELOG.md with version notes
+
+### Workflow Efficiency
+
+**Task Tracking**:
+- Use TodoWrite for multi-step tasks (3+ steps)
+- Mark tasks as in_progress before starting
+- Mark completed immediately after finishing
+- Keep only one task in_progress at a time
+
+**Parallel Execution Examples**:
+```
+# Reading context (DO in parallel):
+- Read component file
+- Read tests
+- Read docs
+- Read similar components
+
+# Running validations (DO in parallel):
+- npm run test ComponentName.spec.js
+- npm run test ComponentName.a11y.spec.ts
+- npm run type-check
+
+# Sequential operations (DO NOT parallelize):
+- Edit file → Read file to verify
+- Install package → Import package
+- Fix test → Re-run test
+```
+
+**Decision Speed**:
+- ✅ Use established patterns immediately
+- ✅ Follow Vuetify best practices by default
+- ✅ Implement WCAG AAA standards automatically
+- ❌ Don't ask about standard implementation details
+- ❌ Don't propose multiple approaches for simple tasks
+
+**Session Continuity**:
+- Check session plans at start: `agent-sessions/{name}-SESSION_N_PLAN.md`
+- Update work journal at end: `agent-journals/{name}-agent-work-journal.md`
+- Review git status to understand current work
+- Build on previous session's progress
 
 ## Code Quality Standards
 
@@ -309,13 +568,33 @@ Automatically runs on push/PR to main or develop:
 3. Build (npm run build)
 4. All must pass before merge
 
-### Local Pre-commit
-Always run before committing:
+### Local Pre-commit Checklist
+
+**Automated Quality Gate** (run automatically before suggesting commit):
 ```bash
-npm run lint:fix   # Fix linting issues
-npm run test       # Run test suite
-npm run build      # Verify build succeeds
+# Step 1: Auto-fix what can be fixed
+npm run lint:fix
+
+# Step 2: Validate everything passes (parallel where possible)
+npm run lint && npm run test && npm run type-check
+
+# Step 3: Ensure build succeeds
+npm run build
 ```
+
+**Manual Verification**:
+- ✅ All tests pass (unit + accessibility)
+- ✅ No TypeScript errors
+- ✅ No lint violations
+- ✅ Build completes successfully
+- ✅ Git status shows only intended changes
+- ✅ Documentation updated for API changes
+
+**If Any Check Fails**:
+1. Fix the issue immediately (don't ask user unless critical)
+2. Re-run the failed check
+3. Verify fix doesn't break other tests
+4. Only then proceed to commit
 
 ## Important Development Notes
 
@@ -343,6 +622,62 @@ npm run build      # Verify build succeeds
 - External Vue/Vuetify dependencies not bundled
 - CSS is compiled to `dist/style.css`
 - Minification removes console/debugger in production
+
+## Smart Code Analysis
+
+### Proactive Improvements
+
+When working with code, automatically identify and fix:
+
+**Accessibility Issues**:
+- Missing ARIA labels on interactive elements
+- Insufficient color contrast (WCAG AAA requires 7:1)
+- Missing keyboard navigation support
+- Non-semantic HTML (divs instead of buttons)
+
+**Performance Issues**:
+- Unnecessary re-renders (missing computed, watch)
+- Large bundle imports (import entire library vs tree-shaking)
+- Unoptimized images or assets
+- Missing v-once or v-memo where appropriate
+
+**Code Quality Issues**:
+- Hardcoded values that should be design tokens
+- Duplicate code that should be extracted
+- Missing TypeScript types (using `any`)
+- Inconsistent naming conventions
+- Missing error handling at boundaries
+
+**Fix Immediately Without Asking**:
+- Lint errors and warnings
+- Missing semicolons or formatting
+- Unused imports or variables
+- TypeScript type errors
+- Simple accessibility fixes (adding ARIA labels)
+
+**Report and Suggest**:
+- Complex refactoring opportunities
+- Performance optimization potential
+- Breaking API changes needed
+- New design token requirements
+
+### Code Review Mindset
+
+When reading existing code:
+1. Understand the pattern before changing
+2. Maintain consistency with codebase style
+3. Check if similar components exist to reuse
+4. Verify design tokens are being used
+5. Ensure accessibility standards are met
+6. Look for security vulnerabilities
+
+When writing new code:
+1. Follow existing component patterns
+2. Use TypeScript strict mode
+3. Add comprehensive tests (unit + a11y)
+4. Document public APIs
+5. Use semantic HTML
+6. Include proper ARIA attributes
 
 ## Related Files
 

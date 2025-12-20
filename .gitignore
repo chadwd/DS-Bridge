@@ -10,6 +10,10 @@ node_modules
 # VitePress
 /docs/.vitepress/cache/
 
+# Playwright
+.playwright-mcp/
+.playwright/
+
 # Development
 WARP.md
 .DS_Store
@@ -38,6 +42,12 @@ WARP.md
 # Testing
 coverage
 .nyc_output
+.vitest/
 
 # Build
 .turbo
+*.tsbuildinfo
+.eslintcache
+
+# Obsidian (for agent-knowledge/)
+.obsidian/
