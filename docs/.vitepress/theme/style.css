@@ -277,6 +277,11 @@ code {
   background-color: var(--ds-color-background);
 }
 
+/* Consistent navbar wrapper padding on all pages */
+.VPNavBar .wrapper {
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
 
 /* Sidebar */
 .VPSidebar {
