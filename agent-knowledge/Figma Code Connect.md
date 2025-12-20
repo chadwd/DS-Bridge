@@ -12,6 +12,18 @@ tags:
 
 # Figma Code Connect Integration
 
+## Current Status: BLOCKED
+
+> **Publishing Blocked Until After Holidays**
+>
+> Figma Code Connect only allows **1 repository per workspace** at a time. The lillypad repo is currently connected to the Figma workspace and cannot be unlinked until after the holidays.
+>
+> **What's Ready**: All Code Connect files are created and configured. Publishing can happen immediately once lillypad is disconnected.
+>
+> **When Unblocked**: Run `npm run figma:publish` with `FIGMA_ACCESS_TOKEN` set.
+
+---
+
 ## What We Did
 Set up Figma Code Connect for the DS-Bridge design system to bridge the gap between design and code. Configured the GuaranteedSale component as the first connected component, establishing patterns and workflows for future components.
 
