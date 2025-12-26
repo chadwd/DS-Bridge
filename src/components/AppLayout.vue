@@ -7,8 +7,8 @@
     >
       <template #prepend>
         <v-app-bar-nav-icon
-          @click.stop="drawer = !drawer"
           class="nav-toggle"
+          @click.stop="drawer = !drawer"
         />
       </template>
 
@@ -33,9 +33,9 @@
       v-model="drawer"
       :rail="rail"
       permanent
+      class="nav-drawer"
       @mouseenter="rail = false"
       @mouseleave="rail = true"
-      class="nav-drawer"
     >
       <v-list>
         <!-- Logo / Brand -->
@@ -55,7 +55,10 @@
           </template>
         </v-list-item>
 
-        <v-divider v-if="!rail" class="my-2" />
+        <v-divider
+          v-if="!rail"
+          class="my-2"
+        />
 
         <!-- Navigation Items -->
         <v-list-item

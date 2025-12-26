@@ -277,48 +277,10 @@ code {
   background-color: var(--ds-color-background);
 }
 
-/* Navbar layout: logo left, nav centered, controls right */
-.VPNavBar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
-  width: 100%;
-}
-
-.VPNavBar .title {
-  flex: 0 0 auto;
-}
-
-.VPNavBar .content {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.VPNavBar .content-body {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  justify-content: flex-end;
-}
-
-/* Center the navigation menu */
-.VPNavBar .VPNavBarMenu {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 32px;
-}
-
-/* Responsive: hide centered nav menu on mobile */
-@media (max-width: 768px) {
-  .VPNavBar .VPNavBarMenu {
-    display: none !important;
-  }
+/* Consistent navbar wrapper padding on all pages */
+.VPNavBar .wrapper {
+  padding-left: 32px !important;
+  padding-right: 32px !important;
 }
 
 /* Sidebar */
@@ -326,21 +288,29 @@ code {
   background-color: var(--ds-color-background-secondary);
 }
 
-/* Prevent layout shift between pages with/without sidebar */
-.VPNav {
-  width: 100vw;
-  position: sticky;
-  top: 0;
-  z-index: var(--vp-z-index-nav, 10);
+/* Fix sidebar truncation at viewports >= 1440px */
+@media (min-width: 960px) {
+  .VPSidebar {
+    width: var(--vp-sidebar-width, 272px) !important;
+  }
+
+  /* Ensure content is offset by sidebar width on pages with sidebar */
+  .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width, 272px) !important;
+  }
 }
 
-.VPNavBar .container {
-  max-width: 100%;
-  margin: 0 auto;
+
+/* ============================================
+   Layout Variables
+   ============================================ */
+
+:root {
+  --vp-sidebar-width: 272px;
 }
 
-/* Constrain home page content width to match doc pages with sidebar */
-.VPHome .VPContent {
+/* Constrain content width */
+.VPContent:not(.has-sidebar) {
   max-width: var(--vp-layout-max-width, 1440px);
   margin: 0 auto;
 }

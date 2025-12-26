@@ -615,4 +615,31 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ---
 
-Built with ❤️ using Vue 3, Vite, and Vuetify 3.
+## Built with Claude Code
+
+This design system was built collaboratively with [Claude Code](https://claude.ai/code) over 9 development sessions.
+
+**The Journey:**
+- Started as an experiment: *Can a designer build a real design system with AI assistance?*
+- Evolved into a production-ready component library
+- Created workflow automation that empowers designers to contribute code
+
+**By the Numbers:**
+| Metric | Value |
+|--------|-------|
+| Sessions | 9 |
+| Commits | 57 |
+| Components | 5 |
+| Tests | 95 |
+| Documentation Pages | 20 |
+
+**Key Innovations:**
+- **Two-phase workflow**: Demo first, documentation after approval
+- **Designer-friendly commands**: `/ds-build-component`, `/ds-create-component-docs`
+- **Knowledge capture**: 14 documented learnings for future reference
+
+Read the full story: [FINAL_SUMMARY.md](FINAL_SUMMARY.md)
+
+---
+
+Built with ❤️ using Vue 3, Vite, Vuetify 3, and Claude Code.

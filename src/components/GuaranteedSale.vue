@@ -1,11 +1,17 @@
 <template>
-  <div class="ds-guaranteed-sale" :class="{ 'align-left': align === 'left' }">
+  <div
+    class="ds-guaranteed-sale"
+    :class="{ 'align-left': align === 'left' }"
+  >
     <!-- Header Section with Title, Value, and Status -->
     <div class="guaranteed-sale-header">
       <div class="header-title">
         <span class="title-text">Guaranteed Offer</span>
-        <v-tooltip location="top" max-width="300">
-          <template v-slot:activator="{ props: tooltipProps }">
+        <v-tooltip
+          location="top"
+          max-width="300"
+        >
+          <template #activator="{ props: tooltipProps }">
             <v-icon
               icon="mdi-information-outline"
               size="small"
@@ -20,19 +26,35 @@
         <span class="currency-symbol">$</span>
         <span class="amount">{{ status === 'Not Available' ? '--' : priceValue }}</span>
       </div>
-      <div class="status-badge" :class="statusClass">
+      <div
+        class="status-badge"
+        :class="statusClass"
+      >
         <span class="status-text">{{ statusText }}</span>
       </div>
     </div>
 
     <!-- DateTime Section -->
-    <div v-if="showDateTime && shouldShowDateTime" class="datetime-section">
-      <div v-if="showUpdatedDate || showUpdatedTime" class="datetime-row">
-        <v-icon icon="mdi-clock-outline" size="x-small" class="datetime-icon" />
+    <div
+      v-if="showDateTime && shouldShowDateTime"
+      class="datetime-section"
+    >
+      <div
+        v-if="showUpdatedDate || showUpdatedTime"
+        class="datetime-row"
+      >
+        <v-icon
+          icon="mdi-clock-outline"
+          size="x-small"
+          class="datetime-icon"
+        />
         <span class="label">Updated:</span>
         <template v-if="showUpdatedDate">
           <span class="value">{{ updatedDate }}</span>
-          <span v-if="showUpdatedTime" class="separator">|</span>
+          <span
+            v-if="showUpdatedTime"
+            class="separator"
+          >|</span>
         </template>
         <template v-if="showUpdatedTime">
           <span class="value">{{ updatedTime }}</span>
@@ -40,8 +62,15 @@
           <span class="timezone">{{ timezone }}</span>
         </template>
       </div>
-      <div v-if="showExpiresDate" class="datetime-row">
-        <v-icon icon="mdi-calendar-outline" size="x-small" class="datetime-icon" />
+      <div
+        v-if="showExpiresDate"
+        class="datetime-row"
+      >
+        <v-icon
+          icon="mdi-calendar-outline"
+          size="x-small"
+          class="datetime-icon"
+        />
         <span class="label">Expires:</span>
         <span class="value">{{ expiresDate }}</span>
       </div>
