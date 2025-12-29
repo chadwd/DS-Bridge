@@ -11,11 +11,11 @@
           Connecting Design and Development
         </p>
         <div class="hero-ctas">
-          <a href="/guide/getting-started" class="cta-button cta-primary" @click.prevent="$router?.push('/guide/getting-started')">
+          <a :href="withBase('/guide/getting-started')" class="cta-button cta-primary" @click.prevent="$router?.push(withBase('/guide/getting-started'))">
             Get Started
             <span class="material-icons">arrow_forward</span>
           </a>
-          <a href="/components/button" class="cta-button cta-secondary" @click.prevent="$router?.push('/components/button')">
+          <a :href="withBase('/components/button')" class="cta-button cta-secondary" @click.prevent="$router?.push(withBase('/components/button'))">
             View Components
             <span class="material-icons">visibility</span>
           </a>
@@ -168,7 +168,7 @@
 
         <!-- Quick Links -->
         <div class="quick-links">
-          <a href="/guide/introduction" class="quick-link-card">
+          <a :href="withBase('/guide/introduction')" class="quick-link-card">
             <div class="quick-link-icon">
               <span class="material-icons">menu_book</span>
             </div>
@@ -178,7 +178,7 @@
             </div>
           </a>
 
-          <a href="/design/tokens" class="quick-link-card">
+          <a :href="withBase('/design/tokens')" class="quick-link-card">
             <div class="quick-link-icon">
               <span class="material-icons">settings</span>
             </div>
@@ -188,7 +188,7 @@
             </div>
           </a>
 
-          <a href="/components/button" class="quick-link-card">
+          <a :href="withBase('/components/button')" class="quick-link-card">
             <div class="quick-link-icon">
               <span class="material-icons">view_module</span>
             </div>
@@ -218,9 +218,9 @@
           DS-Bridge v0.2.0 • Built with Vue 3, Vuetify 3, and TypeScript
         </div>
         <div class="footer-links">
-          <a href="/guide/getting-started" class="footer-link">Get Started</a>
+          <a :href="withBase('/guide/getting-started')" class="footer-link">Get Started</a>
           <a href="https://github.com/chadwd/DS-Bridge" class="footer-link" target="_blank">GitHub</a>
-          <a href="/guide/philosophy" class="footer-link">Philosophy</a>
+          <a :href="withBase('/guide/philosophy')" class="footer-link">Philosophy</a>
           <a href="https://github.com/chadwd/DS-Bridge/issues" class="footer-link" target="_blank">Issues</a>
         </div>
       </div>
