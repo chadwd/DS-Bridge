@@ -4,7 +4,7 @@
     <section class="hero-section">
       <div class="hero-content">
         <div class="hero-title-wrapper">
-          <img src="/logo.svg" alt="DS-Bridge Logo" class="hero-logo" />
+          <img :src="logoUrl" alt="DS-Bridge Logo" class="hero-logo" />
           <h1 class="hero-title">DS-Bridge</h1>
         </div>
         <p class="hero-subtitle">
@@ -229,7 +229,10 @@
 </template>
 
 <script setup>
+import { withBase } from 'vitepress'
+
 // This component uses the Tron Lab design system styles
 // imported from tron-homepage.css in the main theme
+const logoUrl = withBase('/logo.svg')
 </script>
 
