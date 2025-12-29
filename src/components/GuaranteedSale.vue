@@ -308,8 +308,8 @@ const shouldShowDateTime = computed(() => {
   gap: 12px;
   min-width: 318px;
   padding: 16px;
-  background-color: #ffffff;
-  border: 1px solid #cfd8dc;
+  background-color: rgb(var(--v-theme-surface));
+  border: 1px solid rgba(var(--v-theme-on-surface), 0.12);
   border-radius: 12px;
 
   &.align-left {
@@ -346,7 +346,7 @@ const shouldShowDateTime = computed(() => {
     font-weight: 500;
     line-height: 20px;
     letter-spacing: 0.4px;
-    color: rgba(0, 0, 0, 0.87);
+    color: rgb(var(--v-theme-on-surface));
   }
 
   .tooltip-icon {
@@ -355,10 +355,10 @@ const shouldShowDateTime = computed(() => {
     justify-content: center;
     cursor: pointer;
     transition: color 0.2s ease;
-    color: rgba(0, 0, 0, 0.54);
+    color: rgba(var(--v-theme-on-surface), 0.6);
 
     &:hover {
-      color: rgba(0, 0, 0, 0.87);
+      color: rgb(var(--v-theme-on-surface));
     }
   }
 }
@@ -373,7 +373,7 @@ const shouldShowDateTime = computed(() => {
   font-size: 24px;
   font-weight: 500;
   line-height: 32px;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgb(var(--v-theme-on-surface));
 
   .currency-symbol {
     display: inline;
@@ -392,48 +392,48 @@ const shouldShowDateTime = computed(() => {
   height: 16px;
   padding: 0 12px;
   border-radius: 4px;
-  background-color: #f3fcf9;
-  border: 1px solid #99dbc8;
+  background-color: rgba(var(--v-theme-success), 0.08);
+  border: 1px solid rgba(var(--v-theme-success), 0.3);
 
   .status-text {
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
     font-weight: 400;
     line-height: 20px;
-    color: #2d7654;
+    color: rgb(var(--v-theme-success));
     white-space: nowrap;
   }
 
   &.status-available,
   &.status-accepted {
-    background-color: #f3fcf9;
-    border-color: #99dbc8;
+    background-color: rgba(var(--v-theme-success), 0.08);
+    border-color: rgba(var(--v-theme-success), 0.3);
     .status-text {
-      color: #2d7654;
+      color: rgb(var(--v-theme-success));
     }
   }
 
   &.status-expired {
-    background-color: #fee2e2;
-    border-color: #fca5a5;
+    background-color: rgba(var(--v-theme-error), 0.08);
+    border-color: rgba(var(--v-theme-error), 0.3);
     .status-text {
-      color: #991b1b;
+      color: rgb(var(--v-theme-error));
     }
   }
 
   &.status-not-available {
-    background-color: #f3f4f6;
-    border-color: #d1d5db;
+    background-color: rgba(var(--v-theme-on-surface), 0.04);
+    border-color: rgba(var(--v-theme-on-surface), 0.12);
     .status-text {
-      color: #4b5563;
+      color: rgba(var(--v-theme-on-surface), 0.6);
     }
   }
 
   &.status-requested {
-    background-color: #dbeafe;
-    border-color: #93c5fd;
+    background-color: rgba(var(--v-theme-info), 0.08);
+    border-color: rgba(var(--v-theme-info), 0.3);
     .status-text {
-      color: #1e40af;
+      color: rgb(var(--v-theme-info));
     }
   }
 }
@@ -468,7 +468,7 @@ const shouldShowDateTime = computed(() => {
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0.4px;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(var(--v-theme-on-surface), 0.6);
     white-space: nowrap;
   }
 
@@ -478,7 +478,7 @@ const shouldShowDateTime = computed(() => {
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0.4px;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(var(--v-theme-on-surface), 0.6);
     white-space: nowrap;
   }
 
@@ -488,7 +488,7 @@ const shouldShowDateTime = computed(() => {
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0.4px;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(var(--v-theme-on-surface), 0.6);
   }
 
   .time-period {
@@ -497,7 +497,7 @@ const shouldShowDateTime = computed(() => {
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0.4px;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(var(--v-theme-on-surface), 0.6);
     white-space: nowrap;
   }
 
@@ -507,7 +507,7 @@ const shouldShowDateTime = computed(() => {
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0.4px;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(var(--v-theme-on-surface), 0.6);
     white-space: nowrap;
   }
 }
