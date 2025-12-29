@@ -229,10 +229,14 @@
 </template>
 
 <script setup>
-import { withBase } from 'vitepress'
+import { computed } from 'vue'
+import { withBase, useData } from 'vitepress'
 
 // This component uses the Tron Lab design system styles
 // imported from tron-homepage.css in the main theme
-const logoUrl = withBase('/logo.png')
+const { isDark } = useData()
+const logoUrl = computed(() =>
+  isDark.value ? withBase('/logo-dark.png') : withBase('/logo.png')
+)
 </script>
 
