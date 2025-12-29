@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+  base: '/DS-Bridge/',
   title: 'DS-Bridge',
   titleTemplate: ':title - Design System Bridge',
   description: 'Enterprise-grade, white-label Vue 3 design system built on Vuetify 3 and TypeScript',
