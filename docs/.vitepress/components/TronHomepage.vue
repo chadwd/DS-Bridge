@@ -233,6 +233,6 @@ import { withBase } from 'vitepress'
 
 // This component uses the Tron Lab design system styles
 // imported from tron-homepage.css in the main theme
-const logoUrl = withBase('/logo.svg')
+const logoUrl = withBase('/logo.png')
 </script>
 
