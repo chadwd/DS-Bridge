@@ -229,14 +229,27 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { withBase, useData } from 'vitepress'
 
 // This component uses the Tron Lab design system styles
 // imported from tron-homepage.css in the main theme
 const { isDark } = useData()
-const logoUrl = computed(() =>
-  isDark.value ? withBase('/logo-dark.png') : withBase('/logo.png')
-)
+
+// Use ref to ensure proper initialization on mount
+const logoUrl = ref(withBase('/logo.png'))
+
+// Update logo URL based on theme
+const updateLogoUrl = () => {
+  logoUrl.value = isDark.value ? withBase('/logo-dark.png') : withBase('/logo.png')
+}
+
+// Initialize on mount to ensure correct logo on first render
+onMounted(() => {
+  updateLogoUrl()
+})
+
+// Watch for theme changes
+watch(isDark, updateLogoUrl)
 </script>
 
