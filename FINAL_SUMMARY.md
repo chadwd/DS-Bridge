@@ -292,6 +292,6 @@ Now go build something.
 
 ---
 
-*Built with Claude Code over 9 sessions, December 2024*
+*Built with Claude Code over 9 sessions, December 2025*
 
 *57 commits. 95 tests. 1 journey.*

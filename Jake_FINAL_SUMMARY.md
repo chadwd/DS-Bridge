@@ -570,7 +570,7 @@ Now go build your own.
 
 ---
 
-*Built with Claude Code over 6 sessions, December 2024*
+*Built with Claude Code over 6 sessions, December 2025*
 
 *35 tests. 20 props. 5 status states. 1 excellent component.*
 
